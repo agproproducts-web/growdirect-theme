@@ -1,0 +1,1208 @@
+{{ 'growdirect.css' | asset_url | stylesheet_tag }}
+
+<div id="growdirect-home">
+
+
+  
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container">
+      <a href="#delivery">Melbourne metro delivery. Check your suburb before shopping.</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="#top">GrowDirect</a>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <a href="#boxes" style="color:rgba(255,255,255,.75);margin-right:2rem;font-weight:500;font-size:.9rem;">Saver Boxes</a>
+        <a href="#specials" style="color:#F28C38;font-weight:700;margin-right:2rem;font-size:.9rem;">Weekly Specials ✦</a>
+        <a href="#mix" style="color:rgba(255,255,255,.75);margin-right:2rem;font-weight:500;font-size:.9rem;">Mix &amp; Match</a>
+        <a href="#delivery" style="color:rgba(255,255,255,.75);font-weight:500;font-size:.9rem;">Delivery</a>
+      </nav>
+      <a class="btn btn-primary" href="#" style="padding:.75rem 1.25rem;border-radius:999px;font-size:.875rem;">Cart 0</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" style="position:relative;overflow:hidden;">
+    <!-- Apple orchard drone background -->
+    <img
+      src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&w=1800&q=80"
+      alt=""
+      aria-hidden="true"
+      style="
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center 40%;
+        opacity:.28;
+        pointer-events:none;
+        z-index:0;
+      "
+    />
+    <!-- Content sits above the image -->
+    <div class="container hero-grid" style="position:relative;z-index:1;">
+      <div class="hero-content">
+        <div class="eyebrow">Better value weekly food shop</div>
+        <h1 style="margin:0 0 1.5rem;line-height:1.15;">
+          <span style="display:block;font-family:var(--font-heading);font-weight:800;color:#fff;font-size:clamp(2.8rem,5vw,4rem);white-space:nowrap;">Save more on your</span>
+          <span style="display:block;font-family:'Lora',serif;font-weight:700;font-style:italic;color:var(--color-accent);font-size:clamp(2.8rem,5vw,4rem);white-space:nowrap;">weekly food shop</span>
+        </h1>
+        <p>Direct-from-farm bulk produce and staple boxes at competitive prices — simpler than the supermarket, more practical than a produce box.</p>
+        <div style="display:flex;gap:1rem;margin:2rem 0;flex-wrap:wrap;">
+          <a class="btn btn-primary" href="#boxes">Shop Saver Boxes</a>
+          <a class="btn btn-secondary" href="#mix" style="border-color:rgba(255,255,255,.4);color:#fff;background:transparent;" onmouseover="this.style.borderColor='var(--color-accent)';this.style.color='var(--color-accent)';this.style.background='transparent'" onmouseout="this.style.borderColor='rgba(255,255,255,.4)';this.style.color='#fff';this.style.background='transparent'">Build Your Own Order</a>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;font-size:.875rem;">
+          <div style="background:rgba(255,255,255,.1);padding:.5rem .75rem;border-radius:999px;border:1px solid rgba(255,255,255,.15);">Free delivery $99+</div>
+          <div style="background:rgba(255,255,255,.1);padding:.5rem .75rem;border-radius:999px;border:1px solid rgba(255,255,255,.15);">Order by 5pm</div>
+          <div style="background:rgba(255,255,255,.1);padding:.5rem .75rem;border-radius:999px;border:1px solid rgba(255,255,255,.15);">No subscription</div>
+        </div>
+      </div>
+      <div class="selector">
+        <div class="sel-header">
+          <strong>Start with the right box</strong>
+          <div>Select your household size</div>
+        </div>
+        <div class="option">
+          <div style="display:flex;gap:1rem;align-items:center;">
+            <div class="option-dot"></div>
+            <div><strong>1 person</strong><div>Budget Fruit Box 4kg</div></div>
+          </div>
+          <div style="text-align:right;"><div style="font-size:1.25rem;font-weight:800;color:#F28C38;">$28</div><div style="font-size:.75rem;opacity:.5;text-decoration:line-through;">$38</div></div>
+        </div>
+        <div class="option active">
+          <div style="display:flex;gap:1rem;align-items:center;">
+            <div class="option-dot"></div>
+            <div><strong>2–3 people</strong><div>Weekly Staples Box 5kg</div></div>
+          </div>
+          <div style="text-align:right;"><div style="font-size:1.25rem;font-weight:800;color:#F28C38;">$45</div><div style="font-size:.75rem;opacity:.5;text-decoration:line-through;">$62</div></div>
+        </div>
+        <div class="option">
+          <div style="display:flex;gap:1rem;align-items:center;">
+            <div class="option-dot"></div>
+            <div><strong>3–4 people</strong><div>Pantry Saver Bundle 4kg</div></div>
+          </div>
+          <div style="text-align:right;"><div style="font-size:1.25rem;font-weight:800;color:#F28C38;">$55</div><div style="font-size:.75rem;opacity:.5;text-decoration:line-through;">$74</div></div>
+        </div>
+        <div class="sel-footer">
+          <a class="btn btn-primary" style="width:100%;border-radius:999px;">Add selected box to cart</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <section class="trust">
+    <div class="container trust-grid">
+      <div class="trust-item">
+        <div style="width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:1.125rem;">✓</div>
+        <div><strong>Free delivery $99+</strong><div style="font-size:.875rem;opacity:.8;">Melbourne metro</div></div>
+      </div>
+      <div class="trust-item">
+        <div style="width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:1.125rem;">⏰</div>
+        <div><strong>Order by 5pm</strong><div style="font-size:.875rem;opacity:.8;">Next-day delivery</div></div>
+      </div>
+      <div class="trust-item">
+        <div style="width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:1.125rem;">▢</div>
+        <div><strong>No subscription</strong><div style="font-size:.875rem;opacity:.8;">Order when needed</div></div>
+      </div>
+      <div class="trust-item">
+        <div style="width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:1.125rem;">⌂</div>
+        <div><strong>Doorstep delivery</strong><div style="font-size:.875rem;opacity:.8;">Metro only</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how" style="padding:5rem 0;background:#fff;">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <div style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:.75rem;">Simple Process</div>
+        <h2 style="font-size:clamp(2rem,4vw,2.75rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.75rem;">How GrowDirect works</h2>
+        <p style="color:var(--color-text-secondary);font-size:1rem;max-width:520px;margin:0 auto;line-height:1.75;">Four steps from postcode check to doorstep delivery. No subscriptions, no hidden fees.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;">
+
+        <div style="background:#F4F8F5;border:1px solid #E2EDE5;border-radius:1.25rem;padding:2rem 1.75rem;transition:all .3s;">
+          <div style="font-size:3rem;font-weight:800;color:rgba(10,74,47,.1);line-height:1;margin-bottom:1.25rem;font-family:var(--font-heading);">01</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--color-text-primary);margin-bottom:.5rem;">Check your postcode</div>
+          <p style="font-size:.875rem;color:var(--color-text-secondary);line-height:1.65;margin:0;">We deliver to Melbourne metro suburbs. Enter your postcode to confirm before you shop.</p>
+        </div>
+
+        <div style="background:#F4F8F5;border:1px solid #E2EDE5;border-radius:1.25rem;padding:2rem 1.75rem;transition:all .3s;">
+          <div style="font-size:3rem;font-weight:800;color:rgba(10,74,47,.1);line-height:1;margin-bottom:1.25rem;font-family:var(--font-heading);">02</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--color-text-primary);margin-bottom:.5rem;">Choose a Saver Box</div>
+          <p style="font-size:.875rem;color:var(--color-text-secondary);line-height:1.65;margin:0;">Start with the pre-packed box that fits your household size and weekly budget.</p>
+        </div>
+
+        <div style="background:#F4F8F5;border:1px solid #E2EDE5;border-radius:1.25rem;padding:2rem 1.75rem;transition:all .3s;">
+          <div style="font-size:3rem;font-weight:800;color:rgba(10,74,47,.1);line-height:1;margin-bottom:1.25rem;font-family:var(--font-heading);">03</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--color-text-primary);margin-bottom:.5rem;">Add extras if needed</div>
+          <p style="font-size:.875rem;color:var(--color-text-secondary);line-height:1.65;margin:0;">Top up with bulk produce, pantry staples, or this week's specials.</p>
+        </div>
+
+        <div style="background:#F4F8F5;border:1px solid #E2EDE5;border-radius:1.25rem;padding:2rem 1.75rem;transition:all .3s;">
+          <div style="font-size:3rem;font-weight:800;color:rgba(10,74,47,.1);line-height:1;margin-bottom:1.25rem;font-family:var(--font-heading);">04</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--color-text-primary);margin-bottom:.5rem;">Get it delivered</div>
+          <p style="font-size:.875rem;color:var(--color-text-secondary);line-height:1.65;margin:0;">Order by 5pm and we'll have it on your doorstep the next day.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Saver Boxes -->
+  <section id="boxes" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2>Shop Saver Boxes</h2>
+          <p>Five pre-packed boxes. Pick the one that fits your household — it's the fastest and best-value way to order.</p>
+        </div>
+      </div>
+
+      <!-- Weekly Staples Box — full width, image left -->
+      <div class="card" style="padding:0;overflow:hidden;margin-bottom:1.25rem;background:#2D6A4F;border-color:rgba(255,255,255,.1);transition:background .2s;" onmouseover="this.style.background='#265E45'" onmouseout="this.style.background='#2D6A4F'">
+        <div style="display:grid;grid-template-columns:340px 1fr;align-items:stretch;">
+          <!-- Image column -->
+          <div style="display:flex;align-items:center;justify-content:center;padding:1.5rem;background:#265E45;border-right:1px solid rgba(255,255,255,.1);">
+            <img
+              src="{{ 'weekly-staples-box.jpg' | file_url }}"
+              alt="Weekly Staples Box contents"
+              style="width:100%;height:auto;display:block;"
+            />
+          </div>
+          <!-- Content column -->
+          <div class="card-dark-content" style="padding:2rem;background:transparent;">
+            <div class="badge">Most popular</div>
+            <h3>Weekly Staples Box</h3>
+            <p>Seasonal mixed veg and fruit for 2–3 people. The everyday household shop sorted in one box.</p>
+            <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin:.75rem 0 1.25rem;">
+              <span style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;">📦 8–12kg</span>
+              <span style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;">👥 Best for 2–3 people</span>
+            </div>
+            <div style="background:#fff;border-radius:.75rem;padding:1rem;margin:0 0 1.25rem;font-size:.875rem;color:#1A3C34;">
+              <strong style="color:#1A3C34;">What's inside:</strong> 5kg potatoes, 1kg onions, 1kg carrots, 2kg apples, 1kg bananas
+            </div>
+            <div style="background:rgba(255,255,255,.12);padding:.25rem .75rem;border-radius:.5rem;font-size:.875rem;font-weight:700;display:inline-block;margin-bottom:1rem;color:#fff;">Save $17 this week</div>
+            <div style="display:flex;align-items:baseline;gap:.5rem;margin:1rem 0 1.5rem;">
+              <span class="price" style="color:var(--color-accent)">$45</span>
+              <span class="price-was" style="color:rgba(255,255,255,.5)">was $62</span>
+            </div>
+            <a class="btn btn-primary" style="width:100%;border-radius:1rem;">Add to cart</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Remaining boxes — full width, stacked one per row -->
+      <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+        <div class="card" style="padding:0;overflow:hidden;background:#2D6A4F;border-color:rgba(255,255,255,.1);transition:background .2s;" onmouseover="this.style.background='#265E45'" onmouseout="this.style.background='#2D6A4F'">
+          <div style="display:grid;grid-template-columns:340px 1fr;align-items:stretch;">
+            <!-- Image column -->
+            <div style="display:flex;align-items:center;justify-content:center;padding:1.5rem;background:#265E45;border-right:1px solid rgba(255,255,255,.1);">
+              <img
+                src="{{ 'family-veg-box.jpg' | file_url }}"
+                alt="Family Veg Box contents"
+                style="width:100%;height:auto;display:block;"
+              />
+            </div>
+            <!-- Content column -->
+            <div class="card-dark-content" style="padding:2rem;background:transparent;">
+              <div class="badge">Best value</div>
+              <h3>Family Veg Box</h3>
+              <p>Larger seasonal veg selection for 4–5 people. More variety per kilo, better overall value.</p>
+              <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin:.75rem 0 1.25rem;">
+                <span style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;">📦 12–18kg</span>
+                <span style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;">👥 Best for 3–4 people</span>
+              </div>
+              <div style="background:#fff;border-radius:.75rem;padding:1rem;margin:0 0 1.25rem;font-size:.875rem;color:#1A3C34;">
+                <strong style="color:#1A3C34;">What's inside:</strong> 5kg potatoes, 2kg onions, 2kg carrots, pumpkin, cabbage/cauliflower, 2kg apples, 2kg bananas
+              </div>
+              <div style="background:rgba(255,255,255,.12);padding:.25rem .75rem;border-radius:.5rem;font-size:.875rem;font-weight:700;display:inline-block;margin-bottom:1rem;color:#fff;">Save $26 this week</div>
+              <div style="display:flex;align-items:baseline;gap:.5rem;margin:1rem 0 1.5rem;">
+                <span class="price" style="color:var(--color-accent)">$69</span>
+                <span class="price-was" style="color:rgba(255,255,255,.5)">was $95</span>
+              </div>
+              <a class="btn btn-primary" style="width:100%;border-radius:1rem;">Add to cart</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:0;overflow:hidden;background:#2D6A4F;border-color:rgba(255,255,255,.1);transition:background .2s;" onmouseover="this.style.background='#265E45'" onmouseout="this.style.background='#2D6A4F'">
+          <div style="display:grid;grid-template-columns:340px 1fr;align-items:stretch;">
+            <!-- Image column -->
+            <div style="display:flex;align-items:center;justify-content:center;padding:1.5rem;background:#265E45;border-right:1px solid rgba(255,255,255,.1);">
+              <img src="{{ 'pantry-saver-bundle.jpg' | file_url }}" alt="Pantry Saver Bundle contents" style="width:100%;height:auto;display:block;" />
+            </div>
+            <!-- Content column -->
+            <div style="padding:2rem;">
+            <h3 style="color:#fff;">Pantry Saver Bundle</h3>
+            <p style="color:rgba(255,255,255,.75);">Rice, flour, pasta, oil, canned tomatoes and more. The weekly pantry run in one order.</p>
+            <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin:.75rem 0 1.25rem;">
+              <span style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;">📦 6–9kg</span>
+              <span style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;">👥 Best for all household sizes</span>
+            </div>
+            <div style="background:#fff;border-radius:.75rem;padding:1rem;margin:0 0 1.25rem;font-size:.875rem;color:#1A3C34;">
+              <strong style="color:#1A3C34;">What's inside:</strong> 2kg rice, 2kg flour, 2kg sugar, 2kg pasta, canned tomatoes
+            </div>
+            <div style="background:rgba(255,255,255,.12);padding:.25rem .75rem;border-radius:.5rem;font-size:.875rem;font-weight:700;display:inline-block;margin-bottom:1rem;color:#fff;">Save $19 this week</div>
+            <div style="display:flex;align-items:baseline;gap:.5rem;margin:1rem 0 1.5rem;">
+              <span class="price" style="color:var(--color-accent);">$55</span>
+              <span class="price-was" style="color:rgba(255,255,255,.5)">was $74</span>
+            </div>
+            <a class="btn btn-primary" style="width:100%;border-radius:1rem;">Add to cart</a>
+          </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:0;overflow:hidden;background:#2D6A4F;border-color:rgba(255,255,255,.1);transition:background .2s;" onmouseover="this.style.background='#265E45'" onmouseout="this.style.background='#2D6A4F'">
+          <div style="display:grid;grid-template-columns:340px 1fr;align-items:stretch;">
+            <!-- Image column -->
+            <div style="display:flex;align-items:center;justify-content:center;padding:1.5rem;background:#265E45;border-right:1px solid rgba(255,255,255,.1);">
+              <img
+                src="{{ 'budget-fruit-box.jpg' | file_url }}"
+                alt="Budget Fruit Box contents"
+                style="width:100%;height:auto;display:block;"
+              />
+            </div>
+            <!-- Content column -->
+            <div class="card-dark-content" style="padding:2rem;background:transparent;">
+              <h3>Budget Fruit Box</h3>
+              <p>A simple low-cost fruit box for 1–2 people or lighter weeks.</p>
+              <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin:.75rem 0 1.25rem;">
+                <span style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;">📦 5–7kg</span>
+                <span style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;">👥 Best for 1–2 people</span>
+              </div>
+              <div style="background:#F0F7F2;border-radius:.75rem;padding:1rem;margin:0 0 .75rem;font-size:.875rem;">
+                <strong style="color:#1A3C34;">Typical contents:</strong> Apples 2kg, bananas 1.5kg, pears 1kg, seasonal citrus 1.5–2kg
+              </div>
+              <div style="background:#fff;border:1px solid rgba(10,74,47,.15);border-radius:.75rem;padding:.75rem 1rem;margin:0 0 1.25rem;font-size:.8rem;color:#4A6357;line-height:1.55;">
+                Contents may vary slightly depending on season and availability, but the box will always follow this value-focused fruit mix.
+              </div>
+              <div style="background:rgba(255,255,255,.12);padding:.25rem .75rem;border-radius:.5rem;font-size:.875rem;font-weight:700;display:inline-block;margin-bottom:1rem;color:#fff;">Save $10 this week</div>
+              <div style="display:flex;align-items:baseline;gap:.5rem;margin:1rem 0 1.5rem;">
+                <span class="price">$28</span>
+                <span class="price-was" style="color:rgba(255,255,255,.5)">was $38</span>
+              </div>
+              <a class="btn btn-primary" style="width:100%;border-radius:1rem;">Add to cart</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:0;overflow:hidden;background:#2D6A4F;border-color:rgba(255,255,255,.1);transition:background .2s;" onmouseover="this.style.background='#265E45'" onmouseout="this.style.background='#2D6A4F'">
+          <div style="display:grid;grid-template-columns:340px 1fr;align-items:stretch;">
+            <!-- Image column -->
+            <div style="display:flex;align-items:center;justify-content:center;padding:1.5rem;background:#265E45;border-right:1px solid rgba(255,255,255,.1);">
+              <img
+                src="{{ 'full-household-stockup-box.jpg' | file_url }}"
+                alt="Full Household Stock-Up Box contents"
+                style="width:100%;height:auto;display:block;"
+              />
+            </div>
+            <!-- Content column -->
+            <div class="card-dark-content" style="padding:2rem;background:transparent;">
+              <h3>Full Household Stock-Up Box</h3>
+              <p>Bigger weekly order for families that want more covered in one delivery.</p>
+              <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin:.75rem 0 1.25rem;">
+                <span style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;">📦 15–22kg</span>
+                <span style="display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;">👥 Best for 4+ people</span>
+              </div>
+              <div style="background:#fff;border-radius:.75rem;padding:1rem;margin:0 0 1.25rem;font-size:.875rem;color:#1A3C34;">
+                <strong style="color:#1A3C34;">What's inside:</strong> 5kg potatoes, 2kg onions, 2kg carrots, 3kg apples, 2kg bananas, 5kg rice, flour, sugar, canned basics
+              </div>
+              <div style="background:rgba(255,255,255,.12);padding:.25rem .75rem;border-radius:.5rem;font-size:.875rem;font-weight:700;display:inline-block;margin-bottom:1rem;color:#fff;">Save $22 this week</div>
+              <div style="display:flex;align-items:baseline;gap:.5rem;margin:1rem 0 1.5rem;">
+                <span class="price">$52</span>
+                <span class="price-was" style="color:rgba(255,255,255,.5)">was $74</span>
+              </div>
+              <a class="btn btn-primary" style="width:100%;border-radius:1rem;">Add to cart</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Add Items to Your Order -->
+  <section id="mix" class="section" style="background:#fff;">
+    <div class="container">
+
+      <!-- Section header -->
+      <div style="margin-bottom:2rem;">
+        <div style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:.6rem;">Mix &amp; Match</div>
+        <h2 style="margin-bottom:.5rem;">Top up your box or build your own order from scratch.</h2>
+        <p style="color:var(--color-text-secondary);font-size:1rem;max-width:560px;line-height:1.75;">Most households start with a Saver Box. From there, pick individual items to top up — or skip the box entirely and build your own order from scratch.</p>
+      </div>
+
+      <!-- Two clear pathways -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:4rem;">
+
+        <!-- Path A: Top up -->
+        <div style="position:relative;border-radius:1.25rem;overflow:hidden;background:#DDEED8;min-height:200px;display:flex;align-items:center;">
+          <div style="padding:2.25rem;flex:1;position:relative;z-index:1;max-width:58%;">
+            <h3 style="font-family:var(--font-heading);font-size:1.35rem;font-weight:800;color:var(--color-text-primary);line-height:1.2;margin:0 0 .75rem;">Top up your box</h3>
+            <p style="color:var(--color-text-secondary);font-size:.875rem;line-height:1.65;margin:0 0 1.25rem;">Already added a Saver Box? Pick individual bulk items to round out your weekly shop — potatoes, rice, whatever you're running low on.</p>
+            <a href="#" class="btn btn-primary" style="border-radius:999px;padding:.7rem 1.5rem;font-size:.875rem;">Top up →</a>
+          </div>
+          <div style="position:absolute;right:0;top:0;width:44%;height:100%;overflow:hidden;border-radius:0 1.25rem 1.25rem 0;">
+            <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=600&q=80" alt="Fresh produce" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+          </div>
+        </div>
+
+        <!-- Path B: Build your own -->
+        <div style="position:relative;border-radius:1.25rem;overflow:hidden;background:#DCE7F1;min-height:200px;display:flex;align-items:center;">
+          <div style="padding:2.25rem;flex:1;position:relative;z-index:1;max-width:58%;">
+            <h3 style="font-family:var(--font-heading);font-size:1.35rem;font-weight:800;color:var(--color-text-primary);line-height:1.2;margin:0 0 .75rem;">Build your own order</h3>
+            <p style="color:var(--color-text-secondary);font-size:.875rem;line-height:1.65;margin:0 0 1.25rem;">Skip the box entirely and choose exactly what you need. Same bulk pricing, same next-day delivery — no box required.</p>
+            <a href="#" class="btn btn-primary" style="border-radius:999px;padding:.7rem 1.5rem;font-size:.875rem;">Shop with Mix &amp; Match →</a>
+          </div>
+          <div style="position:absolute;right:0;top:0;width:44%;height:100%;overflow:hidden;border-radius:0 1.25rem 1.25rem 0;">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="Pantry staples" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Divider -->
+      <div style="border-top:1px solid var(--color-border);margin-bottom:3rem;"></div>
+
+      <!-- Product categories -->
+      <div style="margin-bottom:1.5rem;">
+        <div style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:.6rem;">Browse by category</div>
+        <h2 style="margin-bottom:.25rem;font-size:1.75rem;">Shop individual items</h2>
+        <p style="color:var(--color-text-secondary);font-size:.95rem;">Bulk-priced produce and pantry basics — add any of these to your order, with or without a box.</p>
+      </div>
+
+      <div class="grid-2">
+
+        <!-- Bulk Produce Staples -->
+        <div style="background:#0A4A2F;border-radius:1.5rem;overflow:hidden;padding:2rem;">
+          <!-- Header -->
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem;">
+            <div>
+              <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.4rem;">Bulk Produce</div>
+              <h3 style="color:#fff;margin:0;font-size:1.5rem;font-weight:800;line-height:1.2;">Bulk Produce<br>Staples</h3>
+            </div>
+            <div style="background:rgba(255,255,255,.08);border-radius:.875rem;padding:.5rem .9rem;font-size:.78rem;color:rgba(255,255,255,.6);font-weight:600;">5kg bags</div>
+          </div>
+          <p style="color:rgba(255,255,255,.55);font-size:.85rem;margin:0 0 1.5rem;line-height:1.6;">Everyday produce at bulk prices. Better value per kilo than the supermarket.</p>
+          <!-- Items -->
+          <div style="display:flex;flex-direction:column;gap:.625rem;margin-bottom:1.75rem;">
+            <div style="background:rgba(255,255,255,.07);border-radius:1rem;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="color:#fff;font-weight:700;font-size:1rem;">Brushed Potatoes</div>
+                <div style="color:rgba(255,255,255,.4);font-size:.75rem;margin-top:.15rem;">$2.80 / kg</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="color:var(--color-accent);font-family:var(--font-heading);font-weight:800;font-size:1.6rem;line-height:1;letter-spacing:-.03em;">$14</div>
+                <div style="color:rgba(255,255,255,.35);font-size:.72rem;">for 5kg</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:1rem;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="color:#fff;font-weight:700;font-size:1rem;">Brown Onions</div>
+                <div style="color:rgba(255,255,255,.4);font-size:.75rem;margin-top:.15rem;">$1.60 / kg</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="color:var(--color-accent);font-family:var(--font-heading);font-weight:800;font-size:1.6rem;line-height:1;letter-spacing:-.03em;">$8</div>
+                <div style="color:rgba(255,255,255,.35);font-size:.72rem;">for 5kg</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:1rem;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="color:#fff;font-weight:700;font-size:1rem;">Carrots</div>
+                <div style="color:rgba(255,255,255,.4);font-size:.75rem;margin-top:.15rem;">$1.80 / kg</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="color:var(--color-accent);font-family:var(--font-heading);font-weight:800;font-size:1.6rem;line-height:1;letter-spacing:-.03em;">$9</div>
+                <div style="color:rgba(255,255,255,.35);font-size:.72rem;">for 5kg</div>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="#" style="width:100%;border-radius:999px;">Shop bulk produce</a>
+        </div>
+
+        <!-- Pantry Staples -->
+        <div style="background:#1A3C34;border-radius:1.5rem;overflow:hidden;padding:2rem;">
+          <!-- Header -->
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem;">
+            <div>
+              <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.4rem;">Pantry Basics</div>
+              <h3 style="color:#fff;margin:0;font-size:1.5rem;font-weight:800;line-height:1.2;">Pantry<br>Staples</h3>
+            </div>
+            <div style="background:rgba(255,255,255,.08);border-radius:.875rem;padding:.5rem .9rem;font-size:.78rem;color:rgba(255,255,255,.6);font-weight:600;">Bulk sizes</div>
+          </div>
+          <p style="color:rgba(255,255,255,.55);font-size:.85rem;margin:0 0 1.5rem;line-height:1.6;">The basics that run out every week. Same next-day delivery as your produce.</p>
+          <!-- Items -->
+          <div style="display:flex;flex-direction:column;gap:.625rem;margin-bottom:1.75rem;">
+            <div style="background:rgba(255,255,255,.07);border-radius:1rem;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="color:#fff;font-weight:700;font-size:1rem;">Basmati Rice</div>
+                <div style="color:rgba(255,255,255,.4);font-size:.75rem;margin-top:.15rem;">$1.80 / kg</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="color:var(--color-accent);font-family:var(--font-heading);font-weight:800;font-size:1.6rem;line-height:1;letter-spacing:-.03em;">$9</div>
+                <div style="color:rgba(255,255,255,.35);font-size:.72rem;">for 5kg</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:1rem;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="color:#fff;font-weight:700;font-size:1rem;">Plain Flour</div>
+                <div style="color:rgba(255,255,255,.4);font-size:.75rem;margin-top:.15rem;">$1.40 / kg</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="color:var(--color-accent);font-family:var(--font-heading);font-weight:800;font-size:1.6rem;line-height:1;letter-spacing:-.03em;">$7</div>
+                <div style="color:rgba(255,255,255,.35);font-size:.72rem;">for 5kg</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:1rem;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="color:#fff;font-weight:700;font-size:1rem;">Olive Oil</div>
+                <div style="color:rgba(255,255,255,.4);font-size:.75rem;margin-top:.15rem;">$7.00 / L</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="color:var(--color-accent);font-family:var(--font-heading);font-weight:800;font-size:1.6rem;line-height:1;letter-spacing:-.03em;">$14</div>
+                <div style="color:rgba(255,255,255,.35);font-size:.72rem;">for 2L</div>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="#" style="width:100%;border-radius:999px;">Shop pantry</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Weekly Specials -->
+  <section id="specials" class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2>Weekly Specials</h2>
+          <p>Limited stock — order early in the week.</p>
+        </div>
+        <a class="btn btn-primary" href="#">See all specials</a>
+      </div>
+
+      <!-- Two-column promo banner -->
+      <div style="display:grid;grid-template-columns:1.65fr 1fr;gap:18px;margin-top:8px;">
+
+        <!-- Left: wide produce photo banner -->
+        <div style="
+          position:relative;
+          border-radius:18px;
+          overflow:hidden;
+          min-height:280px;
+          background:#1a3c34;
+        ">
+          <img
+            src="https://images.unsplash.com/photo-1518843875459-f738682238a6?auto=format&fit=crop&w=1200&q=80"
+            alt="Fresh produce"
+            style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"
+          />
+          <!-- dark overlay for text legibility -->
+          <div style="position:absolute;inset:0;background:linear-gradient(120deg,rgba(7,30,18,.72) 0%,rgba(7,30,18,.35) 60%,transparent 100%);"></div>
+          <div style="position:relative;z-index:1;padding:44px 40px;height:100%;display:flex;flex-direction:column;justify-content:center;">
+            <div style="
+              display:inline-block;
+              background:var(--color-accent);
+              color:#fff;
+              font-size:.75rem;
+              font-weight:800;
+              letter-spacing:.08em;
+              text-transform:uppercase;
+              padding:.3rem .85rem;
+              border-radius:999px;
+              margin-bottom:18px;
+              align-self:flex-start;
+            ">This week only</div>
+            <h2 style="
+              color:#fff;
+              font-size:clamp(1.75rem,3.5vw,2.6rem);
+              font-weight:800;
+              line-height:1.1;
+              margin:0 0 20px;
+              max-width:380px;
+            ">Save up to 30% on<br>this week's picks</h2>
+          </div>
+        </div>
+
+        <!-- Right: dark green deal card -->
+        <div style="
+          position:relative;
+          border-radius:18px;
+          overflow:hidden;
+          background:#07543A;
+          min-height:280px;
+          display:flex;
+          flex-direction:column;
+          padding:28px 28px 0;
+        ">
+          <!-- "New Week Deal" ribbon -->
+          <div style="
+            position:absolute;
+            top:0;
+            right:0;
+            background:#DDEED8;
+            color:#07543A;
+            font-family:var(--font-heading);
+            font-size:1rem;
+            font-weight:800;
+            line-height:1.2;
+            padding:14px 16px 14px 20px;
+            text-align:center;
+            clip-path:polygon(12% 0,100% 0,100% 100%,0 100%);
+            min-width:110px;
+          ">New<br>Week<br>Deal!</div>
+
+          <!-- Tag -->
+          <div style="
+            display:inline-block;
+            background:var(--color-accent);
+            color:#fff;
+            font-size:.7rem;
+            font-weight:800;
+            letter-spacing:.06em;
+            text-transform:uppercase;
+            padding:.25rem .75rem;
+            border-radius:999px;
+            margin-bottom:14px;
+            align-self:flex-start;
+          ">Fresh deals added Monday</div>
+
+          <!-- Headline -->
+          <h2 style="
+            color:#fff;
+            font-size:clamp(1.5rem,2.8vw,2.1rem);
+            font-weight:800;
+            line-height:1.15;
+            margin:0 0 8px;
+            max-width:220px;
+          ">Up to $39 off<br>every box</h2>
+
+          <p style="color:rgba(255,255,255,.6);font-size:.875rem;margin:0 0 0;">
+            Saver boxes &amp; bulk staples
+          </p>
+
+          <!-- Produce basket image pinned to bottom -->
+          <div style="margin-top:auto;text-align:center;line-height:0;">
+            <img
+              src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=600&q=80"
+              alt="Produce basket"
+              style="
+                width:82%;
+                max-width:240px;
+                border-radius:14px 14px 0 0;
+                object-fit:cover;
+                object-position:center top;
+                height:160px;
+                display:inline-block;
+              "
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How We're Different -->
+  <section class="section" style="background:var(--color-bg-primary);">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2>How GrowDirect is different</h2>
+          <p style="max-width:600px;">GrowDirect sits between the supermarket and the produce-box model — a simpler, better-value way for Melbourne households to stock up each week.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="card" style="transition:box-shadow .2s,transform .2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(10,74,47,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow=''">
+          <div style="width:44px;height:44px;background:#F0F7F2;border-radius:.875rem;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h.01"/><path d="M11 8h6"/><path d="M7 12h.01"/><path d="M11 12h6"/></svg>
+          </div>
+          <h3 style="font-size:1.2rem;margin-bottom:.5rem;">More focused than a supermarket</h3>
+          <p style="font-size:.9rem;color:var(--color-text-secondary);">We keep the range tighter around the food households use every week.</p>
+        </div>
+        <div class="card" style="transition:box-shadow .2s,transform .2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(10,74,47,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow=''">
+          <div style="width:44px;height:44px;background:#F0F7F2;border-radius:.875rem;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+          </div>
+          <h3 style="font-size:1.2rem;margin-bottom:.5rem;">More practical than a produce box</h3>
+          <p style="font-size:.9rem;color:var(--color-text-secondary);">Built for weekly stock-up buying, not just rescue veg or mystery boxes.</p>
+        </div>
+        <div class="card" style="transition:box-shadow .2s,transform .2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(10,74,47,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow=''">
+          <div style="width:44px;height:44px;background:#F0F7F2;border-radius:.875rem;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-5 8-12a8 8 0 0 0-16 0c0 7 8 12 8 12z"/><path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M12 10v5"/></svg>
+          </div>
+          <h3 style="font-size:1.2rem;margin-bottom:.5rem;">Direct-from-farm value</h3>
+          <p style="font-size:.9rem;color:var(--color-text-secondary);">Bulk produce and staple boxes at competitive prices, delivered across Melbourne metro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GrowDirect vs the Alternatives -->
+  <section class="section" style="background:#fff;">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2>GrowDirect vs the alternatives</h2>
+          <p>See how we stack up against your other weekly options.</p>
+        </div>
+      </div>
+      <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--color-border);box-shadow:var(--shadow-md);">
+        
+        <table style="width:100%;border-collapse:collapse;font-size:.875rem;">
+          <thead>
+            <tr>
+              <th style="background:var(--color-bg-header);color:rgba(255,255,255,.7);padding:1rem 1.5rem;text-align:left;font-weight:600;font-size:.8rem;"></th>
+              <th style="background:#F28C38;color:#fff;padding:1rem 1.5rem;text-align:center;font-weight:700;">
+                <span class="col-full">GrowDirect</span>
+                <span class="col-short">Grow<br>Direct</span>
+              </th>
+              <th style="background:var(--color-bg-header);color:rgba(255,255,255,.7);padding:1rem 1.5rem;text-align:center;font-weight:600;font-size:.8rem;">
+                <span class="col-full">Supermarket</span>
+                <span class="col-short">Super-<br>market</span>
+              </th>
+              <th style="background:var(--color-bg-header);color:rgba(255,255,255,.7);padding:1rem 1.5rem;text-align:center;font-weight:600;font-size:.8rem;">
+                <span class="col-full">Online Imperfect Produce</span>
+                <span class="col-short">Imperfect<br>Produce</span>
+              </th>
+              <th style="background:var(--color-bg-header);color:rgba(255,255,255,.7);padding:1rem 1.5rem;text-align:center;font-weight:600;font-size:.8rem;">
+                <span class="col-full">Market</span>
+                <span class="col-short">Market</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:1rem 1.5rem;text-align:left;color:var(--color-text-secondary);font-weight:600;border-bottom:1px solid var(--color-border);">Bulk pricing on produce</td>
+              <td style="padding:1rem 1.5rem;text-align:center;background:rgba(242,140,56,.06);font-weight:700;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#F28C38;font-weight:700;">~</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#F28C38;font-weight:700;">~</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+            </tr>
+            <tr style="background:rgba(240,247,242,.4);">
+              <td style="padding:1rem 1.5rem;text-align:left;color:var(--color-text-secondary);font-weight:600;border-bottom:1px solid var(--color-border);">Next-day home delivery</td>
+              <td style="padding:1rem 1.5rem;text-align:center;background:rgba(242,140,56,.06);font-weight:700;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#DC2626;">✗</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#DC2626;">✗</span></td>
+            </tr>
+            <tr>
+              <td style="padding:1rem 1.5rem;text-align:left;color:var(--color-text-secondary);font-weight:600;border-bottom:1px solid var(--color-border);">No subscription required</td>
+              <td style="padding:1rem 1.5rem;text-align:center;background:rgba(242,140,56,.06);font-weight:700;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+            </tr>
+            <tr style="background:rgba(240,247,242,.4);">
+              <td style="padding:1rem 1.5rem;text-align:left;color:var(--color-text-secondary);font-weight:600;border-bottom:1px solid var(--color-border);">Choose your own items</td>
+              <td style="padding:1rem 1.5rem;text-align:center;background:rgba(242,140,56,.06);font-weight:700;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#F28C38;font-weight:700;">~</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+            </tr>
+            <tr>
+              <td style="padding:1rem 1.5rem;text-align:left;color:var(--color-text-secondary);font-weight:600;border-bottom:1px solid var(--color-border);">Pre-packed value boxes</td>
+              <td style="padding:1rem 1.5rem;text-align:center;background:rgba(242,140,56,.06);font-weight:700;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#DC2626;">✗</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#DC2626;">✗</span></td>
+            </tr>
+            <tr style="background:rgba(240,247,242,.4);">
+              <td style="padding:1rem 1.5rem;text-align:left;color:var(--color-text-secondary);font-weight:600;border-bottom:1px solid var(--color-border);">Competitive everyday pricing</td>
+              <td style="padding:1rem 1.5rem;text-align:center;background:rgba(242,140,56,.06);font-weight:700;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#F28C38;font-weight:700;">~</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#F28C38;font-weight:700;">~</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;border-bottom:1px solid var(--color-border);"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+            </tr>
+            <tr>
+              <td style="padding:1rem 1.5rem;text-align:left;color:var(--color-text-secondary);font-weight:600;">Freshness &amp; longer shelf life</td>
+              <td style="padding:1rem 1.5rem;text-align:center;background:rgba(242,140,56,.06);font-weight:700;"><span style="color:#16A34A;font-size:1.1rem;">✓</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;"><span style="color:#F28C38;font-weight:700;">~</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;"><span style="color:#DC2626;">✗</span></td>
+              <td style="padding:1rem 1.5rem;text-align:center;"><span style="color:#DC2626;">✗</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="background:#fff;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:360px 1fr;gap:72px;align-items:start;">
+
+        <!-- Left: large heading + description + CTA -->
+        <div style="padding-top:4px;">
+          <h2 style="
+            font-family:var(--font-heading);
+            font-size:clamp(2.4rem,4.5vw,3.2rem);
+            font-weight:800;
+            line-height:1.08;
+            color:var(--color-text-primary);
+            margin-bottom:1.5rem;
+            letter-spacing:-.02em;
+          ">Frequently Asked Questions</h2>
+          <p style="
+            color:var(--color-text-secondary);
+            font-size:.975rem;
+            line-height:1.75;
+            margin-bottom:2.25rem;
+            max-width:300px;
+          ">Got questions? We've got answers. Browse our FAQs for quick answers about our boxes, delivery, and how GrowDirect works.</p>
+          <a href="#" class="btn btn-primary" style="border-radius:999px;padding:.75rem 1.75rem;font-size:.95rem;">Contact Us</a>
+        </div>
+
+        <!-- Right: accordion items -->
+        <div id="faq-accordion" style="display:flex;flex-direction:column;gap:14px;">
+
+          <div class="faq3-item open">
+            <div class="faq3-q">
+              <span>Do I need to subscribe?</span>
+              <div class="faq3-icon">
+                <svg class="faq3-minus" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/></svg>
+                <svg class="faq3-plus"  width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/><rect x="7" y="2" width="2" height="12" rx="1" fill="white"/></svg>
+              </div>
+            </div>
+            <div class="faq3-a">No. Order when you need — no subscription or lock-in.</div>
+          </div>
+
+          <div class="faq3-item">
+            <div class="faq3-q">
+              <span>Can I customise a Saver Box?</span>
+              <div class="faq3-icon">
+                <svg class="faq3-minus" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/></svg>
+                <svg class="faq3-plus"  width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/><rect x="7" y="2" width="2" height="12" rx="1" fill="white"/></svg>
+              </div>
+            </div>
+            <div class="faq3-a">Saver Boxes are pre-packed for value. Use Mix &amp; Match to add individual items.</div>
+          </div>
+
+          <div class="faq3-item">
+            <div class="faq3-q">
+              <span>What's in a Saver Box exactly?</span>
+              <div class="faq3-icon">
+                <svg class="faq3-minus" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/></svg>
+                <svg class="faq3-plus"  width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/><rect x="7" y="2" width="2" height="12" rx="1" fill="white"/></svg>
+              </div>
+            </div>
+            <div class="faq3-a">Contents vary weekly based on what's freshest. Full list shown on each box page.</div>
+          </div>
+
+          <div class="faq3-item">
+            <div class="faq3-q">
+              <span>How do I know if you deliver to my suburb?</span>
+              <div class="faq3-icon">
+                <svg class="faq3-minus" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/></svg>
+                <svg class="faq3-plus"  width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/><rect x="7" y="2" width="2" height="12" rx="1" fill="white"/></svg>
+              </div>
+            </div>
+            <div class="faq3-a">Use the postcode checker in the Delivery section below.</div>
+          </div>
+
+          <div class="faq3-item">
+            <div class="faq3-q">
+              <span>Is there a minimum order?</span>
+              <div class="faq3-icon">
+                <svg class="faq3-minus" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/></svg>
+                <svg class="faq3-plus"  width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/><rect x="7" y="2" width="2" height="12" rx="1" fill="white"/></svg>
+              </div>
+            </div>
+            <div class="faq3-a">$39 minimum. Free delivery on $99+.</div>
+          </div>
+
+          <div class="faq3-item">
+            <div class="faq3-q">
+              <span>What if something arrives damaged?</span>
+              <div class="faq3-icon">
+                <svg class="faq3-minus" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/></svg>
+                <svg class="faq3-plus"  width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="white"/><rect x="7" y="2" width="2" height="12" rx="1" fill="white"/></svg>
+              </div>
+            </div>
+            <div class="faq3-a">Take a photo and contact us within 24 hours. We'll issue a credit or replacement.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- Delivery Zones -->
+  <section id="delivery" class="section" style="background:#fff;">
+    <div class="container">
+
+      <!-- Heading -->
+      <div style="margin-bottom:2.5rem;">
+        <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.15;margin:0 0 .75rem;color:var(--color-text-primary);">Delivery that's straightforward</h2>
+        <p style="color:var(--color-text-secondary);font-size:.95rem;max-width:480px;line-height:1.7;margin:0;">GrowDirect delivers to Melbourne metro postcodes only. Check your postcode before you shop.</p>
+      </div>
+
+      <!-- 4 detail cards — 2x2 grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+        <div class="delivery-card" style="background:#0A4A2F;border-radius:1rem;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:background .2s,transform .2s;cursor:default;" onmouseover="this.style.background='#1D6B45';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#0A4A2F';this.style.transform='translateY(0)'">
+          <div style="width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:.25rem;">Order by 5pm for next-day delivery</div>
+            <div style="color:rgba(255,255,255,.55);font-size:.8rem;line-height:1.55;">Orders placed before 5pm are dispatched the following morning.</div>
+          </div>
+        </div>
+        <div style="background:#0A4A2F;border-radius:1rem;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:background .2s,transform .2s;cursor:default;" onmouseover="this.style.background='#1D6B45';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#0A4A2F';this.style.transform='translateY(0)'">
+          <div style="width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </div>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:.25rem;">Free delivery on orders $99+</div>
+            <div style="color:rgba(255,255,255,.55);font-size:.8rem;line-height:1.55;">$8.99 flat-rate fee on orders under $99. Minimum order $39.</div>
+          </div>
+        </div>
+        <div style="background:#0A4A2F;border-radius:1rem;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:background .2s,transform .2s;cursor:default;" onmouseover="this.style.background='#1D6B45';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#0A4A2F';this.style.transform='translateY(0)'">
+          <div style="width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:.25rem;">Melbourne metro coverage</div>
+            <div style="color:rgba(255,255,255,.55);font-size:.8rem;line-height:1.55;">Most Melbourne metro postcodes covered. Regional Victoria coming soon.</div>
+          </div>
+        </div>
+        <div style="background:#0A4A2F;border-radius:1rem;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:background .2s,transform .2s;cursor:default;" onmouseover="this.style.background='#1D6B45';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#0A4A2F';this.style.transform='translateY(0)'">
+          <div style="width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M12 12v.01"/><path d="M8 12v.01"/><path d="M16 12v.01"/></svg>
+          </div>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:.9rem;margin-bottom:.25rem;">Packed to stay fresh</div>
+            <div style="color:rgba(255,255,255,.55);font-size:.8rem;line-height:1.55;">Insulated boxes — sit safely for several hours after delivery.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary bar -->
+      <div style="background:#0A4A2F;border-radius:1rem;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;margin-bottom:2rem;">
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:1rem;margin-bottom:.25rem;">Free delivery on orders over $99</div>
+          <div style="color:rgba(255,255,255,.55);font-size:.85rem;">$8.99 flat-rate under $99 &nbsp;·&nbsp; Order by 5pm &nbsp;·&nbsp; Next-day delivery</div>
+        </div>
+        <a class="btn btn-primary" href="#" style="border-radius:999px;padding:.9rem 1.75rem;font-size:.95rem;white-space:nowrap;flex-shrink:0;">Check my area</a>
+      </div>
+
+      <!-- Delivery zones -->
+      <div style="background:#F0F7F2;border-radius:1.25rem;padding:1.75rem 2rem;">
+        <h3 style="font-size:1.15rem;font-weight:800;color:var(--color-text-primary);margin-bottom:1.25rem;">Current delivery zones</h3>
+        
+        <div class="zones-grid">
+
+          <div class="zone-wrap">
+            <div class="zone">Inner East</div>
+            <div class="zone-popup">
+              <div class="zone-popup-arrow arrow-bottom"></div>
+              <strong>Inner East</strong>
+              Richmond · Hawthorn · Hawthorn East · Kew · Kew East · Camberwell · Canterbury · Balwyn · Balwyn North · Box Hill · Box Hill North · Box Hill South · Mont Albert · Mont Albert North · Surrey Hills · Deepdene · Doncaster · Doncaster East · Nunawading · Mitcham · Blackburn · Blackburn North · Blackburn South · Burwood · Burwood East · Ringwood · Ringwood East · Ringwood North · Vermont · Vermont South
+            </div>
+          </div>
+
+          <div class="zone-wrap">
+            <div class="zone">Inner West</div>
+            <div class="zone-popup">
+              <div class="zone-popup-arrow arrow-bottom"></div>
+              <strong>Inner West</strong>
+              Footscray · West Footscray · Yarraville · Seddon · Kingsville · Spotswood · Newport · Williamstown · Williamstown North · Altona · Altona North · Altona Meadows · Laverton · Sunshine · Sunshine North · Sunshine West · Albion · Ardeer · Deer Park · Derrimut · Hoppers Crossing · Werribee · Werribee South · Point Cook · Williams Landing · Truganina · Tarneit · Wyndham Vale
+            </div>
+          </div>
+
+          <div class="zone-wrap">
+            <div class="zone">Inner North</div>
+            <div class="zone-popup">
+              <div class="zone-popup-arrow arrow-bottom"></div>
+              <strong>Inner North</strong>
+              Fitzroy · Fitzroy North · Collingwood · Clifton Hill · Abbotsford · Carlton · Carlton North · Brunswick · Brunswick East · Brunswick West · Northcote · Thornbury · Preston · Preston West · Reservoir · Coburg · Coburg North · Pascoe Vale · Pascoe Vale South · Oak Park · Glenroy · Hadfield · Dallas · Broadmeadows · Campbellfield · Lalor · Thomastown · Mill Park · South Morang · Epping · Wollert · Mernda · Doreen
+            </div>
+          </div>
+
+          <div class="zone-wrap">
+            <div class="zone">Inner South</div>
+            <div class="zone-popup">
+              <div class="zone-popup-arrow arrow-bottom"></div>
+              <strong>Inner South</strong>
+              South Yarra · Prahran · Windsor · Toorak · Armadale · Malvern · Malvern East · Glen Iris · Kooyong · St Kilda · St Kilda East · St Kilda West · Elwood · Balaclava · Ripponlea · Brighton · Brighton East · Hampton · Sandringham · Black Rock · Beaumaris · Mentone · Moorabbin · Bentleigh · Bentleigh East · McKinnon · Ormond · Murrumbeena · Carnegie · Caulfield · Caulfield North · Caulfield South · Caulfield East · Glen Huntly · Elsternwick
+            </div>
+          </div>
+
+          <div class="zone-wrap">
+            <div class="zone">SE Suburbs</div>
+            <div class="zone-popup">
+              <div class="zone-popup-arrow arrow-bottom"></div>
+              <strong>SE Suburbs</strong>
+              Glen Waverley · Mount Waverley · Wheelers Hill · Mulgrave · Notting Hill · Clayton · Clayton South · Oakleigh · Oakleigh East · Oakleigh South · Huntingdale · Springvale · Springvale South · Noble Park · Keysborough · Dandenong · Dandenong North · Dandenong South · Lynbrook · Lyndhurst · Cranbourne · Cranbourne North · Cranbourne East · Cranbourne West · Narre Warren · Narre Warren North · Berwick · Hallam · Hampton Park · Endeavour Hills · Bangholme · Cheltenham · Mordialloc · Parkdale · Carrum · Patterson Lakes · Chelsea · Aspendale · Bonbeach · Edithvale
+            </div>
+          </div>
+
+          <div class="zone-wrap">
+            <div class="zone">NE Suburbs</div>
+            <div class="zone-popup">
+              <div class="zone-popup-arrow arrow-bottom"></div>
+              <strong>NE Suburbs</strong>
+              Heidelberg · Heidelberg Heights · Heidelberg West · Rosanna · Eaglemont · Ivanhoe · Ivanhoe East · Bellfield · Macleod · Watsonia · Greensborough · St Helena · Diamond Creek · Eltham · Eltham North · Research · Templestowe · Templestowe Lower · Doncaster · Bulleen · Balwyn North · Ringwood · Croydon · Croydon Hills · Croydon North · Croydon South · Bayswater · Bayswater North · Kilsyth · Mooroolbark · Lilydale · Chirnside Park · Coldstream · Warranwood · Warrandyte · Park Orchards · Wonga Park
+            </div>
+          </div>
+
+          <div class="zone-wrap">
+            <div class="zone">Western Suburbs</div>
+            <div class="zone-popup">
+              <div class="zone-popup-arrow arrow-bottom"></div>
+              <strong>Western Suburbs</strong>
+              St Albans · Keilor · Keilor East · Keilor Downs · Keilor Lodge · Keilor Park · Sydenham · Taylors Lakes · Taylors Hill · Caroline Springs · Burnside · Burnside Heights · Melton · Melton South · Melton West · Diggers Rest · Rockbank · Cobblebank · Bacchus Marsh · Ravenhall · Cairnlea · Kealba · Kings Park · Delahey · Hillside · Calder Park · Plumpton · Fraser Rise · Aintree · Deanside · Mount Cottrell
+            </div>
+          </div>
+
+          <div class="zone-wrap">
+            <div class="zone">CBD &amp; Surrounds</div>
+            <div class="zone-popup">
+              <div class="zone-popup-arrow arrow-bottom"></div>
+              <strong>CBD &amp; Surrounds</strong>
+              Melbourne CBD · Docklands · Southbank · South Melbourne · Port Melbourne · East Melbourne · West Melbourne · North Melbourne · Parkville · Carlton · Flemington · Kensington · Ascot Vale · Moonee Ponds · Essendon · Essendon North · Essendon West · Strathmore · Airport West · Tullamarine · Gladstone Park · Niddrie · Aberfeldie · Travancore · Newmarket
+            </div>
+          </div>
+
+        </div>
+
+    </div>
+  </section>
+
+  
+  <!-- CTA Strip -->
+  <section style="background:#0A4A2F;padding:5rem 0;text-align:center;">
+    <div class="container">
+      <h2 style="font-family:var(--font-heading);font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:.25rem;letter-spacing:-.02em;white-space:nowrap;">Ready to save on your</h2>
+      <h2 style="font-family:'Lora',serif;font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:700;font-style:italic;color:var(--color-accent);line-height:1.2;margin-bottom:1.5rem;white-space:nowrap;">weekly shop?</h2>
+      <p style="color:rgba(255,255,255,.65);font-size:.95rem;margin-bottom:2.25rem;white-space:nowrap;line-height:1.6;">Start with a Saver Box or build your own order — no subscription, no lock-in.</p>
+      <a class="btn btn-primary" href="#boxes" style="border-radius:999px;padding:1rem 2.25rem;font-size:1rem;">Shop Saver Boxes →</a>
+    </div>
+  </section>
+
+<!-- Footer -->
+  <footer class="site-footer" style="background:#061F13;padding:2.5rem 0 1.25rem;">
+    <div class="container">
+      <div class="footer-grid" style="gap:2rem;margin-bottom:1.5rem;">
+        <div>
+          <a class="logo" href="#top" style="color:#fff;font-size:1.1rem;display:block;margin-bottom:.6rem;">GrowDirect</a>
+          <p style="color:rgba(255,255,255,.55);font-size:.8rem;line-height:1.5;margin:0;">Direct-from-farm produce and pantry staples delivered to Melbourne metro households. Fresh, bulk, and no nonsense.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.6rem;">Shop</h4>
+          <a href="#boxes" style="margin-bottom:.3rem;font-size:.8rem;">Saver Boxes</a>
+          <a href="#specials" style="margin-bottom:.3rem;font-size:.8rem;">Weekly Specials</a>
+          <a href="#mix" style="margin-bottom:.3rem;font-size:.8rem;">Mix &amp; Match</a>
+          <a href="#mix" style="margin-bottom:.3rem;font-size:.8rem;">Bulk Produce</a>
+          <a href="#mix" style="font-size:.8rem;">Pantry Staples</a>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.6rem;">Help</h4>
+          <a href="#how" style="margin-bottom:.3rem;font-size:.8rem;">How It Works</a>
+          <a href="#delivery" style="margin-bottom:.3rem;font-size:.8rem;">Delivery Areas</a>
+          <a href="#" style="margin-bottom:.3rem;font-size:.8rem;">FAQ</a>
+          <a href="#" style="font-size:.8rem;">Contact</a>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.6rem;">About</h4>
+          <a href="#" style="margin-bottom:.3rem;font-size:.8rem;">Our Story</a>
+          <a href="#" style="margin-bottom:.3rem;font-size:.8rem;">Sourcing</a>
+          <a href="#" style="margin-bottom:.3rem;font-size:.8rem;">Terms</a>
+          <a href="#" style="font-size:.8rem;">Privacy</a>
+        </div>
+      </div>
+      <div class="copy" style="padding-top:1rem;margin-top:0;font-size:.75rem;">
+        <div>© 2026 GrowDirect · Melbourne, VIC Australia</div>
+        <div>Privacy · Terms · Refunds</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* FAQ accordions */
+    document.querySelectorAll('.faq3-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq3-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+    document.querySelectorAll('.faq2-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq2-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+    document.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+      });
+    });
+
+    /* #16 Hamburger menu toggle */
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.site-header nav');
+    if (hamburger && nav) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('open');
+      });
+      /* Close menu when a nav link is tapped */
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          nav.classList.remove('open');
+        });
+      });
+    }
+
+    /* Delivery zone popups — fixed-position auto-adjust system */
+    (function() {
+      const GAP = 10;       /* space between zone chip and popup */
+      const EDGE = 12;      /* min distance from viewport edge */
+      let activePopup = null;
+
+      function closeAll() {
+        document.querySelectorAll('.zone-popup.visible').forEach(p => {
+          p.classList.remove('visible');
+        });
+        activePopup = null;
+      }
+
+      function positionPopup(wrap, popup) {
+        const arrow = popup.querySelector('.zone-popup-arrow');
+        const zoneRect = wrap.getBoundingClientRect();
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+
+        /* Temporarily show to measure popup size */
+        popup.style.visibility = 'hidden';
+        popup.classList.add('visible');
+        const pw = popup.offsetWidth;
+        const ph = popup.offsetHeight;
+
+        /* Decide: above or below the zone chip */
+        const spaceAbove = zoneRect.top;
+        const spaceBelow = vh - zoneRect.bottom;
+        const placeBelow = spaceAbove < (ph + GAP + EDGE) && spaceBelow > spaceAbove;
+
+        let top;
+        if (placeBelow) {
+          top = zoneRect.bottom + GAP;
+          arrow.className = 'zone-popup-arrow arrow-top';
+        } else {
+          top = zoneRect.top - ph - GAP;
+          arrow.className = 'zone-popup-arrow arrow-bottom';
+        }
+
+        /* Clamp vertically so popup doesn't go off screen */
+        if (top < EDGE) top = EDGE;
+        if (top + ph > vh - EDGE) top = vh - EDGE - ph;
+
+        /* Horizontal: center on zone chip, then clamp to viewport */
+        const zoneCenterX = zoneRect.left + zoneRect.width / 2;
+        let left = zoneCenterX - pw / 2;
+
+        if (left < EDGE) left = EDGE;
+        if (left + pw > vw - EDGE) left = vw - EDGE - pw;
+
+        /* Position arrow relative to popup so it points at the zone chip */
+        const arrowX = zoneCenterX - left;
+        const clampedArrowX = Math.max(16, Math.min(arrowX, pw - 16));
+        arrow.style.left = clampedArrowX + 'px';
+
+        popup.style.top = Math.round(top) + 'px';
+        popup.style.left = Math.round(left) + 'px';
+        popup.style.visibility = '';
+      }
+
+      document.querySelectorAll('.zone-wrap').forEach(wrap => {
+        const zone = wrap.querySelector('.zone');
+        const popup = wrap.querySelector('.zone-popup');
+        if (!zone || !popup) return;
+
+        /* Desktop: hover */
+        wrap.addEventListener('mouseenter', () => {
+          closeAll();
+          positionPopup(wrap, popup);
+          activePopup = popup;
+        });
+        wrap.addEventListener('mouseleave', () => {
+          popup.classList.remove('visible');
+          if (activePopup === popup) activePopup = null;
+        });
+
+        /* Mobile: tap to toggle */
+        zone.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (activePopup === popup) {
+            closeAll();
+          } else {
+            closeAll();
+            positionPopup(wrap, popup);
+            activePopup = popup;
+          }
+        });
+      });
+
+      /* Tap outside closes popup */
+      document.addEventListener('click', (e) => {
+        if (activePopup && !e.target.closest('.zone-popup') && !e.target.closest('.zone')) {
+          closeAll();
+        }
+      });
+
+      /* Reposition on scroll/resize while a popup is open */
+      let ticking = false;
+      function onViewChange() {
+        if (!ticking && activePopup) {
+          ticking = true;
+          requestAnimationFrame(() => {
+            if (activePopup) {
+              const wrap = activePopup.closest('.zone-wrap');
+              if (wrap) positionPopup(wrap, activePopup);
+            }
+            ticking = false;
+          });
+        }
+      }
+      window.addEventListener('scroll', onViewChange, { passive: true });
+      window.addEventListener('resize', onViewChange, { passive: true });
+    })();
+  </script>
+
+</div>
+
+{% schema %}
+{
+  "name": "GrowDirect Home",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "GrowDirect Home"
+    }
+  ]
+}
+{% endschema %}
