@@ -6,7 +6,7 @@
 
 
 
-/* GrowDirect — Production Stylesheet */
+/* Full CSS Scaffold from [code_file:29] */
     :root{--color-bg-primary:#F8F9FA;--color-bg-secondary:#FFFFFF;--color-bg-card:#FFFFFF;--color-bg-header:#0A4A2F;--color-bg-announcement:#0A5B38;--color-accent:#F28C38;--color-accent-hover:#E07B2D;--color-text-primary:#1A3C34;--color-text-secondary:#5C6B66;--color-text-muted:#8A9A94;--color-border:#E8F0EB;--color-shadow:rgba(10,74,47,.08);--color-shadow-hover:rgba(10,74,47,.12);--font-heading:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;--font-body:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;--font-size-h1:clamp(2.5rem,5vw,4rem);--font-size-h2:clamp(1.875rem,4vw,2.75rem);--font-size-h3:clamp(1.5rem,3vw,2rem);--spacing-xs:.5rem;--spacing-sm:1rem;--spacing-md:1.5rem;--spacing-lg:2rem;--spacing-xl:3rem;--spacing-2xl:4rem;--container:1200px;--radius-sm:.5rem;--radius-md:.75rem;--radius-lg:1rem;--radius-xl:1.5rem;--shadow-sm:0 1px 3px var(--color-shadow);--shadow-md:0 4px 12px var(--color-shadow);--shadow-lg:0 8px 24px var(--color-shadow);--shadow-xl:0 20px 40px var(--color-shadow-hover)}
     *,:after,:before{box-sizing:border-box}body{font-family:var(--font-body);color:var(--color-text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;margin:0}.container{max-width:var(--container);margin:0 auto;padding:0 var(--spacing-md)}
     h1,h2,h3{font-family:var(--font-heading);font-weight:800;line-height:1.1;margin:0 0 var(--spacing-md)}h1{font-size:var(--font-size-h1)}h2{font-size:var(--font-size-h2)}h3{font-size:var(--font-size-h3)}p{margin:0 0 var(--spacing-sm)}
@@ -30,23 +30,44 @@
     @media (max-width:1024px){
       .hero-grid,.trust-grid,.grid-4,.grid-5{grid-template-columns:repeat(2,1fr)}
 
-      /* #11/#21 Saver Box cards — shrink image col at tablet to prevent overlap */
+      /* Saver Box cards — shrink image col at tablet to prevent overlap */
       .card[style*="padding:0;overflow:hidden"] > div[style*="grid-template-columns:340px"]{
-        grid-template-columns:240px 1fr !important;
+        grid-template-columns:220px 1fr !important;
       }
       div[style*="grid-template-columns:340px 1fr"]{
-        grid-template-columns:240px 1fr !important;
+        grid-template-columns:220px 1fr !important;
       }
 
-      /* #12 How It Works — 2 columns at tablet */
+      /* How It Works — 2 columns at tablet */
       #how > .container > div:last-child{
         grid-template-columns:repeat(2,1fr) !important;
       }
 
-      /* Mix & Match pathway cards — ensure they don't get too cramped */
+      /* How It Works — tighter padding at tablet */
+      #how .card{padding:1.25rem !important}
+
+      /* Mix & Match 3-card grid — keep 3 cols, tighten padding */
+      div[style*="grid-template-columns:1fr 1fr 1fr"] > div{
+        padding:1.5rem !important;
+      }
+
+      /* Pathway cards */
       div[style*="background:#DDEED8"] > div:first-child,
       div[style*="background:#DCE7F1"] > div:first-child{
         max-width:65% !important;
+      }
+    }
+
+    /* ── 900px breakpoint (Items 3 + 8) ──────────────────── */
+    @media (max-width:900px){
+      /* Item 3 — Hero single column */
+      .hero-grid{grid-template-columns:1fr !important}
+      .selector{max-width:100%}
+
+      /* Item 8 — FAQ stack */
+      div[style*="grid-template-columns:360px 1fr"]{
+        grid-template-columns:1fr !important;
+        gap:1.5rem !important;
       }
     }
 
@@ -66,11 +87,11 @@
       .grid-2,.grid-3,.trust-grid,.grid-4,.grid-5{grid-template-columns:1fr}
       .section-header{flex-direction:column;align-items:flex-start;gap:.75rem}
 
-      /* #10 Announcement bar — text wrapping */
+      /* Announcement bar — text wrapping */
       .announcement-bar{padding:.5rem 1rem;font-size:.78rem;line-height:1.4}
       .announcement-bar .container{padding:0}
 
-      /* #16 Header — hamburger menu */
+      /* Header — hamburger menu */
       .hamburger{display:block}
       .header-inner{flex-direction:row;flex-wrap:wrap;padding:.75rem 1rem}
       .site-header nav{
@@ -91,7 +112,7 @@
       }
       .header-inner > .btn{order:2;padding:.6rem 1rem !important;font-size:.8rem !important}
 
-      /* #3 Hero — clean stacking */
+      /* Hero — clean stacking */
       .hero{padding:2rem 0}
       .hero-grid{grid-template-columns:1fr !important;gap:1.5rem}
       .hero-content h1 span{font-size:clamp(1.8rem,8vw,2.5rem) !important}
@@ -103,10 +124,10 @@
       .trust{padding:1.25rem 0}
       .trust-grid{grid-template-columns:1fr 1fr !important;gap:.75rem}
 
-      /* #5 How It Works — 4 col → 1 col */
+      /* How It Works — 4 col → 1 col */
       #how > .container > div:last-child{grid-template-columns:1fr !important}
 
-      /* #1/#2/#21 Saver Box cards — image top, content bottom */
+      /* Saver Box cards — image top, content bottom */
       .card[style*="padding:0;overflow:hidden"] > div[style*="grid-template-columns"]{
         grid-template-columns:1fr !important;
         grid-template-rows:auto auto;
@@ -130,35 +151,41 @@
         overflow:hidden;
       }
 
-      /* #4 Mix & Match pathway cards — stack */
+      /* Mix & Match pathway cards — stack */
       div[style*="grid-template-columns:1fr 1fr"][style*="margin-bottom:4rem"]{
         grid-template-columns:1fr !important;
       }
 
-      /* #19 Bulk produce & pantry dark cards — padding */
+      /* Mix & Match 3-card grid — stack to single column */
+      div[style*="grid-template-columns:1fr 1fr 1fr"]{
+        grid-template-columns:1fr !important;
+      }
+
+      /* Category dark cards — padding */
+      div[style*="background:#2D6A4F;border-radius:1.5rem"],
       div[style*="background:#0A4A2F;border-radius:1.5rem"],
       div[style*="background:#1A3C34;border-radius:1.5rem"]{
         padding:1.25rem !important;
       }
 
-      /* #17 Comparison table — ensure all columns fit */
+      /* Comparison table — ensure all columns fit */
       .col-full{display:none !important}
       .col-short{display:inline !important}
       table{font-size:.68rem !important}
       table td,table th{padding:.45rem .3rem !important}
 
-      /* #6 FAQ — side by side → stacked */
+      /* FAQ — side by side → stacked */
       div[style*="grid-template-columns:360px 1fr"]{
         grid-template-columns:1fr !important;
         gap:1.5rem !important;
       }
 
-      /* #7 Delivery cards 2x2 → 1 col */
+      /* Delivery cards 2x2 → 1 col */
       div[style*="grid-template-columns:1fr 1fr"][style*="margin-bottom:1rem"]{
         grid-template-columns:1fr !important;
       }
 
-      /* #8 Delivery summary bar — stack with full-width button */
+      /* Delivery summary bar — stack with full-width button */
       div[style*="justify-content:space-between"][style*="gap:2rem"]{
         flex-direction:column !important;
         align-items:stretch !important;
@@ -169,19 +196,19 @@
         text-align:center;
       }
 
-      /* Delivery zones grid */
-      .zones-grid{grid-template-columns:1fr 1fr !important}
+      /* Delivery zones — handled by .suburb-grid responsive rules */
 
-      /* #18 Weekly Specials banner — stack */
+      /* Weekly Specials banner — stack + hide right-card bottom image */
       div[style*="grid-template-columns:1.65fr 1fr"]{grid-template-columns:1fr !important}
+      div[style*="grid-template-columns:1.65fr 1fr"] > div:last-child img{display:none}
 
-      /* #20 CTA strip — text wrapping */
+      /* CTA strip — text wrapping */
       section[style*="padding:5rem 0;text-align:center"]{padding:3rem 0 !important}
       section[style*="padding:5rem 0;text-align:center"] h2{white-space:normal !important;font-size:clamp(1.5rem,6vw,2.25rem) !important}
       section[style*="padding:5rem 0;text-align:center"] p{white-space:normal !important;font-size:.9rem}
 
-      /* #9 Footer — stack */
-      .footer-grid{grid-template-columns:1fr 1fr !important;gap:1.5rem !important}
+      /* Footer — 3 columns at tablet */
+      .footer-grid{grid-template-columns:1fr 1fr 1fr !important;gap:1.5rem !important}
       .copy{flex-direction:column;gap:.5rem;text-align:center}
 
       /* Pathway cards image — hide absolute overlay on mobile */
@@ -191,14 +218,15 @@
       div[style*="background:#DCE7F1"] > div:first-child{max-width:100% !important}
       div[style*="background:#DDEED8"] > div[style*="position:absolute"],
       div[style*="background:#DCE7F1"] > div[style*="position:absolute"]{display:none}
-
     }
 
     @media (max-width:480px){
       .trust-grid{grid-template-columns:1fr !important}
       .footer-grid{grid-template-columns:1fr !important}
-      .zones-grid{grid-template-columns:1fr !important}
       .hero-content h1 span{font-size:clamp(1.6rem,9vw,2.2rem) !important}
+
+      /* Item 10 — Announcement bar tighter */
+      .announcement-bar{font-size:.75rem;padding:.4rem 1rem}
     }
     html{scroll-behavior:smooth}
     /* Dark saver box card text overrides */
@@ -279,51 +307,33 @@
     }
     .faq2-item.open .faq2-answer { display: block }
 
-.zone-wrap { position:relative; display:inline-block; }
-          .zone { cursor:pointer; transition:background .2s, border-color .2s; }
-          .zone:hover { background:#E8F5E9; border-color:#0A4A2F; color:#0A4A2F; }
-          .zone-popup {
-            display:none;
-            position:fixed;
-            background:#173428;
-            color:#fff;
-            border-radius:.875rem;
-            padding:1rem 1.25rem;
-            width:max-content;
-            min-width:240px;
-            max-width:340px;
-            box-shadow:0 8px 28px rgba(10,61,37,.25);
-            z-index:200;
-            font-size:.8rem;
-            line-height:1.8;
-            text-align:left;
-            pointer-events:none;
-          }
-          .zone-popup.visible { display:block; pointer-events:auto; }
-          .zone-popup-arrow {
-            position:absolute;
-            left:50%;
-            transform:translateX(-50%);
-            width:0;height:0;
-            border:7px solid transparent;
-          }
-          .zone-popup-arrow.arrow-bottom {
-            top:100%;
-            border-top-color:#173428;
-          }
-          .zone-popup-arrow.arrow-top {
-            bottom:100%;
-            border-bottom-color:#173428;
-          }
-          .zone-popup strong {
-            display:block;
-            font-size:.75rem;
-            font-weight:700;
-            letter-spacing:.08em;
-            text-transform:uppercase;
-            color:var(--color-accent);
-            margin-bottom:.5rem;
-          }
-          @media (max-width:480px){
-            .zone-popup{min-width:200px;max-width:calc(100vw - 24px);font-size:.75rem;line-height:1.65}
-          }
+/* Item 5 — Comparison table headers at 600px */
+    @media (max-width:600px){
+      table th{word-break:break-word;font-size:.7rem !important}
+      table td{font-size:.68rem !important}
+    }
+
+    /* ── Zone hover popups — body-level fixed + JS ────────── */
+    .zone-wrap{position:relative;display:inline-block}
+    .zone{cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+    .zone:hover{background:#E8F5E9;border-color:#0A4A2F;color:#0A4A2F}
+    .zone-popup{
+      visibility:hidden;opacity:0;position:fixed;
+      background:#173428;color:#fff;border-radius:.75rem;
+      padding:.75rem 1rem;width:min(420px,90vw);
+      z-index:99999;font-size:.75rem;line-height:1.6;
+      box-shadow:0 8px 28px rgba(0,0,0,.35);
+      pointer-events:none;transition:opacity .15s ease;
+    }
+    .zone-popup.active{visibility:visible;opacity:1}
+    .zone-popup-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:.15rem .5rem;
+    }
+    @media (max-width:768px){
+      .zones-grid{grid-template-columns:1fr 1fr !important}
+    }
+    @media (max-width:480px){
+      .zone-popup-grid{grid-template-columns:repeat(2,1fr)}
+      .zone-popup{width:min(300px,92vw);font-size:.72rem}
+      .zones-grid{grid-template-columns:1fr !important}
+    }
