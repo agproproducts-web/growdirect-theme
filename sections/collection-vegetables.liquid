@@ -179,7 +179,7 @@
     <div class="container">
       <div class="breadcrumb">
         <a href="/">Home</a><span>›</span>
-        <span style="color:var(--text);font-weight:600;">Fruit</span>
+        <span style="color:var(--text);font-weight:600;">Vegetables</span>
       </div>
     </div>
   </div>
@@ -204,7 +204,7 @@
         <!-- SECTION 1: FRUIT PRODUCTS -->
         <div class="section-card">
           <div class="section-header">
-            <div class="section-title">Fruit</div>
+            <div class="section-title">Vegetables</div>
             <div class="section-step">Step 1 of 2</div>
           </div>
           <div class="section-body">
@@ -226,7 +226,7 @@
           <div class="section-body" style="padding:1.125rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
             <div>
               <div style="font-family:var(--font-heading);font-size:.9rem;font-weight:700;color:var(--text-muted);">Mix &amp; Match Essentials</div>
-              <div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem;">Add a fruit item above to unlock Mix &amp; Match top-ups.</div>
+              <div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem;">Add a vegetable item above to unlock Mix &amp; Match top-ups.</div>
             </div>
             <div class="section-step">Step 2 of 2</div>
           </div>
@@ -266,7 +266,7 @@
             <p>Updates as you shop</p>
           </div>
           <div class="summary-body">
-            <div class="summary-group-label">Fruit</div>
+            <div class="summary-group-label">Vegetables</div>
             <div data-fruit-list></div>
 
             <div class="summary-group-label">Mix &amp; Match add-ons</div>
@@ -295,13 +295,13 @@ const DELIVERY_THRESHOLD = 99.00;
   // ============================================================
 
   const vegProducts = [
-    { id:'apples', name:'Apples', subtitle:'Pink Lady · Royal Gala', badge:null, sortOrder:1, defaultSizeIdx:1,
+    { id:'broccoli', name:'Broccoli', subtitle:'Heads · Australian grown', badge:null, sortOrder:1, defaultSizeIdx:1,
       sizes:[{label:'1kg',price:3.50,was:null},{label:'2kg',price:6.00,was:null},{label:'3kg',price:8.50,was:null},{label:'5kg',price:13.00,was:null}] },
-    { id:'bananas', name:'Bananas', subtitle:'Cavendish', badge:null, sortOrder:2, defaultSizeIdx:1,
+    { id:'carrots', name:'Carrots', subtitle:'1kg bag · Washed', badge:null, sortOrder:2, defaultSizeIdx:1,
       sizes:[{label:'1kg',price:3.00,was:null},{label:'2kg',price:5.50,was:null},{label:'3kg',price:8.00,was:null},{label:'5kg',price:12.50,was:null}] },
-    { id:'oranges', name:'Oranges', subtitle:'Navel · Seasonal', badge:null, sortOrder:3, defaultSizeIdx:0,
+    { id:'zucchini', name:'Zucchini', subtitle:'500g · Fresh daily', badge:null, sortOrder:3, defaultSizeIdx:0,
       sizes:[{label:'1kg',price:3.50,was:null},{label:'2kg',price:6.00,was:null},{label:'3kg',price:8.50,was:null},{label:'5kg',price:13.00,was:null}] },
-    { id:'mandarins', name:'Mandarins', subtitle:'Easy-peel · Seedless', badge:null, sortOrder:4, defaultSizeIdx:0,
+    { id:'spinach', name:'Spinach', subtitle:'120g bag · Baby leaves', badge:null, sortOrder:4, defaultSizeIdx:0,
       sizes:[{label:'1kg',price:3.50,was:null},{label:'2kg',price:6.00,was:null},{label:'3kg',price:8.50,was:null}] }
   ];
 
@@ -403,7 +403,7 @@ const DELIVERY_THRESHOLD = 99.00;
       fruitListEl.innerHTML = added.length
         ? added.map(([id,s])=>{ const p=vegProducts.find(x=>x.id===id); const sz=p.sizes[s.sizeIdx];
             return `<div class="summary-row"><span>${p.name} <strong>${sz.label}</strong> × ${s.qty}</span><span>+${fmt(sz.price*s.qty)}</span></div>`; }).join('')
-        : '<p class="summary-empty">No fruit items added yet.</p>';
+        : '<p class="summary-empty">No vegetables added yet.</p>';
     }
 
     // MM rows
