@@ -1,9 +1,176 @@
-<div class="collection-saver-boxes">
-</div>
+<style>
+  /* ── GrowDirect — Saver Boxes Collection ── */
+  /* ── DESIGN TOKENS — identical to other collection pages ── */
+    :root {
+      --green:#0A4A2F; --accent:#F28C38; --accent-hover:#E07B2D;
+      --text:#1A3C34; --text-secondary:#5C6B66; --text-muted:#8A9A94;
+      --border:#E8F0EB; --bg:#F8F9FA; --white:#fff;
+      --radius:1rem; --radius-xl:1.5rem;
+      --font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
+      --font-body:"Inter",-apple-system,sans-serif;
+    }
+    *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:var(--font-body); color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
+    .container { max-width:1100px; margin:0 auto; padding:0 1.5rem; }
+
+    /* HERO */
+    .collection-hero { width:100%; aspect-ratio:21/6; overflow:hidden; background:var(--green); }
+    .collection-hero .hero-img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* BREADCRUMB */
+    .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--border); }
+    .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); }
+    .breadcrumb a { color:var(--text-muted); text-decoration:none; }
+    .breadcrumb a:hover { color:var(--text); }
+    .breadcrumb span { margin:0 .4rem; }
+
+    /* PAGE INFO */
+    .saver-page-intro { padding:1.75rem 0 1.25rem; }
+    .page-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:.35rem; font-family:var(--font-heading); display:inline-flex; align-items:center; gap:.4rem; }
+    .page-title { font-family:var(--font-heading); font-size:1.75rem; font-weight:800; color:var(--text); line-height:1.1; margin-bottom:.4rem; }
+    .page-intro { font-size:.95rem; color:var(--text-secondary); line-height:1.6; max-width:560px; }
+    .eyebrow-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    /* BOX GRID */
+    .saver-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.25rem; padding:.5rem 0 5rem; }
+
+    /* BOX CARD */
+    .box-card { display:flex; flex-direction:column; background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; text-decoration:none; color:inherit; transition:border-color .2s, transform .2s, box-shadow .2s; }
+    .box-card:hover { border-color:var(--green); transform:translateY(-2px); box-shadow:0 6px 20px rgba(10,74,47,.06); }
+    .box-card-img { background:#F0F7F2; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--border); position:relative; }
+    .box-card-img svg { opacity:.18; }
+    .box-card-badge { position:absolute; top:.75rem; left:.75rem; padding:.25rem .6rem; background:var(--accent); color:#fff; border-radius:999px; font-family:var(--font-heading); font-size:.62rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+    .box-card-body { padding:1.125rem 1.25rem 1.25rem; display:flex; flex-direction:column; gap:.6rem; flex:1; }
+    .box-card-title { font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:var(--text); }
+    .box-card-meta { font-family:var(--font-heading); font-size:.72rem; font-weight:700; color:var(--text-muted); letter-spacing:.04em; text-transform:uppercase; }
+    .box-card-meta strong { color:var(--accent); font-weight:800; }
+    .box-card-desc { font-size:.875rem; color:var(--text-secondary); line-height:1.55; flex:1; }
+    .box-card-cta { display:inline-flex; align-items:center; gap:.35rem; margin-top:.25rem; padding:.55rem 1rem; background:var(--green); color:#fff; border-radius:999px; font-family:var(--font-heading); font-size:.78rem; font-weight:700; align-self:flex-start; transition:background .2s; }
+    .box-card:hover .box-card-cta { background:var(--accent); }
+
+    @media(max-width:560px) {
+      .saver-grid { grid-template-columns:1fr; }
+      .page-title { font-size:1.5rem; }
+    }
+  </style>
+
+{%- if section.settings.hero_image -%}
+  <div class="collection-hero">
+    {{ section.settings.hero_image | image_url: width: 1440 | image_tag:
+      loading: 'eager',
+      fetchpriority: 'high',
+      class: 'hero-img',
+      alt: section.settings.hero_image.alt | default: 'Saver Boxes' }}
+  </div>
+{%- endif -%}
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">Home</a><span>›</span>
+        <span style="color:var(--text);font-weight:600;">Saver Boxes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- PAGE INFO -->
+    <div class="saver-page-intro">
+      <div class="page-eyebrow"><span class="eyebrow-dot"></span> Shop</div>
+      <div class="page-title">Saver Boxes</div>
+      <p class="page-intro">Pre-built boxes at bundle prices. Customize each box by removing items you don't need or topping up with Mix &amp; Match Essentials.</p>
+    </div>
+
+    <!-- BOX GRID -->
+    <div class="saver-grid">
+
+      <a href="/pages/weekly-staples-box" class="box-card">
+        <div class="box-card-img">
+          <span class="box-card-badge">Most popular</span>
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width=".75" stroke-linecap="round">
+            <rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M3 11h18"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/>
+          </svg>
+        </div>
+        <div class="box-card-body">
+          <div class="box-card-title">Weekly Staples Box</div>
+          <div class="box-card-meta">8 items · From <strong>$45</strong></div>
+          <p class="box-card-desc">A balanced mix of fresh fruit, vegetables, and pantry staples — enough for a typical household week.</p>
+          <span class="box-card-cta">See what's inside →</span>
+        </div>
+      </a>
+
+      <a href="/pages/family-veg-box" class="box-card">
+        <div class="box-card-img">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width=".75" stroke-linecap="round">
+            <path d="M12 3v6"/><path d="M9 6h6"/><circle cx="12" cy="14" r="6"/>
+          </svg>
+        </div>
+        <div class="box-card-body">
+          <div class="box-card-title">Family Veg Box</div>
+          <div class="box-card-meta">6 items · From <strong>$31</strong></div>
+          <p class="box-card-desc">A family-size selection of fresh seasonal vegetables — broccoli, carrots, zucchini and more.</p>
+          <span class="box-card-cta">See what's inside →</span>
+        </div>
+      </a>
+
+      <a href="/pages/pantry-saver-bundle" class="box-card">
+        <div class="box-card-img">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width=".75" stroke-linecap="round">
+            <rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M4 9h16"/><path d="M4 15h16"/>
+          </svg>
+        </div>
+        <div class="box-card-body">
+          <div class="box-card-title">Pantry Saver Bundle</div>
+          <div class="box-card-meta">6 items · From <strong>$52</strong></div>
+          <p class="box-card-desc">Stock the pantry with everyday staples — rice, oil, pasta and more — at a bundle price.</p>
+          <span class="box-card-cta">See what's inside →</span>
+        </div>
+      </a>
+
+      <a href="/pages/budget-fruit-box" class="box-card">
+        <div class="box-card-img">
+          <span class="box-card-badge">Budget pick</span>
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width=".75" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+          </svg>
+        </div>
+        <div class="box-card-body">
+          <div class="box-card-title">Budget Fruit Box</div>
+          <div class="box-card-meta">4 items · From <strong>$22</strong></div>
+          <p class="box-card-desc">Four fruit essentials at a bundle price — always-fresh, family-friendly favourites.</p>
+          <span class="box-card-cta">See what's inside →</span>
+        </div>
+      </a>
+
+      <a href="/pages/full-household-stock-up-box" class="box-card">
+        <div class="box-card-img">
+          <span class="box-card-badge">Best value</span>
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width=".75" stroke-linecap="round">
+            <path d="M3 9l9-6 9 6v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20Z"/><path d="M9 21V12h6v9"/>
+          </svg>
+        </div>
+        <div class="box-card-body">
+          <div class="box-card-title">Full Household Stock-Up Box</div>
+          <div class="box-card-meta">10 items · From <strong>$87</strong></div>
+          <p class="box-card-desc">Everything you need for the week — fruit, vegetables, and pantry staples in family quantities.</p>
+          <span class="box-card-cta">See what's inside →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
 
 {% schema %}
 {
-  "name": "Saver boxes collection",
-  "settings": []
+  "name": "Saver Boxes Collection",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    }
+  ]
 }
 {% endschema %}
