@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-how-it-works",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

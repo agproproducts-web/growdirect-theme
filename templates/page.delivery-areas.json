@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-delivery-areas",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

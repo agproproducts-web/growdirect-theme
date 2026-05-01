@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-sourcing",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
