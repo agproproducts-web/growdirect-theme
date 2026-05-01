@@ -1,9 +1,656 @@
-<div class="page-saver-box">
-</div>
+<style>
+  /* ── GrowDirect — Saver Box Pre-Checkout ── */
+  /* ── DESIGN TOKENS — identical to collection pages ── */
+    :root {
+      --green:#0A4A2F; --accent:#F28C38; --accent-hover:#E07B2D;
+      --text:#1A3C34; --text-secondary:#5C6B66; --text-muted:#8A9A94;
+      --border:#E8F0EB; --bg:#F8F9FA; --white:#fff;
+      --radius:1rem; --radius-xl:1.5rem;
+      --font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
+      --font-body:"Inter",-apple-system,sans-serif;
+    }
+    *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:var(--font-body); color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
+    .container { max-width:1100px; margin:0 auto; padding:0 1.5rem; }
+
+    /* HERO IMAGE (img tag, full-width banner) */
+    .box-hero-img { width:100%; aspect-ratio:21/6; object-fit:cover; display:block; background:var(--green); }
+
+    /* BACK LINK BAR */
+    .saver-box-backbar { background:#fff; border-bottom:1px solid var(--border); }
+    .saver-box-back-link { display:inline-flex; align-items:center; gap:.4rem; padding:.7rem 0; font-family:var(--font-heading); font-size:.78rem; font-weight:600; color:var(--text-muted); text-decoration:none; }
+    .saver-box-back-link:hover { color:var(--text); }
+
+    /* PAGE LAYOUT */
+    .page-layout { display:grid; grid-template-columns:1fr 340px; gap:1.75rem; padding:1.75rem 0 5rem; align-items:start; }
+
+    /* SECTION CARDS */
+    .section-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; margin-bottom:1.25rem; }
+    .section-header { padding:1.125rem 1.5rem; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .section-title { font-family:var(--font-heading); font-size:.95rem; font-weight:800; color:var(--text); }
+    .section-step { font-size:.72rem; color:var(--text-muted); font-family:var(--font-heading); font-weight:600; }
+    .section-body { padding:1.5rem; }
+
+    /* PAGE INFO */
+    .page-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:.35rem; font-family:var(--font-heading); display:inline-flex; align-items:center; gap:.4rem; }
+    .page-title { font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:var(--text); line-height:1.1; margin-bottom:.4rem; }
+    .page-intro { font-size:.875rem; color:var(--text-secondary); line-height:1.65; margin-bottom:.5rem; }
+    .page-note { font-size:.75rem; color:var(--text-muted); font-style:italic; }
+    .eyebrow-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    /* SUPPORT IMAGE BLOCK (optional, sits inside info card) */
+    .support-image { width:100%; border-radius:var(--radius); display:block; margin-top:1rem; }
+
+    /* BOX CONTENTS LIST */
+    .box-list { display:flex; flex-direction:column; gap:.75rem; }
+    .box-item-row { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); padding:1rem 1.25rem; display:flex; align-items:center; gap:.875rem; transition:border-color .2s, opacity .2s; }
+    .box-item-row.removed { opacity:.45; border-style:dashed; }
+
+    /* MM ROW (shared with mix-match) */
+    .mm-thumb-placeholder { width:64px; height:64px; min-width:64px; border-radius:.5rem; background:#F0F7F2; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .mm-thumb-placeholder svg { opacity:.18; }
+    .mm-item-inner { flex:1; min-width:0; display:flex; flex-direction:column; gap:.5rem; }
+    .mm-row-top { display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem; }
+    .mm-item-info { flex:1; min-width:0; }
+    .mm-product-name { font-family:var(--font-heading); font-size:.875rem; font-weight:800; color:var(--text); margin-bottom:.2rem; }
+    .mm-product-subtitle { font-size:.72rem; color:var(--text-muted); }
+    .mm-live-price { font-family:var(--font-heading); font-size:1rem; font-weight:800; color:var(--accent); white-space:nowrap; flex-shrink:0; }
+    .mm-row-bottom { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; }
+    .mm-row-actions { display:flex; align-items:center; gap:.75rem; }
+
+    /* BOX ITEM META (size + qty fixed for box) */
+    .box-item-meta { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; font-size:.72rem; color:var(--text-secondary); }
+    .box-item-meta .pill { padding:.2rem .55rem; border:1px solid var(--border); border-radius:999px; font-family:var(--font-heading); font-weight:700; color:var(--text-secondary); background:#fff; }
+
+    /* REMOVE / RESTORE BUTTONS */
+    .remove-btn, .restore-btn { padding:.45rem .9rem; border-radius:999px; font-family:var(--font-heading); font-size:.72rem; font-weight:700; cursor:pointer; white-space:nowrap; transition:all .15s; border:1.5px solid var(--border); background:#fff; }
+    .remove-btn { color:var(--text-secondary); }
+    .remove-btn:hover:not(:disabled) { border-color:#DC2626; color:#DC2626; }
+    .remove-btn:disabled { opacity:.4; cursor:not-allowed; }
+    .restore-btn { background:var(--green); border-color:var(--green); color:#fff; }
+    .restore-btn:hover { background:#0d5b3a; border-color:#0d5b3a; }
+
+    .removal-counter { font-family:var(--font-heading); font-size:.72rem; font-weight:700; color:var(--text-muted); }
+    .removal-counter.at-limit { color:#DC2626; }
+
+    /* MM TABS */
+    .mm-tabs { display:flex; gap:.35rem; border-bottom:1px solid var(--border); margin-bottom:1.25rem; }
+    .mm-tab { padding:.5rem 1.1rem; font-family:var(--font-heading); font-size:.82rem; font-weight:700; color:var(--text-muted); background:transparent; border:none; border-bottom:2.5px solid transparent; cursor:pointer; margin-bottom:-1px; transition:all .2s; white-space:nowrap; }
+    .mm-tab:hover { color:var(--text); }
+    .mm-tab.is-active { color:var(--green); border-bottom-color:var(--green); }
+
+    /* MM GRID (always visible) */
+    .mm-grid { display:flex; flex-direction:column; gap:.75rem; }
+    .mm-product-row { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); padding:1rem 1.25rem; display:flex; align-items:center; gap:.875rem; transition:border-color .2s; }
+    .mm-product-row.in-cart { border-color:var(--green); background:rgba(10,74,47,.015); }
+
+    /* SIZE PILLS */
+    .size-pills { display:flex; gap:.35rem; flex-wrap:wrap; }
+    .size-pill { padding:.28rem .7rem; border:1.5px solid var(--border); border-radius:999px; font-family:var(--font-heading); font-size:.72rem; font-weight:700; color:var(--text-secondary); background:#fff; cursor:pointer; transition:all .15s; white-space:nowrap; }
+    .size-pill:hover { border-color:var(--green); color:var(--green); }
+    .size-pill.selected { background:var(--green); border-color:var(--green); color:#fff; }
+
+    /* QTY CONTROL */
+    .qty-control { display:flex; align-items:center; border:1.5px solid var(--border); border-radius:999px; overflow:hidden; transition:border-color .2s; }
+    .mm-product-row.in-cart .qty-control { border-color:var(--green); }
+    .qty-btn { width:30px; height:30px; display:flex; align-items:center; justify-content:center; background:transparent; border:none; font-family:var(--font-heading); font-size:1rem; font-weight:700; color:var(--text); cursor:pointer; transition:background .15s; }
+    .qty-btn:hover:not(:disabled) { background:rgba(10,74,47,.06); }
+    .qty-btn:disabled { opacity:.3; cursor:not-allowed; }
+    .qty-val { min-width:26px; text-align:center; font-family:var(--font-heading); font-size:.875rem; font-weight:700; }
+
+    /* ADD BUTTON */
+    .add-btn { padding:.5rem 1rem; background:var(--green); color:#fff; border:none; border-radius:999px; font-family:var(--font-heading); font-size:.8rem; font-weight:700; cursor:pointer; transition:background .2s; white-space:nowrap; }
+    .add-btn:hover { background:#0d5b3a; }
+    .add-btn.added { background:#2D7A50; }
+
+    /* ORDER SUMMARY */
+    .summary-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; position:sticky; top:80px; }
+    .summary-header { background:var(--green); padding:1.125rem 1.5rem; }
+    .summary-header h3 { font-family:var(--font-heading); font-size:.95rem; font-weight:800; color:#fff; margin-bottom:.1rem; }
+    .summary-header p { font-size:.72rem; color:rgba(255,255,255,.55); }
+    .summary-body { padding:1.25rem 1.5rem; }
+    .summary-group-label { font-family:var(--font-heading); font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); margin-top:.875rem; margin-bottom:.4rem; }
+    .summary-group-label:first-child { margin-top:0; }
+    .summary-row { display:flex; align-items:flex-start; justify-content:space-between; gap:.5rem; padding:.35rem 0; border-bottom:1px solid var(--border); font-size:.8rem; }
+    .summary-row:last-child { border-bottom:none; }
+    .summary-row.removed span:first-child { text-decoration:line-through; color:var(--text-muted); }
+    .summary-row span:first-child { color:var(--text); flex:1; line-height:1.4; }
+    .summary-row span:last-child { font-family:var(--font-heading); font-weight:700; color:var(--accent); white-space:nowrap; }
+    .summary-empty { font-size:.78rem; color:var(--text-muted); font-style:italic; padding:.25rem 0; }
+    .summary-footer { padding:1rem 1.5rem 1.5rem; border-top:1px solid var(--border); }
+    .summary-total-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:.625rem; }
+    .summary-total-label { font-family:var(--font-heading); font-size:.78rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; }
+    [data-total] { font-family:var(--font-heading); font-size:1.6rem; font-weight:800; color:var(--text); }
+    .delivery-note { font-size:.72rem; text-align:center; margin-bottom:1rem; line-height:1.5; }
+    .delivery-note.locked { color:var(--text-muted); }
+    .delivery-note.unlocked { color:#16A34A; font-weight:600; }
+    [data-add-to-cart] { width:100%; padding:.9rem; background:var(--accent); color:#fff; border:none; border-radius:999px; font-family:var(--font-heading); font-weight:700; font-size:.9rem; cursor:pointer; transition:background .2s; }
+    [data-add-to-cart]:hover { background:var(--accent-hover); }
+    [data-add-to-cart]:disabled { opacity:.45; cursor:not-allowed; }
+    .summary-note { font-size:.72rem; color:var(--text-muted); text-align:center; margin-top:.625rem; line-height:1.5; }
+
+    @media(max-width:900px) { .page-layout { grid-template-columns:1fr; } .summary-card { position:static; } }
+    @media(max-width:560px) { .mm-row-bottom { gap:.5rem; } .mm-row-actions { width:100%; justify-content:space-between; } }
+  </style>
+
+{%- if section.settings.hero_image -%}
+  {{ section.settings.hero_image | image_url: width: 1440 | image_tag:
+    loading: 'eager',
+    fetchpriority: 'high',
+    class: 'box-hero-img',
+    alt: section.settings.hero_image.alt | default: page.title }}
+{%- endif -%}
+
+  <div class="saver-box-backbar">
+    <div class="container">
+      <a class="saver-box-back-link" href="/collections/saver-boxes">← Back to Saver Boxes</a>
+    </div>
+  </div>
+
+  <div class="container saver-box-page" data-handle="{{ page.handle }}">
+    <div class="page-layout">
+
+      <!-- ── LEFT COLUMN ── -->
+      <div>
+
+        <!-- PAGE INFO -->
+        <div class="section-card">
+          <div class="section-body" style="padding:1.25rem 1.5rem;">
+            <div class="page-eyebrow"><span class="eyebrow-dot"></span> Saver Box</div>
+            <div class="page-title">{{ page.title }}</div>
+            <div class="page-intro" data-box-intro>Save with our pre-selected box. Customize by removing items you don't need or adding extras from Mix &amp; Match.</div>
+            {%- if section.settings.support_image -%}
+              {{ section.settings.support_image | image_url: width: 1200 | image_tag:
+                loading: 'lazy',
+                class: 'support-image',
+                alt: section.settings.support_image.alt | default: page.title }}
+            {%- endif -%}
+          </div>
+        </div>
+
+        <!-- BOX CONTENTS -->
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-title">What's in your box</div>
+            <div class="removal-counter" data-removal-counter>0 of 4 items removed</div>
+          </div>
+          <div class="section-body">
+            <div class="box-list" id="box-list"></div>
+          </div>
+        </div>
+
+        <!-- MIX & MATCH (always visible) -->
+        <div class="section-card">
+          <div class="section-header">
+            <div>
+              <div class="section-title">Add extras from Mix &amp; Match Essentials</div>
+              <div style="font-size:.72rem;color:var(--text-muted);font-family:var(--font-heading);margin-top:.2rem;">Optional — top up your order with extra items.</div>
+            </div>
+          </div>
+          <div class="section-body">
+            <div class="mm-tabs" role="tablist" aria-label="Mix and Match categories">
+              <button type="button" class="mm-tab is-active" data-tab="fruit" role="tab" aria-selected="true">Fruit</button>
+              <button type="button" class="mm-tab" data-tab="vegetables" role="tab" aria-selected="false" tabindex="-1">Vegetables</button>
+              <button type="button" class="mm-tab" data-tab="pantry" role="tab" aria-selected="false" tabindex="-1">Pantry</button>
+            </div>
+            <div class="mm-grid" id="mm-grid"></div>
+          </div>
+        </div>
+
+      </div>
+      <!-- END LEFT -->
+
+      <!-- ── RIGHT COLUMN: ORDER SUMMARY ── -->
+      <div>
+        <div class="summary-card">
+          <div class="summary-header">
+            <h3>Order summary</h3>
+            <p>Updates as you customize</p>
+          </div>
+          <div class="summary-body">
+            <div class="summary-group-label">Box contents</div>
+            <div data-box-summary-list></div>
+
+            <div class="summary-group-label">Mix &amp; Match add-ons</div>
+            <div data-mm-summary-list></div>
+          </div>
+          <div class="summary-footer">
+            <div class="summary-total-row">
+              <span class="summary-total-label">Total</span>
+              <span data-total>$0.00</span>
+            </div>
+            <p class="delivery-note locked" id="delivery-note">Add $99.00 more to unlock free delivery</p>
+            <button type="button" data-add-to-cart>Add order to cart</button>
+            <p class="summary-note">Your customized box and any add-ons will be added to cart. Review at checkout.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+(function() {
+  const DELIVERY_THRESHOLD = 99.00;
+  const fmt = v => '$' + v.toFixed(2);
+
+  // ============================================================
+  // BOX CONFIGURATIONS (keyed by page handle)
+  // ============================================================
+  const boxes = {
+    'weekly-staples-box': {
+      intro: 'Our most popular box — a balanced mix of fresh fruit, vegetables, and pantry staples for the week.',
+      items: [
+        { id:'apples',       name:'Apples',        subtitle:'Pink Lady · Royal Gala', size:'2kg',   qty:1, price:7.50 },
+        { id:'bananas',      name:'Bananas',       subtitle:'Cavendish',              size:'3kg',   qty:1, price:6.50 },
+        { id:'carrots',      name:'Carrots',       subtitle:'1kg bag · Washed',       size:'2kg',   qty:1, price:5.50 },
+        { id:'broccoli',     name:'Broccoli',      subtitle:'Australian grown',       size:'2 heads', qty:1, price:4.50 },
+        { id:'spinach',      name:'Spinach',       subtitle:'Baby leaves',            size:'120g',  qty:1, price:3.00 },
+        { id:'basmati-rice', name:'Basmati Rice',  subtitle:'SunRice',                size:'2kg',   qty:1, price:8.00 },
+        { id:'pasta',        name:'Pasta',         subtitle:'Penne or spaghetti',     size:'500g',  qty:1, price:3.50 },
+        { id:'olive-oil',    name:'Olive Oil',     subtitle:'Extra virgin',           size:'500ml', qty:1, price:8.50 }
+      ]
+    },
+    'budget-fruit-box': {
+      intro: 'Four fruit essentials at a bundle price. Always-fresh, family-friendly favourites.',
+      items: [
+        { id:'apples',    name:'Apples',    subtitle:'Pink Lady',         size:'2kg', qty:1, price:7.50 },
+        { id:'bananas',   name:'Bananas',   subtitle:'Cavendish',         size:'2kg', qty:1, price:4.50 },
+        { id:'oranges',   name:'Oranges',   subtitle:'Navel · Seasonal',  size:'2kg', qty:1, price:5.50 },
+        { id:'mandarins', name:'Mandarins', subtitle:'Easy-peel',         size:'1kg', qty:1, price:4.50 }
+      ]
+    },
+    'family-veg-box': {
+      intro: 'A family-size selection of fresh seasonal vegetables.',
+      items: [
+        { id:'broccoli', name:'Broccoli', subtitle:'Australian grown', size:'2 heads', qty:1, price:4.50 },
+        { id:'carrots',  name:'Carrots',  subtitle:'Washed',           size:'3kg',     qty:1, price:8.00 },
+        { id:'zucchini', name:'Zucchini', subtitle:'Fresh daily',      size:'1kg',     qty:1, price:6.00 },
+        { id:'spinach',  name:'Spinach',  subtitle:'Baby leaves',      size:'250g',    qty:1, price:5.50 },
+        { id:'sweet-potato', name:'Sweet Potato', subtitle:'Gold variety', size:'1kg', qty:1, price:4.50 },
+        { id:'onions',   name:'Brown Onions', subtitle:'Kitchen staple', size:'1kg',   qty:1, price:3.50 }
+      ]
+    },
+    'pantry-saver-bundle': {
+      intro: 'Stock the pantry with everyday staples at a bundle price.',
+      items: [
+        { id:'basmati-rice',     name:'Basmati Rice',     subtitle:'SunRice',          size:'5kg',   qty:1, price:18.00 },
+        { id:'olive-oil',        name:'Olive Oil',        subtitle:'Extra virgin',     size:'750ml', qty:1, price:12.00 },
+        { id:'pasta',            name:'Pasta',            subtitle:'Penne',            size:'1kg',   qty:1, price:6.50 },
+        { id:'rolled-oats',      name:'Rolled Oats',      subtitle:'Uncle Tobys',      size:'1kg',   qty:1, price:6.00 },
+        { id:'crushed-tomatoes', name:'Crushed Tomatoes', subtitle:'Mutti',            size:'400g',  qty:2, price:3.50 },
+        { id:'flour',            name:'Plain Flour',      subtitle:'All-purpose',      size:'2kg',   qty:1, price:4.50 }
+      ]
+    },
+    'full-household-stock-up-box': {
+      intro: 'Everything you need for the week — fruit, vegetables, and pantry staples in family quantities.',
+      items: [
+        { id:'apples',       name:'Apples',        subtitle:'Pink Lady',         size:'3kg',   qty:1, price:10.50 },
+        { id:'bananas',      name:'Bananas',       subtitle:'Cavendish',         size:'3kg',   qty:1, price:6.50 },
+        { id:'oranges',      name:'Oranges',       subtitle:'Navel',             size:'3kg',   qty:1, price:8.00 },
+        { id:'carrots',      name:'Carrots',       subtitle:'Washed',            size:'3kg',   qty:1, price:8.00 },
+        { id:'broccoli',     name:'Broccoli',      subtitle:'Australian grown',  size:'2 heads', qty:1, price:4.50 },
+        { id:'sweet-potato', name:'Sweet Potato',  subtitle:'Gold',              size:'2kg',   qty:1, price:8.00 },
+        { id:'basmati-rice', name:'Basmati Rice',  subtitle:'SunRice',           size:'5kg',   qty:1, price:18.00 },
+        { id:'pasta',        name:'Pasta',         subtitle:'Spaghetti',         size:'1kg',   qty:1, price:6.50 },
+        { id:'olive-oil',    name:'Olive Oil',     subtitle:'Extra virgin',      size:'750ml', qty:1, price:12.00 },
+        { id:'rolled-oats',  name:'Rolled Oats',   subtitle:'Wholegrain',        size:'1kg',   qty:1, price:6.00 }
+      ]
+    }
+  };
+
+  // ============================================================
+  // MIX & MATCH PRODUCTS
+  // ============================================================
+  const mmProducts = {
+    fruit: [
+      { id:'mm-bananas',   name:'Bananas',   subtitle:'Cavendish',
+        sizes:[{label:'2kg',price:4.50},{label:'3kg',price:6.50},{label:'5kg',price:10.50}], defaultSizeIdx:0 },
+      { id:'mm-apples',    name:'Apples',    subtitle:'Pink Lady · Royal Gala',
+        sizes:[{label:'1kg',price:4.00},{label:'2kg',price:7.50},{label:'3kg',price:10.50}], defaultSizeIdx:0 },
+      { id:'mm-oranges',   name:'Oranges',   subtitle:'Navel · Seasonal',
+        sizes:[{label:'2kg',price:5.50},{label:'3kg',price:8.00},{label:'5kg',price:12.50}], defaultSizeIdx:0 },
+      { id:'mm-mandarins', name:'Mandarins', subtitle:'Easy-peel · Seedless',
+        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00}], defaultSizeIdx:0 }
+    ],
+    vegetables: [
+      { id:'mm-broccoli', name:'Broccoli', subtitle:'Australian grown',
+        sizes:[{label:'head',price:2.50},{label:'2 heads',price:4.50}], defaultSizeIdx:0 },
+      { id:'mm-carrots',  name:'Carrots',  subtitle:'Washed',
+        sizes:[{label:'1kg',price:3.00},{label:'2kg',price:5.50},{label:'3kg',price:8.00}], defaultSizeIdx:0 },
+      { id:'mm-zucchini', name:'Zucchini', subtitle:'Fresh daily',
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0 },
+      { id:'mm-spinach',  name:'Spinach',  subtitle:'Baby leaves',
+        sizes:[{label:'120g',price:3.00},{label:'250g',price:5.50}], defaultSizeIdx:0 }
+    ],
+    pantry: [
+      { id:'mm-basmati-rice', name:'Basmati Rice', subtitle:'SunRice',
+        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00},{label:'5kg',price:18.00}], defaultSizeIdx:0 },
+      { id:'mm-olive-oil',    name:'Olive Oil',    subtitle:'Extra virgin',
+        sizes:[{label:'500ml',price:8.50},{label:'750ml',price:12.00}], defaultSizeIdx:0 },
+      { id:'mm-pasta',        name:'Pasta',        subtitle:'Penne or spaghetti',
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.50}], defaultSizeIdx:0 },
+      { id:'mm-rolled-oats',  name:'Rolled Oats',  subtitle:'Uncle Tobys',
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0 }
+    ]
+  };
+
+  // ============================================================
+  // RESOLVE ACTIVE BOX
+  // ============================================================
+  const pageEl = document.querySelector('.saver-box-page');
+  const handle = pageEl ? pageEl.dataset.handle : '';
+  const box = boxes[handle] || boxes['weekly-staples-box'];
+
+  // Per-box MAX_REMOVALS rule
+  const MAX_REMOVALS = handle === 'budget-fruit-box'
+    ? Math.min(4, box.items.length - 1)
+    : 4;
+
+  // ============================================================
+  // STATE
+  // ============================================================
+  const boxState = {};
+  box.items.forEach(it => { boxState[it.id] = { removed:false }; });
+
+  const mmState = {};
+  let activeTab = 'fruit';
+
+  function getMmState(id, defaultSizeIdx) {
+    if (!mmState[id]) mmState[id] = { sizeIdx: defaultSizeIdx, qty: 0 };
+    return mmState[id];
+  }
+
+  function getMmCategoryFor(id) {
+    for (const cat of Object.keys(mmProducts)) {
+      if (mmProducts[cat].some(p => p.id === id)) return cat;
+    }
+    return null;
+  }
+
+  function removedCount() {
+    return Object.values(boxState).filter(s => s.removed).length;
+  }
+
+  function getGrandTotal() {
+    let total = 0, qty = 0;
+    box.items.forEach(it => {
+      if (boxState[it.id].removed) return;
+      total += it.price * it.qty;
+      qty += it.qty;
+    });
+    Object.entries(mmState).forEach(([id, s]) => {
+      if (!s.qty) return;
+      const cat = getMmCategoryFor(id);
+      if (!cat) return;
+      const p = mmProducts[cat].find(x => x.id === id);
+      total += p.sizes[s.sizeIdx].price * s.qty;
+      qty += s.qty;
+    });
+    return { total, qty };
+  }
+
+  // ============================================================
+  // RENDER BOX CONTENTS
+  // ============================================================
+  function renderBoxList() {
+    const list = document.getElementById('box-list');
+    const counter = document.querySelector('[data-removal-counter]');
+    if (!list) return;
+
+    const removed = removedCount();
+    const atLimit = removed >= MAX_REMOVALS;
+
+    if (counter) {
+      counter.textContent = removed + ' of ' + MAX_REMOVALS + ' items removed';
+      counter.classList.toggle('at-limit', atLimit);
+    }
+
+    list.innerHTML = '';
+    box.items.forEach(it => {
+      const isRemoved = boxState[it.id].removed;
+      const row = document.createElement('div');
+      row.className = 'box-item-row' + (isRemoved ? ' removed' : '');
+
+      row.innerHTML = `
+        <div class="mm-thumb-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+          </svg>
+        </div>
+        <div class="mm-item-inner">
+          <div class="mm-row-top">
+            <div class="mm-item-info">
+              <div class="mm-product-name">${it.name}</div>
+              <div class="mm-product-subtitle">${it.subtitle || ''}</div>
+            </div>
+            <div class="mm-live-price">${fmt(it.price * it.qty)}</div>
+          </div>
+          <div class="mm-row-bottom">
+            <div class="box-item-meta">
+              <span class="pill">${it.size}</span>
+              <span>×${it.qty}</span>
+            </div>
+            <div class="mm-row-actions">
+              ${isRemoved
+                ? `<button type="button" class="restore-btn" data-restore>↶ Restore</button>`
+                : `<button type="button" class="remove-btn" data-remove ${atLimit ? 'disabled title="Removal limit reached"' : ''}>Remove</button>`}
+            </div>
+          </div>
+        </div>`;
+
+      const removeBtn = row.querySelector('[data-remove]');
+      const restoreBtn = row.querySelector('[data-restore]');
+      if (removeBtn) {
+        removeBtn.addEventListener('click', () => {
+          if (removedCount() >= MAX_REMOVALS) return;
+          boxState[it.id].removed = true;
+          rerender();
+        });
+      }
+      if (restoreBtn) {
+        restoreBtn.addEventListener('click', () => {
+          boxState[it.id].removed = false;
+          rerender();
+        });
+      }
+
+      list.appendChild(row);
+    });
+  }
+
+  // ============================================================
+  // RENDER MM GRID
+  // ============================================================
+  function renderMmGrid() {
+    const grid = document.getElementById('mm-grid');
+    if (!grid) return;
+    const items = mmProducts[activeTab];
+    grid.innerHTML = '';
+
+    items.forEach(p => {
+      const s = getMmState(p.id, p.defaultSizeIdx);
+      const sz = p.sizes[s.sizeIdx];
+      const row = document.createElement('div');
+      row.className = 'mm-product-row' + (s.qty > 0 ? ' in-cart' : '');
+
+      const pillsHtml = p.sizes.map((size, i) =>
+        `<button type="button" class="size-pill${i===s.sizeIdx?' selected':''}" data-size-idx="${i}">${size.label}</button>`
+      ).join('');
+
+      row.innerHTML = `
+        <div class="mm-thumb-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+          </svg>
+        </div>
+        <div class="mm-item-inner">
+          <div class="mm-row-top">
+            <div class="mm-item-info">
+              <div class="mm-product-name">${p.name}</div>
+              <div class="mm-product-subtitle">${p.subtitle || ''}</div>
+            </div>
+            <div class="mm-live-price">${fmt(sz.price)}</div>
+          </div>
+          <div class="mm-row-bottom">
+            <div class="size-pills">${pillsHtml}</div>
+            <div class="mm-row-actions">
+              <div class="qty-control">
+                <button type="button" class="qty-btn" data-minus ${s.qty<=0?'disabled':''}>−</button>
+                <span class="qty-val">${s.qty}</span>
+                <button type="button" class="qty-btn" data-plus>+</button>
+              </div>
+              <button type="button" class="add-btn${s.qty>0?' added':''}" data-add>${s.qty>0?'✓ Added':'Add'}</button>
+            </div>
+          </div>
+        </div>`;
+
+      row.querySelectorAll('.size-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          s.sizeIdx = parseInt(pill.dataset.sizeIdx);
+          s.qty = 0;
+          rerender();
+        });
+      });
+      row.querySelector('[data-minus]').addEventListener('click', () => {
+        if (s.qty <= 0) return;
+        s.qty--;
+        rerender();
+      });
+      row.querySelector('[data-plus]').addEventListener('click', () => {
+        s.qty++;
+        rerender();
+      });
+      row.querySelector('[data-add]').addEventListener('click', () => {
+        if (s.qty === 0) s.qty = 1;
+        rerender();
+      });
+
+      grid.appendChild(row);
+    });
+  }
+
+  // ============================================================
+  // RENDER SUMMARY
+  // ============================================================
+  function renderSummary() {
+    const boxListEl = document.querySelector('[data-box-summary-list]');
+    const mmListEl = document.querySelector('[data-mm-summary-list]');
+    const totalEl = document.querySelector('[data-total]');
+    const deliveryEl = document.getElementById('delivery-note');
+    const ctaBtn = document.querySelector('[data-add-to-cart]');
+    const { total, qty } = getGrandTotal();
+
+    if (boxListEl) {
+      boxListEl.innerHTML = box.items.map(it => {
+        const isRemoved = boxState[it.id].removed;
+        const cls = 'summary-row' + (isRemoved ? ' removed' : '');
+        return `<div class="${cls}"><span>${it.name} <strong>${it.size}</strong> × ${it.qty}</span><span>${isRemoved ? '— removed' : '+' + fmt(it.price * it.qty)}</span></div>`;
+      }).join('');
+    }
+
+    if (mmListEl) {
+      const added = Object.entries(mmState).filter(([,s]) => s.qty > 0);
+      mmListEl.innerHTML = added.length
+        ? added.map(([id, s]) => {
+            const cat = getMmCategoryFor(id);
+            if (!cat) return '';
+            const p = mmProducts[cat].find(x => x.id === id);
+            const sz = p.sizes[s.sizeIdx];
+            return `<div class="summary-row"><span>${p.name} <strong>${sz.label}</strong> × ${s.qty}</span><span>+${fmt(sz.price * s.qty)}</span></div>`;
+          }).join('')
+        : '<p class="summary-empty">No add-ons selected.</p>';
+    }
+
+    if (totalEl) totalEl.textContent = fmt(total);
+
+    if (deliveryEl) {
+      if (total >= DELIVERY_THRESHOLD) {
+        deliveryEl.textContent = '✓ You\'ve unlocked free delivery';
+        deliveryEl.className = 'delivery-note unlocked';
+      } else {
+        const rem = (DELIVERY_THRESHOLD - total).toFixed(2);
+        deliveryEl.textContent = total > 0
+          ? 'Add $' + rem + ' more to unlock free delivery'
+          : 'Add $' + DELIVERY_THRESHOLD.toFixed(2) + ' more to unlock free delivery';
+        deliveryEl.className = 'delivery-note locked';
+      }
+    }
+
+    if (ctaBtn) ctaBtn.disabled = qty === 0;
+  }
+
+  function rerender() {
+    renderBoxList();
+    renderMmGrid();
+    renderSummary();
+  }
+
+  // ============================================================
+  // TABS
+  // ============================================================
+  document.querySelectorAll('.mm-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      activeTab = tab.dataset.tab;
+      document.querySelectorAll('.mm-tab').forEach(t => {
+        const active = t === tab;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', String(active));
+        t.setAttribute('tabindex', active ? '0' : '-1');
+      });
+      renderMmGrid();
+    });
+    tab.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const arr = Array.from(document.querySelectorAll('.mm-tab'));
+      const next = arr[(arr.indexOf(tab) + (e.key === 'ArrowRight' ? 1 : -1) + arr.length) % arr.length];
+      next.focus();
+      next.click();
+    });
+  });
+
+  // ============================================================
+  // CTA
+  // ============================================================
+  document.querySelector('[data-add-to-cart]').addEventListener('click', () => {
+    const boxItems = box.items.filter(it => !boxState[it.id].removed)
+      .map(it => ({ name: it.name, size: it.size, qty: it.qty, price: it.price }));
+    const mmItems = Object.entries(mmState).filter(([,s]) => s.qty > 0).map(([id, s]) => {
+      const cat = getMmCategoryFor(id);
+      if (!cat) return null;
+      const p = mmProducts[cat].find(x => x.id === id);
+      const sz = p.sizes[s.sizeIdx];
+      return { name: p.name, size: sz.label, qty: s.qty, price: sz.price };
+    }).filter(Boolean);
+    const all = [...boxItems, ...mmItems];
+    const { total } = getGrandTotal();
+    console.log('Add order to cart:', all, 'Total:', fmt(total));
+    alert('✓ Would add to cart:\n\n' + all.map(i => i.name + ' ' + i.size + ' ×' + i.qty + ' — ' + fmt(i.price * i.qty)).join('\n') + '\n\nTotal: ' + fmt(total));
+  });
+
+  // Set page intro from box config (if available)
+  const introEl = document.querySelector('[data-box-intro]');
+  if (introEl && box.intro) introEl.textContent = box.intro;
+
+  rerender();
+})();
+</script>
 
 {% schema %}
 {
-  "name": "Saver box page",
-  "settings": []
+  "name": "Saver Box Pre-Checkout",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Box hero image"
+    },
+    {
+      "type": "image_picker",
+      "id": "support_image",
+      "label": "Support image"
+    }
+  ]
 }
 {% endschema %}
