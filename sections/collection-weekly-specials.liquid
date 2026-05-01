@@ -1,9 +1,625 @@
-<div class="collection-weekly-specials">
+<style>
+  /* ── GrowDirect — Weekly Specials ── */
+  /* ── DESIGN TOKENS — identical to Saver Box page ── */
+    :root {
+      --green:#0A4A2F; --accent:#F28C38; --accent-hover:#E07B2D;
+      --text:#1A3C34; --text-secondary:#5C6B66; --text-muted:#8A9A94;
+      --border:#E8F0EB; --bg:#F8F9FA; --white:#fff;
+      --radius:1rem; --radius-xl:1.5rem;
+      --font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
+      --font-body:"Inter",-apple-system,sans-serif;
+    }
+    *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:var(--font-body); color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
+    .container { max-width:1100px; margin:0 auto; padding:0 1.5rem; }
+
+    /* HEADER */
+    .site-header { background:var(--green); padding:.875rem 1.5rem; }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; }
+    .logo { font-family:var(--font-heading); font-size:1.4rem; font-weight:800; color:#fff; text-decoration:none; }
+    .logo span { color:var(--accent); }
+    nav a { color:rgba(255,255,255,.75); margin-right:1.5rem; font-weight:500; font-size:.875rem; text-decoration:none; font-family:var(--font-heading); }
+    nav a:hover { color:#fff; }
+    .btn-cart { display:inline-flex; align-items:center; padding:.6rem 1.125rem; background:var(--accent); color:#fff; border-radius:999px; font-family:var(--font-heading); font-weight:700; font-size:.875rem; text-decoration:none; }
+
+    /* BREADCRUMB */
+    .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--border); }
+    .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); }
+    .breadcrumb a { color:var(--text-muted); text-decoration:none; }
+    .breadcrumb a:hover { color:var(--text); }
+    .breadcrumb span { margin:0 .4rem; }
+
+    /* ── PAGE LAYOUT — same as Saver Box ── */
+    .page-layout { display:grid; grid-template-columns:1fr 340px; gap:1.75rem; padding:1.75rem 0 5rem; align-items:start; }
+
+    /* ── SECTION CARDS — same as Saver Box ── */
+    .section-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; margin-bottom:1.25rem; }
+    .section-header { padding:1.125rem 1.5rem; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .section-title { font-family:var(--font-heading); font-size:.95rem; font-weight:800; color:var(--text); }
+    .section-step { font-size:.72rem; color:var(--text-muted); font-family:var(--font-heading); font-weight:600; }
+    .section-body { padding:1.5rem; }
+
+    /* HERO — compact, inside first section card */
+    .page-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:.35rem; font-family:var(--font-heading); }
+    .page-title { font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:var(--text); line-height:1.1; margin-bottom:.4rem; }
+    .page-intro { font-size:.875rem; color:var(--text-secondary); line-height:1.65; margin-bottom:.5rem; }
+    .page-note { font-size:.75rem; color:var(--text-muted); font-style:italic; }
+    .page-refresh { display:inline-flex; align-items:center; gap:.35rem; margin-top:.5rem; font-size:.72rem; color:var(--text-muted); font-family:var(--font-heading); font-weight:600; }
+    .eyebrow-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    /* TOOLBAR */
+    .toolbar-bar { display:flex; align-items:center; justify-content:space-between; padding:.75rem 0; border-bottom:1px solid var(--border); margin-bottom:1.25rem; flex-wrap:wrap; gap:.5rem; }
+    .specials-count { font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); font-weight:600; }
+    .sort-select { padding:.35rem .8rem; border:1.5px solid var(--border); border-radius:999px; font-family:var(--font-body); font-size:.78rem; color:var(--text); background:#fff; outline:none; cursor:pointer; }
+
+    /* FRUIT PRODUCT GRID */
+    .specials-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1rem; }
+
+    /* PRODUCT CARD — same radius/border system as Saver Box */
+    .product-card { border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; background:#fff; transition:border-color .2s; }
+    .product-card:hover { border-color:#c8dcc8; }
+    .product-card.in-cart { border-color:var(--green); background:rgba(10,74,47,.015); }
+    .card-img { background:var(--bg); aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--border); position:relative; }
+    .card-img svg { opacity:.12; }
+    .special-badge { position:absolute; top:.6rem; left:.6rem; padding:.2rem .55rem; border-radius:999px; font-family:var(--font-heading); font-size:.62rem; font-weight:700; }
+    .special-badge.sale    { background:#DC2626; color:#fff; }
+    .special-badge.new     { background:var(--green); color:#fff; }
+    .special-badge.limited { background:var(--accent); color:#fff; }
+    .card-body { padding:.875rem 1rem; flex:1; display:flex; flex-direction:column; gap:.5rem; }
+    .card-name { font-family:var(--font-heading); font-size:.875rem; font-weight:800; color:var(--text); }
+    .card-subtitle { font-size:.72rem; color:var(--text-muted); margin-top:-.15rem; }
+    .card-pricing { display:flex; align-items:baseline; gap:.4rem; flex-wrap:wrap; }
+    .card-price { font-family:var(--font-heading); font-size:1rem; font-weight:800; color:var(--accent); }
+    .card-was { font-size:.75rem; color:var(--text-muted); text-decoration:line-through; }
+    .card-save { font-size:.62rem; font-weight:700; color:#16A34A; background:rgba(22,163,74,.08); padding:.15rem .45rem; border-radius:999px; font-family:var(--font-heading); }
+    .size-pills { display:flex; gap:.3rem; flex-wrap:wrap; }
+    .size-pill { padding:.22rem .6rem; border:1.5px solid var(--border); border-radius:999px; font-family:var(--font-heading); font-size:.68rem; font-weight:700; color:var(--text-secondary); background:#fff; cursor:pointer; transition:all .15s; white-space:nowrap; }
+    .size-pill:hover { border-color:var(--green); color:var(--green); }
+    .size-pill.selected { background:var(--green); border-color:var(--green); color:#fff; }
+    .card-actions { display:flex; align-items:center; gap:.5rem; margin-top:auto; }
+    .qty-ctrl { display:flex; align-items:center; border:1.5px solid var(--border); border-radius:999px; overflow:hidden; transition:border-color .2s; }
+    .product-card.in-cart .qty-ctrl { border-color:var(--green); }
+    .qty-btn { width:28px; height:28px; display:flex; align-items:center; justify-content:center; background:transparent; border:none; font-family:var(--font-heading); font-size:.95rem; font-weight:700; color:var(--text); cursor:pointer; transition:background .15s; }
+    .qty-btn:hover:not(:disabled) { background:rgba(10,74,47,.06); }
+    .qty-btn:disabled { opacity:.3; cursor:not-allowed; }
+    .qty-val { min-width:24px; text-align:center; font-family:var(--font-heading); font-size:.82rem; font-weight:700; }
+    .add-btn { flex:1; padding:.45rem .65rem; background:var(--accent); color:#fff; border:none; border-radius:999px; font-family:var(--font-heading); font-weight:700; font-size:.75rem; cursor:pointer; transition:background .2s; }
+    .add-btn:hover { background:var(--accent-hover); }
+    .add-btn.added { background:var(--green); }
+
+    /* ── MM SECTION — hidden until first fruit item selected ── */
+    #mm-section { display:none; }
+    #mm-section.unlocked { display:block; }
+    #mm-locked-prompt { display:block; }
+    #mm-locked-prompt.hidden { display:none; }
+
+    /* MM reveal note */
+    .mm-reveal-note { font-size:.82rem; color:var(--green); font-weight:600; font-family:var(--font-heading); padding:.65rem .875rem; background:rgba(10,74,47,.05); border:1px solid rgba(10,74,47,.12); border-radius:.875rem; margin-bottom:1.125rem; }
+
+    /* MM TABS — same as Saver Box page */
+    .mixmatch-tabs { display:flex; gap:.35rem; border-bottom:1px solid var(--border); margin-bottom:1.25rem; }
+    .mixmatch-tab { padding:.5rem 1.1rem; font-family:var(--font-heading); font-size:.82rem; font-weight:700; color:var(--text-muted); background:transparent; border:none; border-bottom:2.5px solid transparent; cursor:pointer; margin-bottom:-1px; transition:all .2s; white-space:nowrap; }
+    .mixmatch-tab:hover { color:var(--text); }
+    .mixmatch-tab.is-active { color:var(--green); border-bottom-color:var(--green); }
+
+    /* MM PRODUCT ROWS */
+    .mixmatch-item { background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:.75rem 1rem; margin-bottom:.625rem; transition:border-color .2s; display:flex; align-items:center; gap:.875rem; }
+    .mixmatch-item:last-child { margin-bottom:0; }
+    .mixmatch-item.has-qty { border-color:var(--green); background:rgba(10,74,47,.02); }
+    .mm-thumb { width:64px; height:64px; min-width:64px; border-radius:.5rem; background:var(--bg); border:1px solid var(--border); object-fit:cover; display:block; }
+    .mm-thumb-placeholder { width:64px; height:64px; min-width:64px; border-radius:.5rem; background:#F0F7F2; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .mm-thumb-placeholder svg { opacity:.18; }
+    .mm-item-inner { flex:1; min-width:0; display:flex; flex-direction:column; gap:.5rem; }
+    .mm-row-top { display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem; }
+    .mm-item-info { flex:1; min-width:0; }
+    .mixmatch-item__title { font-family:var(--font-heading); font-size:.875rem; font-weight:700; color:var(--text); }
+    .mixmatch-item__meta { font-size:.72rem; color:var(--text-muted); margin-top:.15rem; }
+    .mixmatch-item__price { font-family:var(--font-heading); font-size:1rem; font-weight:800; color:var(--accent); white-space:nowrap; flex-shrink:0; }
+    .mm-row-bottom { display:flex; align-items:center; justify-content:space-between; gap:.5rem; flex-wrap:wrap; }
+    .mixmatch-qty-control { display:flex; align-items:center; border:1.5px solid var(--border); border-radius:999px; overflow:hidden; transition:border-color .2s; }
+    .mixmatch-item.has-qty .mixmatch-qty-control { border-color:var(--green); }
+    .mixmatch-qty-btn { width:30px; height:30px; display:flex; align-items:center; justify-content:center; background:transparent; border:none; font-family:var(--font-heading); font-size:1rem; font-weight:700; color:var(--text); cursor:pointer; transition:background .15s; }
+    .mixmatch-qty-btn:hover:not(:disabled) { background:rgba(10,74,47,.06); }
+    .mixmatch-qty-btn:disabled { opacity:.3; cursor:not-allowed; }
+    .mixmatch-qty-value { min-width:26px; text-align:center; font-family:var(--font-heading); font-size:.875rem; font-weight:700; }
+
+    /* ── ORDER SUMMARY — identical to Saver Box page ── */
+    .summary-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; position:sticky; top:80px; }
+    .summary-header { background:var(--green); padding:1.125rem 1.5rem; }
+    .summary-header h3 { font-family:var(--font-heading); font-size:.95rem; font-weight:800; color:#fff; margin-bottom:.1rem; }
+    .summary-header p { font-size:.72rem; color:rgba(255,255,255,.55); }
+    .summary-body { padding:1.25rem 1.5rem; }
+    .summary-group-label { font-family:var(--font-heading); font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); margin-top:.875rem; margin-bottom:.4rem; }
+    .summary-group-label:first-child { margin-top:0; }
+    .summary-row { display:flex; align-items:flex-start; justify-content:space-between; gap:.5rem; padding:.35rem 0; border-bottom:1px solid var(--border); font-size:.8rem; }
+    .summary-row:last-child { border-bottom:none; }
+    .summary-row span:first-child { color:var(--text); flex:1; line-height:1.4; }
+    .summary-row span:last-child { font-family:var(--font-heading); font-weight:700; color:var(--accent); white-space:nowrap; }
+    .summary-empty { font-size:.78rem; color:var(--text-muted); font-style:italic; padding:.25rem 0; }
+    .summary-footer { padding:1rem 1.5rem 1.5rem; border-top:1px solid var(--border); }
+    .summary-total-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:.625rem; }
+    .summary-total-label { font-family:var(--font-heading); font-size:.78rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; }
+    [data-total] { font-family:var(--font-heading); font-size:1.6rem; font-weight:800; color:var(--text); }
+    .delivery-note { font-size:.72rem; text-align:center; margin-bottom:1rem; line-height:1.5; }
+    .delivery-note.locked   { color:var(--text-muted); }
+    .delivery-note.unlocked { color:#16A34A; font-weight:600; }
+    [data-add-to-cart] { width:100%; padding:.9rem; background:var(--accent); color:#fff; border:none; border-radius:999px; font-family:var(--font-heading); font-weight:700; font-size:.9rem; cursor:pointer; transition:background .2s; }
+    [data-add-to-cart]:hover { background:var(--accent-hover); }
+    [data-add-to-cart]:disabled { opacity:.45; cursor:not-allowed; }
+    .summary-note { font-size:.72rem; color:var(--text-muted); text-align:center; margin-top:.625rem; line-height:1.5; }
+
+    /* FOOTER */
+    .site-footer { background:#061F13; padding:1.75rem 0 1.25rem; }
+    .footer-inner { max-width:1100px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+    .footer-copy { font-size:.75rem; color:rgba(255,255,255,.35); }
+    .footer-links a { color:rgba(255,255,255,.45); font-size:.78rem; text-decoration:none; margin-left:1.25rem; }
+    .footer-links a:hover { color:#fff; }
+
+    @media(max-width:900px) { .page-layout { grid-template-columns:1fr; } .summary-card { position:static; } }
+    @media(max-width:560px) { .specials-grid { grid-template-columns:1fr 1fr; } }
+  </style>
+
+  /* Hero image */
+  .collection-hero { width:100%; aspect-ratio:21/6; overflow:hidden; background:var(--green); }
+  .collection-hero .hero-img { width:100%; height:100%; object-fit:cover; display:block; }
+</style>
+
+{%- if section.settings.hero_image -%}
+<div class="collection-hero">
+  {{ section.settings.hero_image | image_url: width: 1440 | image_tag:
+    loading: 'eager',
+    fetchpriority: 'high',
+    class: 'hero-img',
+    alt: section.settings.hero_image.alt | default: collection.title }}
 </div>
+{%- endif -%}
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">Home</a><span>›</span>
+        <span style="color:var(--text);font-weight:600;">Fruit</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-layout">
+
+      <!-- ── LEFT COLUMN ── -->
+      <div>
+
+        <!-- HERO / PAGE INFO -->
+        <div class="section-card">
+          <div class="section-body" style="padding:1.25rem 1.5rem;">
+            <div class="page-eyebrow"><span class="eyebrow-dot"></span> Shop</div>
+            <div class="page-title">Weekly Specials</div>
+            <div class="page-intro">This week's best value produce and pantry lines, refreshed weekly.</div>
+            <div class="page-note">Available to order on its own or alongside a Saver Box.</div>
+            
+          </div>
+        </div>
+
+        <!-- SECTION 1: FRUIT PRODUCTS -->
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-title">Fruit</div>
+            <div class="section-step">Step 1 of 2</div>
+          </div>
+          <div class="section-body">
+            <div class="toolbar-bar">
+              <span class="specials-count" id="specials-count">4 products</span>
+              <select class="sort-select" id="sort-select">
+                <option value="featured">Sort: Featured</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+                <option value="savings">Biggest saving</option>
+              </select>
+            </div>
+            <div class="specials-grid" id="specials-grid"></div>
+          </div>
+        </div>
+
+        <!-- LOCKED PROMPT (visible when 0 fruit items selected) -->
+        <div class="section-card" id="mm-locked-prompt" style="border-style:dashed;background:transparent;">
+          <div class="section-body" style="padding:1.125rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+            <div>
+              <div style="font-family:var(--font-heading);font-size:.9rem;font-weight:700;color:var(--text-muted);">Mix &amp; Match Essentials</div>
+              <div style="font-size:.75rem;color:var(--text-muted);margin-top:.25rem;">Add a fruit item above to unlock Mix &amp; Match top-ups.</div>
+            </div>
+            <div class="section-step">Step 2 of 2</div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: MIX & MATCH (hidden until first fruit item selected) -->
+        <div class="section-card" id="mm-section">
+          <div class="section-header" style="background:rgba(10,74,47,.03);">
+            <div>
+              <div class="section-title">Add extras from Mix &amp; Match Essentials</div>
+              <div style="font-size:.72rem;color:var(--text-muted);font-family:var(--font-heading);margin-top:.2rem;">Optional — add extra items to tailor your order.</div>
+            </div>
+            <div class="section-step">Step 2 of 2</div>
+          </div>
+          <div class="section-body">
+            <p class="mm-reveal-note">Top up your order with fruit, vegetables, or pantry staples below.</p>
+
+            <div class="mixmatch-tabs" role="tablist" aria-label="Mix & Match categories">
+              <button type="button" class="mixmatch-tab is-active" data-mixmatch-tab="fruit" role="tab" aria-selected="true">Fruit</button>
+              <button type="button" class="mixmatch-tab" data-mixmatch-tab="vegetables" role="tab" aria-selected="false" tabindex="-1">Vegetables</button>
+              <button type="button" class="mixmatch-tab" data-mixmatch-tab="pantry" role="tab" aria-selected="false" tabindex="-1">Pantry</button>
+            </div>
+
+            <div data-mixmatch-list></div>
+            <div data-mixmatch-empty hidden style="font-size:.82rem;color:var(--text-muted);padding:.5rem 0;">No items in this category.</div>
+          </div>
+        </div>
+
+      </div>
+      <!-- END LEFT -->
+
+      <!-- ── RIGHT COLUMN: ORDER SUMMARY ── -->
+      <div>
+        <div class="summary-card">
+          <div class="summary-header">
+            <h3>Order summary</h3>
+            <p>Updates as you shop</p>
+          </div>
+          <div class="summary-body">
+            <div class="summary-group-label">Fruit</div>
+            <div data-fruit-list></div>
+
+            <div class="summary-group-label">Mix &amp; Match add-ons</div>
+            <div data-mm-list></div>
+          </div>
+          <div class="summary-footer">
+            <div class="summary-total-row">
+              <span class="summary-total-label">Total</span>
+              <span data-total>$0.00</span>
+            </div>
+            <p class="delivery-note locked" id="delivery-note">Add $99.00 more to unlock free delivery</p>
+            <button type="button" data-add-to-cart disabled>Add selected items to cart</button>
+            <p class="summary-note">Your selected items will be added to cart. Review at checkout.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+const DELIVERY_THRESHOLD = 99.00;
+  const fmt = v => '$' + v.toFixed(2);
+
+  // ============================================================
+  // DATA
+  // ============================================================
+
+  const specialsProducts = [
+    { id:'apples', name:'Apples', subtitle:'Pink Lady · Royal Gala', badge:null, sortOrder:1, defaultSizeIdx:1,
+      sizes:[{label:'1kg',price:3.50,was:null},{label:'2kg',price:6.00,was:null},{label:'3kg',price:8.50,was:null},{label:'5kg',price:13.00,was:null}] },
+    { id:'bananas', name:'Bananas', subtitle:'Cavendish', badge:null, sortOrder:2, defaultSizeIdx:1,
+      sizes:[{label:'1kg',price:3.00,was:null},{label:'2kg',price:5.50,was:null},{label:'3kg',price:8.00,was:null},{label:'5kg',price:12.50,was:null}] },
+    { id:'oranges', name:'Oranges', subtitle:'Navel · Seasonal', badge:null, sortOrder:3, defaultSizeIdx:0,
+      sizes:[{label:'1kg',price:3.50,was:null},{label:'2kg',price:6.00,was:null},{label:'3kg',price:8.50,was:null},{label:'5kg',price:13.00,was:null}] },
+    { id:'mandarins', name:'Mandarins', subtitle:'Easy-peel · Seedless', badge:null, sortOrder:4, defaultSizeIdx:0,
+      sizes:[{label:'1kg',price:3.50,was:null},{label:'2kg',price:6.00,was:null},{label:'3kg',price:8.50,was:null}] }
+  ];
+
+  const mmProducts = [
+    { id:'mm-apples',    name:'Apples',          subtitle:'Pink Lady · Royal Gala',     category:'fruit',      mm_sort_order:1, default_size_index:1,
+      sizes:[{label:'1kg',price:3.50},{label:'2kg',price:6.00},{label:'3kg',price:8.50},{label:'5kg',price:13.00}] },
+    { id:'mm-bananas',   name:'Bananas',          subtitle:'Cavendish',                  category:'fruit',      mm_sort_order:2, default_size_index:1,
+      sizes:[{label:'1kg',price:3.00},{label:'2kg',price:5.50},{label:'3kg',price:8.00},{label:'5kg',price:12.50}] },
+    { id:'mm-oranges',   name:'Oranges',          subtitle:'Navel · Seasonal',           category:'fruit',      mm_sort_order:3, default_size_index:0,
+      sizes:[{label:'1kg',price:3.50},{label:'2kg',price:6.00},{label:'3kg',price:8.50},{label:'5kg',price:13.00}] },
+    { id:'mm-mandarins', name:'Mandarins',         subtitle:'Easy-peel · Seedless',       category:'fruit',      mm_sort_order:4, default_size_index:0,
+      sizes:[{label:'1kg',price:3.50},{label:'2kg',price:6.00},{label:'3kg',price:8.50}] },
+    { id:'mm-potatoes',  name:'Brushed Potatoes', subtitle:'Everyday staple',            category:'vegetables', mm_sort_order:1, default_size_index:1,
+      sizes:[{label:'1kg',price:2.80},{label:'2kg',price:5.00},{label:'3kg',price:7.00},{label:'5kg',price:11.00}] },
+    { id:'mm-onions',    name:'Brown Onions',      subtitle:'Kitchen essential',          category:'vegetables', mm_sort_order:2, default_size_index:1,
+      sizes:[{label:'1kg',price:2.00},{label:'2kg',price:3.50},{label:'3kg',price:5.00},{label:'5kg',price:8.00}] },
+    { id:'mm-carrots',   name:'Carrots',           subtitle:'Fresh everyday',             category:'vegetables', mm_sort_order:3, default_size_index:1,
+      sizes:[{label:'1kg',price:2.50},{label:'2kg',price:4.50},{label:'3kg',price:6.00},{label:'5kg',price:9.00}] },
+    { id:'mm-sweetpot',  name:'Sweet Potato',      subtitle:'Versatile staple',           category:'vegetables', mm_sort_order:4, default_size_index:0,
+      sizes:[{label:'1kg',price:3.00},{label:'2kg',price:5.50},{label:'3kg',price:8.00}] },
+    { id:'mm-rice',      name:'Basmati Rice',      subtitle:'Long grain · Pantry staple', category:'pantry',     mm_sort_order:1, default_size_index:1,
+      sizes:[{label:'1kg',price:2.00},{label:'2kg',price:3.80},{label:'5kg',price:9.00}] },
+    { id:'mm-flour',     name:'Plain Flour',       subtitle:'All-purpose baking',         category:'pantry',     mm_sort_order:2, default_size_index:1,
+      sizes:[{label:'1kg',price:1.60},{label:'2kg',price:3.00},{label:'5kg',price:7.00}] },
+    { id:'mm-sugar',     name:'White Sugar',       subtitle:'Everyday pantry',            category:'pantry',     mm_sort_order:3, default_size_index:1,
+      sizes:[{label:'1kg',price:1.80},{label:'2kg',price:3.20},{label:'5kg',price:7.50}] },
+    { id:'mm-pasta',     name:'Pasta',             subtitle:'Spaghetti or penne',         category:'pantry',     mm_sort_order:4, default_size_index:1,
+      sizes:[{label:'500g',price:1.80},{label:'1kg',price:3.20},{label:'2kg',price:5.50}] },
+  ];
+
+  // ============================================================
+  // STATE
+  // ============================================================
+  const specialsState = {};
+  const mmState = {};
+  let mmActiveCategory = 'fruit';
+  let specialsSort = 'featured';
+  let wasUnlocked = false;
+
+  function getFruitState(id) {
+    if (!specialsState[id]) { const p=specialsProducts.find(x=>x.id===id); specialsState[id]={sizeIdx:p.defaultSizeIdx,qty:0}; }
+    return specialsState[id];
+  }
+  function getMmState(id) {
+    if (!mmState[id]) { const p=mmProducts.find(x=>x.id===id); mmState[id]={sizeIdx:p.default_size_index,qty:0}; }
+    return mmState[id];
+  }
+
+  function anyFruitSelected() {
+    return Object.values(specialsState).some(s => s.qty > 0);
+  }
+
+  function getGrandTotal() {
+    const sp = Object.entries(specialsState).reduce((s,[id,st])=>{ if(!st.qty)return s; const p=specialsProducts.find(x=>x.id===id); return s+p.sizes[st.sizeIdx].price*st.qty; },0);
+    const mm = Object.entries(mmState).reduce((s,[id,st])=>{ if(!st.qty)return s; const p=mmProducts.find(x=>x.id===id); return s+p.sizes[st.sizeIdx].price*st.qty; },0);
+    const qty = Object.values(specialsState).reduce((s,c)=>s+c.qty,0)+Object.values(mmState).reduce((s,c)=>s+c.qty,0);
+    return { total:sp+mm, qty };
+  }
+
+  // ============================================================
+  // MM VISIBILITY — pure reactive, no one-way flag
+  // ============================================================
+  function syncMmVisibility() {
+    const unlocked = anyFruitSelected();
+    const section  = document.getElementById('mm-section');
+    const prompt   = document.getElementById('mm-locked-prompt');
+    if (unlocked) {
+      if (prompt)  prompt.classList.add('hidden');
+      if (section) section.classList.add('unlocked');
+      if (!wasUnlocked && section) section.scrollIntoView({ behavior:'smooth', block:'start' });
+    } else {
+      if (prompt)  prompt.classList.remove('hidden');
+      if (section) section.classList.remove('unlocked');
+      // Clear all MM quantities so no ghost state survives a re-lock
+      Object.keys(mmState).forEach(id => { mmState[id].qty = 0; });
+      renderMixMatchList();
+      renderSummary();
+    }
+    wasUnlocked = unlocked;
+  }
+
+  // ============================================================
+  // RENDER SUMMARY
+  // ============================================================
+  function renderSummary() {
+    const fruitListEl = document.querySelector('[data-fruit-list]');
+    const mmListEl       = document.querySelector('[data-mm-list]');
+    const totalEl        = document.querySelector('[data-total]');
+    const deliveryEl     = document.getElementById('delivery-note');
+    const ctaBtn         = document.querySelector('[data-add-to-cart]');
+    const cartBtn        = document.getElementById('cart-btn');
+    const { total, qty } = getGrandTotal();
+
+    if (cartBtn) cartBtn.textContent = qty > 0 ? `Cart ${qty}` : 'Cart 0';
+
+    // Specials rows
+    if (fruitListEl) {
+      const added = Object.entries(specialsState).filter(([,s])=>s.qty>0);
+      fruitListEl.innerHTML = added.length
+        ? added.map(([id,s])=>{ const p=specialsProducts.find(x=>x.id===id); const sz=p.sizes[s.sizeIdx];
+            return `<div class="summary-row"><span>${p.name} <strong>${sz.label}</strong> × ${s.qty}</span><span>+${fmt(sz.price*s.qty)}</span></div>`; }).join('')
+        : '<p class="summary-empty">No fruit items added yet.</p>';
+    }
+
+    // MM rows
+    if (mmListEl) {
+      const added = Object.entries(mmState).filter(([,s])=>s.qty>0);
+      mmListEl.innerHTML = added.length
+        ? added.map(([id,s])=>{ const p=mmProducts.find(x=>x.id===id); const sz=p.sizes[s.sizeIdx];
+            return `<div class="summary-row"><span>${p.name} <strong>${sz.label}</strong> × ${s.qty}</span><span>+${fmt(sz.price*s.qty)}</span></div>`; }).join('')
+        : '<p class="summary-empty">No extras added yet.</p>';
+    }
+
+    // Total
+    if (totalEl) totalEl.textContent = fmt(total);
+
+    // Delivery
+    if (deliveryEl) {
+      if (total >= DELIVERY_THRESHOLD) {
+        deliveryEl.textContent = '\u2713 You\'ve unlocked free delivery';
+        deliveryEl.className = 'delivery-note unlocked';
+      } else {
+        const rem = (DELIVERY_THRESHOLD - total).toFixed(2);
+        deliveryEl.textContent = total > 0 ? `Add $${rem} more to unlock free delivery` : `Add $${DELIVERY_THRESHOLD.toFixed(2)} more to unlock free delivery`;
+        deliveryEl.className = 'delivery-note locked';
+      }
+    }
+
+    if (ctaBtn) ctaBtn.disabled = qty === 0;
+  }
+
+  // ============================================================
+  // RENDER SPECIALS GRID
+  // ============================================================
+  const BADGE_LABELS = { sale:'Sale', new:'New in', limited:'Limited' };
+
+  function getSortedFruitProducts() {
+    const list = [...specialsProducts];
+    if (specialsSort==='price_asc')  return list.sort((a,b)=>a.sizes[a.defaultSizeIdx].price-b.sizes[b.defaultSizeIdx].price);
+    if (specialsSort==='price_desc') return list.sort((a,b)=>b.sizes[b.defaultSizeIdx].price-a.sizes[a.defaultSizeIdx].price);
+    if (specialsSort==='savings')    return list.sort((a,b)=>{
+      const sA=a.sizes[a.defaultSizeIdx].was?a.sizes[a.defaultSizeIdx].was-a.sizes[a.defaultSizeIdx].price:0;
+      const sB=b.sizes[b.defaultSizeIdx].was?b.sizes[b.defaultSizeIdx].was-b.sizes[b.defaultSizeIdx].price:0;
+      return sB-sA;
+    });
+    return list.sort((a,b)=>a.sortOrder-b.sortOrder);
+  }
+
+  function renderSpecialsGrid() {
+    const grid    = document.getElementById('specials-grid');
+    const countEl = document.getElementById('specials-count');
+    if (!grid) return;
+    const list = getSortedFruitProducts();
+    if (countEl) countEl.textContent = list.length + ' products';
+    grid.innerHTML = '';
+
+    list.forEach(product => {
+      const s    = getFruitState(product.id);
+      const size = product.sizes[s.sizeIdx];
+      const card = document.createElement('div');
+      card.className = 'product-card' + (s.qty>0?' in-cart':'');
+
+      const pillsHtml = product.sizes.map((sz,i) =>
+        `<button type="button" class="size-pill${i===s.sizeIdx?' selected':''}" data-size-idx="${i}">${sz.label}</button>`
+      ).join('');
+      const badgeHtml = product.badge ? `<span class="special-badge ${product.badge}">${BADGE_LABELS[product.badge]}</span>` : '';
+      const pricingHtml = size.was
+        ? `<div class="card-pricing"><span class="card-price">${fmt(size.price)}</span><span class="card-was">${fmt(size.was)}</span><span class="card-save">Save ${fmt(size.was-size.price)}</span></div>`
+        : `<div class="card-pricing"><span class="card-price">${fmt(size.price)}</span></div>`;
+
+      card.innerHTML = `
+        <div class="card-img">${badgeHtml}
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width=".75" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <div><div class="card-name">${product.name}</div><div class="card-subtitle">${product.subtitle}</div></div>
+          <div class="size-pills">${pillsHtml}</div>
+          ${pricingHtml}
+          <div class="card-actions">
+            <div class="qty-ctrl">
+              <button type="button" class="qty-btn" data-minus ${s.qty<=0?'disabled':''}>−</button>
+              <span class="qty-val">${s.qty}</span>
+              <button type="button" class="qty-btn" data-plus>+</button>
+            </div>
+            <button type="button" class="add-btn${s.qty>0?' added':''}" data-add>${s.qty>0?'\u2713 Added':'Add to cart'}</button>
+          </div>
+        </div>`;
+
+      card.querySelectorAll('.size-pill').forEach(pill => {
+        pill.addEventListener('click', ()=>{ s.sizeIdx=parseInt(pill.dataset.sizeIdx); s.qty=0; rerenderAll(); });
+      });
+      card.querySelector('[data-minus]').addEventListener('click', ()=>{ if(s.qty<=0)return; s.qty--; rerenderAll(); });
+      card.querySelector('[data-plus]').addEventListener('click',  ()=>{ s.qty++; rerenderAll(); });
+      card.querySelector('[data-add]').addEventListener('click',   ()=>{ if(s.qty===0)s.qty=1; rerenderAll(); });
+      grid.appendChild(card);
+    });
+  }
+
+  // ============================================================
+  // RENDER MIX & MATCH — same pattern as Saver Box page
+  // ============================================================
+  function renderMixMatchList() {
+    const listEl  = document.querySelector('[data-mixmatch-list]');
+    const emptyEl = document.querySelector('[data-mixmatch-empty]');
+    if (!listEl) return;
+
+    const filtered = mmProducts
+      .filter(p => p.category === mmActiveCategory)
+      .sort((a,b) => a.mm_sort_order - b.mm_sort_order);
+
+    if (emptyEl) emptyEl.hidden = filtered.length > 0;
+    listEl.innerHTML = '';
+
+    filtered.forEach(product => {
+      const s    = getMmState(product.id);
+      const size = product.sizes[s.sizeIdx];
+      const row  = document.createElement('div');
+      row.className = 'mixmatch-item' + (s.qty>0?' has-qty':'');
+
+      const pillsHtml = product.sizes.map((sz,i) =>
+        `<button type="button" class="size-pill${i===s.sizeIdx?' selected':''}" data-size-idx="${i}">${sz.label}</button>`
+      ).join('');
+
+      row.innerHTML = `
+        <div class="mm-thumb-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+          </svg>
+        </div>
+        <div class="mm-item-inner">
+          <div class="mm-row-top">
+            <div class="mm-item-info">
+              <div class="mixmatch-item__title">${product.name}</div>
+              <div class="mixmatch-item__meta">${product.subtitle}</div>
+            </div>
+            <div class="mixmatch-item__price">${fmt(size.price)}</div>
+          </div>
+          <div class="mm-row-bottom">
+            <div class="size-pills">${pillsHtml}</div>
+            <div class="mixmatch-qty-control">
+              <button type="button" class="mixmatch-qty-btn" data-mm-minus ${s.qty<=0?'disabled':''}>−</button>
+              <span class="mixmatch-qty-value">${s.qty}</span>
+              <button type="button" class="mixmatch-qty-btn" data-mm-plus>+</button>
+            </div>
+          </div>
+        </div>`;
+
+      row.querySelectorAll('.size-pill').forEach(pill => {
+        pill.addEventListener('click', ()=>{ s.sizeIdx=parseInt(pill.dataset.sizeIdx); s.qty=0; rerenderAll(); });
+      });
+      row.querySelector('[data-mm-minus]').addEventListener('click', ()=>{ if(s.qty<=0)return; s.qty--; rerenderAll(); });
+      row.querySelector('[data-mm-plus]').addEventListener('click',  ()=>{ s.qty++; rerenderAll(); });
+
+      listEl.appendChild(row);
+    });
+  }
+
+  // MM TABS
+  document.querySelectorAll('[data-mixmatch-tab]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      mmActiveCategory = tab.dataset.mixmatchTab;
+      document.querySelectorAll('[data-mixmatch-tab]').forEach(t => {
+        const active = t===tab;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', String(active));
+        t.setAttribute('tabindex', active?'0':'-1');
+      });
+      renderMixMatchList();
+    });
+    tab.addEventListener('keydown', e => {
+      if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return;
+      const arr=Array.from(document.querySelectorAll('[data-mixmatch-tab]'));
+      const next=arr[(arr.indexOf(tab)+(e.key==='ArrowRight'?1:-1)+arr.length)%arr.length];
+      next.focus(); next.click();
+    });
+  });
+
+  // ============================================================
+  // MASTER RERENDER
+  // ============================================================
+  function rerenderAll() {
+    renderSpecialsGrid();
+    renderMixMatchList();
+    renderSummary();
+    syncMmVisibility();
+  }
+
+  // CTA
+  document.querySelector('[data-add-to-cart]').addEventListener('click', () => {
+    const spItems = Object.entries(specialsState).filter(([,s])=>s.qty>0)
+      .map(([id,s])=>{ const p=specialsProducts.find(x=>x.id===id); const sz=p.sizes[s.sizeIdx]; return {name:p.name,size:sz.label,qty:s.qty,price:sz.price}; });
+    const mmItems = Object.entries(mmState).filter(([,s])=>s.qty>0)
+      .map(([id,s])=>{ const p=mmProducts.find(x=>x.id===id); const sz=p.sizes[s.sizeIdx]; return {name:p.name,size:sz.label,qty:s.qty,price:sz.price}; });
+    const all = [...spItems, ...mmItems];
+    const { total } = getGrandTotal();
+    console.log('Add selected items to cart:', all, 'Total:', fmt(total));
+    // Shopify: fetch('/cart/add.js', { method:'POST', body: JSON.stringify({ items: all.map(i=>({id:i.variantId,quantity:i.qty})) }) })
+    alert('\u2713 Would add to cart:\n\n' + all.map(i=>`${i.name} ${i.size} \u00d7${i.qty} — ${fmt(i.price*i.qty)}`).join('\n') + '\n\nTotal: ' + fmt(total));
+  });
+
+  // SORT
+  document.getElementById('sort-select').addEventListener('change', function(){ specialsSort=this.value; renderSpecialsGrid(); });
+
+  // INIT
+  rerenderAll();
+  </script>
 
 {% schema %}
 {
-  "name": "Weekly specials collection",
-  "settings": []
+  "name": "Weekly Specials",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    }
+  ]
 }
 {% endschema %}
