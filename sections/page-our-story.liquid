@@ -1,9 +1,110 @@
-<div class="page-our-story">
-</div>
+<style>
+  /* ── GrowDirect — Our Story ── */
+    :root {
+      --green:#0A4A2F; --accent:#F28C38; --accent-hover:#E07B2D;
+      --text:#1A3C34; --text-secondary:#5C6B66; --text-muted:#8A9A94;
+      --border:#E8F0EB; --bg:#F8F9FA; --white:#fff;
+      --radius:1rem; --radius-xl:1.5rem;
+      --font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
+      --font-body:"Inter",-apple-system,sans-serif;
+    }
+    *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:var(--font-body); color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
+    .container { max-width:780px; margin:0 auto; padding:0 1.5rem; }
+
+    .collection-hero { width:100%; aspect-ratio:21/6; overflow:hidden; background:var(--green); }
+    .collection-hero .hero-img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--border); }
+    .breadcrumb-bar .container { max-width:1100px; }
+    .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); }
+    .breadcrumb a { color:var(--text-muted); text-decoration:none; }
+    .breadcrumb a:hover { color:var(--text); }
+    .breadcrumb span { margin:0 .4rem; }
+
+    .page-layout { padding:1.75rem 0 5rem; }
+    .section-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; margin-bottom:1.25rem; }
+    .section-body { padding:2rem 1.75rem; }
+
+    .page-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; font-family:var(--font-heading); display:inline-flex; align-items:center; gap:.4rem; }
+    .page-title { font-family:var(--font-heading); font-size:1.85rem; font-weight:800; color:var(--text); line-height:1.1; margin-bottom:.6rem; }
+    .page-intro { font-size:1rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.25rem; }
+    .eyebrow-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    .prose p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
+    .prose p:last-child { margin-bottom:0; }
+    .prose h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
+
+    .support-image { width:100%; border-radius:var(--radius); display:block; margin:1.5rem 0; }
+  </style>
+
+{%- if section.settings.hero_image -%}
+  <div class="collection-hero">
+    {{ section.settings.hero_image | image_url: width: 1440 | image_tag:
+      loading: 'eager',
+      fetchpriority: 'high',
+      class: 'hero-img',
+      alt: section.settings.hero_image.alt | default: 'Our Story' }}
+  </div>
+{%- endif -%}
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">Home</a><span>›</span>
+        <span style="color:var(--text);font-weight:600;">Our Story</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-layout">
+
+      <div class="section-card">
+        <div class="section-body">
+          <div class="page-eyebrow"><span class="eyebrow-dot"></span> About</div>
+          <h1 class="page-title">Our Story</h1>
+          <p class="page-intro">GrowDirect is a Melbourne-based, family-run produce business delivering fresh fruit, vegetables, and pantry staples to households across the metro area.</p>
+
+          <div class="prose">
+            <p>We started GrowDirect because we believed Melbourne families deserved better than supermarket produce that's been sitting in cold storage for weeks. Real food, picked at peak freshness, delivered direct.</p>
+
+            <p>Every order is sourced through direct relationships with Victorian farms and the Melbourne wholesale markets. We don't run a warehouse. We don't pre-pack. Your box is picked and packed by hand the day it ships, with the same family standards we'd want for our own table.</p>
+
+            {%- if section.settings.support_image -%}
+              {{ section.settings.support_image | image_url: width: 1200 | image_tag:
+                loading: 'lazy',
+                class: 'support-image',
+                alt: section.settings.support_image.alt | default: 'GrowDirect team and produce' }}
+            {%- endif -%}
+
+            <h2>Direct from grower to door</h2>
+            <p>By cutting out third-party warehousing and middlemen, we keep prices honest, quality high, and support the Victorian families that grow our food. Most of what's on your doorstep this afternoon was at the farm this morning.</p>
+
+            <h2>Built for everyday households</h2>
+            <p>Our Saver Boxes are designed around what real Melbourne families actually buy week to week — generous, balanced, and customisable. Don't want the spinach? Swap it out. Want a 5kg of bananas instead of 2kg? Mix &amp; Match it in. The box should suit your kitchen, not the other way around.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 {% schema %}
 {
-  "name": "Our story page",
-  "settings": []
+  "name": "Our Story",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "image_picker",
+      "id": "support_image",
+      "label": "Support image"
+    }
+  ]
 }
 {% endschema %}
