@@ -1,0 +1,96 @@
+<style>
+  /* ── GrowDirect — Header ── */
+  :root {
+    --gd-header-green:#0A4A2F;
+    --gd-header-accent:#F28C38;
+    --gd-header-accent-hover:#E07B2D;
+    --gd-header-font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
+  }
+
+  .gd-header { background:var(--gd-header-green); padding:.875rem 1.5rem; position:relative; z-index:100; font-family:var(--gd-header-font-heading); }
+  .gd-header-inner { display:flex; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; gap:1rem; }
+
+  .gd-logo { font-family:var(--gd-header-font-heading); font-size:1.4rem; font-weight:800; color:#fff; text-decoration:none; flex-shrink:0; letter-spacing:-0.01em; }
+  .gd-logo span { color:var(--gd-header-accent); }
+
+  .gd-nav { display:flex; align-items:center; gap:1.75rem; }
+  .gd-nav a { color:rgba(255,255,255,.78); font-family:var(--gd-header-font-heading); font-weight:500; font-size:.875rem; text-decoration:none; white-space:nowrap; transition:color .15s; }
+  .gd-nav a:hover { color:#fff; }
+
+  .gd-cart-btn { display:inline-flex; align-items:center; gap:.45rem; padding:.6rem 1.125rem; background:var(--gd-header-accent); color:#fff; border-radius:999px; font-family:var(--gd-header-font-heading); font-weight:700; font-size:.875rem; text-decoration:none; transition:background .15s; flex-shrink:0; }
+  .gd-cart-btn:hover { background:var(--gd-header-accent-hover); }
+  .gd-cart-btn svg { display:block; }
+
+  .gd-hamburger { display:none; width:36px; height:36px; align-items:center; justify-content:center; background:transparent; border:none; padding:0; cursor:pointer; color:#fff; flex-shrink:0; }
+  .gd-hamburger svg { display:block; }
+
+  @media (max-width:780px) {
+    .gd-header { padding:.75rem 1rem; }
+    .gd-hamburger { display:inline-flex; }
+    .gd-nav {
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      background:var(--gd-header-green);
+      flex-direction:column;
+      align-items:stretch;
+      padding:.75rem 1.5rem 1.25rem;
+      gap:0;
+      border-top:1px solid rgba(255,255,255,.08);
+      box-shadow:0 8px 20px rgba(0,0,0,.15);
+    }
+    .gd-nav.is-open { display:flex; }
+    .gd-nav a { padding:.7rem 0; font-size:.95rem; color:rgba(255,255,255,.85); border-bottom:1px solid rgba(255,255,255,.06); }
+    .gd-nav a:last-child { border-bottom:none; }
+  }
+</style>
+
+<header class="gd-header">
+  <div class="gd-header-inner">
+
+    <a href="/" class="gd-logo">Grow<span>Direct</span></a>
+
+    <button type="button" class="gd-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="gd-primary-nav">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/>
+      </svg>
+    </button>
+
+    <nav id="gd-primary-nav" class="gd-nav" aria-label="Primary">
+      <a href="/collections/saver-boxes">Shop</a>
+      <a href="/collections/weekly-specials">Weekly Specials</a>
+      <a href="/collections/mix-match-essentials">Mix &amp; Match</a>
+      <a href="/pages/how-it-works">How It Works</a>
+      <a href="/pages/our-story">Our Story</a>
+    </nav>
+
+    <a href="/cart" class="gd-cart-btn" aria-label="Cart, {{ cart.item_count }} items">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6L18 2Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Cart {{ cart.item_count }}
+    </a>
+
+  </div>
+</header>
+
+<script>
+(function() {
+  const btn = document.querySelector('.gd-hamburger');
+  const nav = document.getElementById('gd-primary-nav');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "GrowDirect Header",
+  "settings": []
+}
+{% endschema %}

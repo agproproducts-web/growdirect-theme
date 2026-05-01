@@ -1,0 +1,39 @@
+<style>
+  /* ── GrowDirect — Footer ── */
+  :root {
+    --gd-footer-bg:#061F13;
+    --gd-footer-font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
+  }
+
+  .gd-footer { background:var(--gd-footer-bg); padding:1.75rem 0 1.25rem; font-family:var(--gd-footer-font-heading); }
+  .gd-footer-inner { max-width:1100px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+  .gd-footer-copy { font-size:.78rem; color:rgba(255,255,255,.4); }
+  .gd-footer-links { display:flex; flex-wrap:wrap; gap:1.25rem; }
+  .gd-footer-links a { color:rgba(255,255,255,.5); font-size:.78rem; text-decoration:none; transition:color .15s; }
+  .gd-footer-links a:hover { color:#fff; }
+
+  @media (max-width:560px) {
+    .gd-footer-inner { flex-direction:column; align-items:flex-start; gap:.75rem; }
+    .gd-footer-links { gap:1rem; }
+  }
+</style>
+
+<footer class="gd-footer">
+  <div class="gd-footer-inner">
+    <div class="gd-footer-copy">© 2026 GrowDirect · Melbourne, VIC Australia</div>
+    <nav class="gd-footer-links" aria-label="Footer">
+      <a href="/pages/how-it-works">How It Works</a>
+      <a href="/pages/delivery-areas">Delivery</a>
+      <a href="/pages/contact">Contact</a>
+      <a href="/pages/terms-and-conditions">Terms</a>
+      <a href="/pages/privacy-policy">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "GrowDirect Footer",
+  "settings": []
+}
+{% endschema %}
