@@ -1,0 +1,9 @@
+﻿{
+  "sections": {
+    "main": {
+      "type": "collection-pantry",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

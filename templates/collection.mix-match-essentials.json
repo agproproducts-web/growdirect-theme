@@ -1,0 +1,9 @@
+﻿{
+  "sections": {
+    "main": {
+      "type": "collection-mix-match",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

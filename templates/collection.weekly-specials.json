@@ -1,0 +1,9 @@
+﻿{
+  "sections": {
+    "main": {
+      "type": "collection-weekly-specials",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

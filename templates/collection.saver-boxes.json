@@ -1,0 +1,9 @@
+﻿{
+  "sections": {
+    "main": {
+      "type": "collection-saver-boxes",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
