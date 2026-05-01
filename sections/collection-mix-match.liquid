@@ -1,9 +1,439 @@
-<div class="collection-mix-match">
-</div>
+<style>
+  /* ── GrowDirect — Mix & Match Essentials ── */
+  /* ── DESIGN TOKENS — identical to Saver Box page ── */
+    :root {
+      --green:#0A4A2F; --accent:#F28C38; --accent-hover:#E07B2D;
+      --text:#1A3C34; --text-secondary:#5C6B66; --text-muted:#8A9A94;
+      --border:#E8F0EB; --bg:#F8F9FA; --white:#fff;
+      --radius:1rem; --radius-xl:1.5rem;
+      --font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
+      --font-body:"Inter",-apple-system,sans-serif;
+    }
+    *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:var(--font-body); color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
+    .container { max-width:1100px; margin:0 auto; padding:0 1.5rem; }
+
+    /* BREADCRUMB */
+    .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--border); }
+    .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); }
+    .breadcrumb a { color:var(--text-muted); text-decoration:none; }
+    .breadcrumb a:hover { color:var(--text); }
+    .breadcrumb span { margin:0 .4rem; }
+
+    /* PAGE LAYOUT */
+    .page-layout { display:grid; grid-template-columns:1fr 340px; gap:1.75rem; padding:1.75rem 0 5rem; align-items:start; }
+
+    /* SECTION CARDS */
+    .section-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; margin-bottom:1.25rem; }
+    .section-header { padding:1.125rem 1.5rem; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .section-title { font-family:var(--font-heading); font-size:.95rem; font-weight:800; color:var(--text); }
+    .section-step { font-size:.72rem; color:var(--text-muted); font-family:var(--font-heading); font-weight:600; }
+    .section-body { padding:1.5rem; }
+
+    /* PAGE INFO (eyebrow / title / intro) */
+    .page-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:.35rem; font-family:var(--font-heading); display:inline-flex; align-items:center; gap:.4rem; }
+    .page-title { font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:var(--text); line-height:1.1; margin-bottom:.4rem; }
+    .page-intro { font-size:.875rem; color:var(--text-secondary); line-height:1.65; margin-bottom:.5rem; }
+    .page-note { font-size:.75rem; color:var(--text-muted); font-style:italic; }
+    .eyebrow-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    /* MM PAGE HEADER (alt header style) */
+    .mm-page-header { padding:1.5rem; background:#fff; border-bottom:1px solid var(--border); }
+    .mm-page-title { font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:var(--text); }
+    .mm-page-intro { font-family:var(--font-body); font-size:.875rem; color:var(--text-secondary); margin-top:.5rem; line-height:1.6; }
+
+    /* MM TABS */
+    .mm-tabs { display:flex; gap:.35rem; border-bottom:1px solid var(--border); margin-bottom:1.25rem; }
+    .mm-tab { padding:.5rem 1.1rem; font-family:var(--font-heading); font-size:.82rem; font-weight:700; color:var(--text-muted); background:transparent; border:none; border-bottom:2.5px solid transparent; cursor:pointer; margin-bottom:-1px; transition:all .2s; white-space:nowrap; }
+    .mm-tab:hover { color:var(--text); }
+    .mm-tab.is-active { color:var(--green); border-bottom-color:var(--green); }
+
+    /* MM GRID */
+    .mm-grid { display:flex; flex-direction:column; gap:.75rem; }
+
+    /* MM PRODUCT ROW */
+    .mm-product-row { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); padding:1.25rem 1.5rem; display:flex; align-items:center; gap:.875rem; transition:border-color .2s; }
+    .mm-product-row.in-cart { border-color:var(--green); background:rgba(10,74,47,.015); }
+    .mm-thumb-placeholder { width:64px; height:64px; min-width:64px; border-radius:.5rem; background:#F0F7F2; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .mm-thumb-placeholder svg { opacity:.18; }
+    .mm-item-inner { flex:1; min-width:0; display:flex; flex-direction:column; gap:.5rem; }
+    .mm-row-top { display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem; }
+    .mm-item-info { flex:1; min-width:0; }
+    .mm-product-name { font-family:var(--font-heading); font-size:.875rem; font-weight:800; color:var(--text); margin-bottom:.2rem; }
+    .mm-product-subtitle { font-size:.72rem; color:var(--text-muted); }
+    .mm-live-price { font-family:var(--font-heading); font-size:1rem; font-weight:800; color:var(--accent); white-space:nowrap; flex-shrink:0; }
+    .mm-row-bottom { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; }
+    .mm-row-actions { display:flex; align-items:center; gap:.75rem; }
+
+    /* SIZE PILLS */
+    .size-pills { display:flex; gap:.35rem; flex-wrap:wrap; }
+    .size-pill { padding:.28rem .7rem; border:1.5px solid var(--border); border-radius:999px; font-family:var(--font-heading); font-size:.72rem; font-weight:700; color:var(--text-secondary); background:#fff; cursor:pointer; transition:all .15s; white-space:nowrap; }
+    .size-pill:hover { border-color:var(--green); color:var(--green); }
+    .size-pill.selected { background:var(--green); border-color:var(--green); color:#fff; }
+
+    /* QTY CONTROL */
+    .qty-control { display:flex; align-items:center; border:1.5px solid var(--border); border-radius:999px; overflow:hidden; transition:border-color .2s; }
+    .mm-product-row.in-cart .qty-control { border-color:var(--green); }
+    .qty-btn { width:30px; height:30px; display:flex; align-items:center; justify-content:center; background:transparent; border:none; font-family:var(--font-heading); font-size:1rem; font-weight:700; color:var(--text); cursor:pointer; transition:background .15s; }
+    .qty-btn:hover:not(:disabled) { background:rgba(10,74,47,.06); }
+    .qty-btn:disabled { opacity:.3; cursor:not-allowed; }
+    .qty-val { min-width:26px; text-align:center; font-family:var(--font-heading); font-size:.875rem; font-weight:700; }
+
+    /* ADD BUTTON */
+    .add-btn { padding:.5rem 1rem; background:var(--green); color:#fff; border:none; border-radius:999px; font-family:var(--font-heading); font-size:.8rem; font-weight:700; cursor:pointer; transition:background .2s; white-space:nowrap; }
+    .add-btn:hover { background:#0d5b3a; }
+    .add-btn.added { background:#2D7A50; }
+
+    /* ORDER SUMMARY */
+    .summary-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; position:sticky; top:80px; }
+    .summary-header { background:var(--green); padding:1.125rem 1.5rem; }
+    .summary-header h3 { font-family:var(--font-heading); font-size:.95rem; font-weight:800; color:#fff; margin-bottom:.1rem; }
+    .summary-header p { font-size:.72rem; color:rgba(255,255,255,.55); }
+    .summary-body { padding:1.25rem 1.5rem; }
+    .summary-group-label { font-family:var(--font-heading); font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:.4rem; }
+    .summary-row { display:flex; align-items:flex-start; justify-content:space-between; gap:.5rem; padding:.35rem 0; border-bottom:1px solid var(--border); font-size:.8rem; }
+    .summary-row:last-child { border-bottom:none; }
+    .summary-row span:first-child { color:var(--text); flex:1; line-height:1.4; }
+    .summary-row span:last-child { font-family:var(--font-heading); font-weight:700; color:var(--accent); white-space:nowrap; }
+    .summary-empty { font-size:.78rem; color:var(--text-muted); font-style:italic; padding:.25rem 0; }
+    .summary-footer { padding:1rem 1.5rem 1.5rem; border-top:1px solid var(--border); }
+    .summary-total-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:.625rem; }
+    .summary-total-label { font-family:var(--font-heading); font-size:.78rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; }
+    [data-total] { font-family:var(--font-heading); font-size:1.6rem; font-weight:800; color:var(--text); }
+    .delivery-note { font-size:.72rem; text-align:center; margin-bottom:1rem; line-height:1.5; }
+    .delivery-note.locked { color:var(--text-muted); }
+    .delivery-note.unlocked { color:#16A34A; font-weight:600; }
+    [data-add-to-cart] { width:100%; padding:.9rem; background:var(--accent); color:#fff; border:none; border-radius:999px; font-family:var(--font-heading); font-weight:700; font-size:.9rem; cursor:pointer; transition:background .2s; }
+    [data-add-to-cart]:hover { background:var(--accent-hover); }
+    [data-add-to-cart]:disabled { opacity:.45; cursor:not-allowed; }
+    .summary-note { font-size:.72rem; color:var(--text-muted); text-align:center; margin-top:.625rem; line-height:1.5; }
+
+    /* HERO */
+    .collection-hero { width:100%; aspect-ratio:21/6; overflow:hidden; background:var(--green); }
+    .collection-hero .hero-img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    @media(max-width:900px) { .page-layout { grid-template-columns:1fr; } .summary-card { position:static; } }
+    @media(max-width:560px) { .mm-row-bottom { gap:.5rem; } .mm-row-actions { width:100%; justify-content:space-between; } }
+  </style>
+
+{%- if section.settings.hero_image -%}
+  <div class="collection-hero">
+    {{ section.settings.hero_image | image_url: width: 1440 | image_tag:
+      loading: 'eager',
+      fetchpriority: 'high',
+      class: 'hero-img',
+      alt: section.settings.hero_image.alt | default: 'Mix and Match Essentials' }}
+  </div>
+{%- endif -%}
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">Home</a><span>›</span>
+        <span style="color:var(--text);font-weight:600;">Mix &amp; Match Essentials</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-layout">
+
+      <!-- ── LEFT COLUMN ── -->
+      <div>
+
+        <!-- PAGE INFO -->
+        <div class="section-card">
+          <div class="section-body" style="padding:1.25rem 1.5rem;">
+            <div class="page-eyebrow"><span class="eyebrow-dot"></span> Shop</div>
+            <div class="page-title">Mix &amp; Match Essentials</div>
+            <div class="page-intro">Build your own order from fresh fruit, vegetables, and pantry staples. Choose your sizes and quantities.</div>
+          </div>
+        </div>
+
+        <!-- TABS + PRODUCT ROWS -->
+        <div class="section-card">
+          <div class="section-body">
+            <div class="mm-tabs" role="tablist" aria-label="Mix and Match categories">
+              <button type="button" class="mm-tab is-active" data-tab="fruit" role="tab" aria-selected="true">Fruit</button>
+              <button type="button" class="mm-tab" data-tab="vegetables" role="tab" aria-selected="false" tabindex="-1">Vegetables</button>
+              <button type="button" class="mm-tab" data-tab="pantry" role="tab" aria-selected="false" tabindex="-1">Pantry</button>
+            </div>
+            <div class="mm-grid" id="mm-grid"></div>
+          </div>
+        </div>
+
+      </div>
+      <!-- END LEFT -->
+
+      <!-- ── RIGHT COLUMN: ORDER SUMMARY ── -->
+      <div>
+        <div class="summary-card">
+          <div class="summary-header">
+            <h3>Order summary</h3>
+            <p>Updates as you shop</p>
+          </div>
+          <div class="summary-body">
+            <div class="summary-group-label">Items selected</div>
+            <div data-mm-summary-list></div>
+          </div>
+          <div class="summary-footer">
+            <div class="summary-total-row">
+              <span class="summary-total-label">Total</span>
+              <span data-total>$0.00</span>
+            </div>
+            <p class="delivery-note locked" id="delivery-note">Add $99.00 more to unlock free delivery</p>
+            <button type="button" data-add-to-cart disabled>Add selected items to cart</button>
+            <p class="summary-note">Your selected items will be added to cart. Review at checkout.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+(function() {
+  const DELIVERY_THRESHOLD = 99.00;
+  const fmt = v => '$' + v.toFixed(2);
+
+  // ============================================================
+  // DATA
+  // ============================================================
+  const products = {
+    fruit: [
+      { id:'bananas',   name:'Bananas',   subtitle:'Cavendish',
+        sizes:[{label:'2kg',price:4.50},{label:'3kg',price:6.50},{label:'5kg',price:10.50}], defaultSizeIdx:0 },
+      { id:'apples',    name:'Apples',    subtitle:'Pink Lady · Royal Gala',
+        sizes:[{label:'1kg',price:4.00},{label:'2kg',price:7.50},{label:'3kg',price:10.50}], defaultSizeIdx:0 },
+      { id:'oranges',   name:'Oranges',   subtitle:'Navel · Seasonal',
+        sizes:[{label:'2kg',price:5.50},{label:'3kg',price:8.00},{label:'5kg',price:12.50}], defaultSizeIdx:0 },
+      { id:'mandarins', name:'Mandarins', subtitle:'Easy-peel · Seedless',
+        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00}], defaultSizeIdx:0 }
+    ],
+    vegetables: [
+      { id:'broccoli', name:'Broccoli', subtitle:'Heads · Australian grown',
+        sizes:[{label:'head',price:2.50},{label:'2 heads',price:4.50}], defaultSizeIdx:0 },
+      { id:'carrots',  name:'Carrots',  subtitle:'1kg bag · Washed',
+        sizes:[{label:'1kg',price:3.00},{label:'2kg',price:5.50},{label:'3kg',price:8.00}], defaultSizeIdx:0 },
+      { id:'zucchini', name:'Zucchini', subtitle:'500g · Fresh daily',
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0 },
+      { id:'spinach',  name:'Spinach',  subtitle:'120g bag · Baby leaves',
+        sizes:[{label:'120g',price:3.00},{label:'250g',price:5.50}], defaultSizeIdx:0 }
+    ],
+    pantry: [
+      { id:'basmati-rice', name:'Basmati Rice', subtitle:'2kg · SunRice',
+        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00},{label:'5kg',price:18.00}], defaultSizeIdx:0 },
+      { id:'olive-oil',    name:'Olive Oil',    subtitle:'750ml · Extra virgin',
+        sizes:[{label:'500ml',price:8.50},{label:'750ml',price:12.00}], defaultSizeIdx:0 },
+      { id:'pasta',        name:'Pasta',        subtitle:'500g · Penne or spaghetti',
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.50}], defaultSizeIdx:0 },
+      { id:'rolled-oats',  name:'Rolled Oats',  subtitle:'1kg · Uncle Tobys',
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0 }
+    ]
+  };
+
+  // ============================================================
+  // STATE
+  // ============================================================
+  const state = {};
+  let activeTab = 'fruit';
+
+  function getState(id, defaultSizeIdx) {
+    if (!state[id]) state[id] = { sizeIdx: defaultSizeIdx, qty: 0 };
+    return state[id];
+  }
+
+  function getCategoryFor(id) {
+    for (const cat of Object.keys(products)) {
+      if (products[cat].some(p => p.id === id)) return cat;
+    }
+    return null;
+  }
+
+  function getGrandTotal() {
+    let total = 0, qty = 0;
+    Object.entries(state).forEach(([id, s]) => {
+      if (!s.qty) return;
+      const cat = getCategoryFor(id);
+      if (!cat) return;
+      const p = products[cat].find(x => x.id === id);
+      total += p.sizes[s.sizeIdx].price * s.qty;
+      qty += s.qty;
+    });
+    return { total, qty };
+  }
+
+  // ============================================================
+  // RENDER GRID
+  // ============================================================
+  function renderGrid() {
+    const grid = document.getElementById('mm-grid');
+    if (!grid) return;
+    const items = products[activeTab];
+    grid.innerHTML = '';
+
+    items.forEach(p => {
+      const s = getState(p.id, p.defaultSizeIdx);
+      const sz = p.sizes[s.sizeIdx];
+      const row = document.createElement('div');
+      row.className = 'mm-product-row' + (s.qty > 0 ? ' in-cart' : '');
+      row.dataset.id = p.id;
+
+      const pillsHtml = p.sizes.map((size, i) =>
+        `<button type="button" class="size-pill${i===s.sizeIdx?' selected':''}" data-size-idx="${i}">${size.label}</button>`
+      ).join('');
+
+      row.innerHTML = `
+        <div class="mm-thumb-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+          </svg>
+        </div>
+        <div class="mm-item-inner">
+          <div class="mm-row-top">
+            <div class="mm-item-info">
+              <div class="mm-product-name">${p.name}</div>
+              <div class="mm-product-subtitle">${p.subtitle || ''}</div>
+            </div>
+            <div class="mm-live-price">${fmt(sz.price)}</div>
+          </div>
+          <div class="mm-row-bottom">
+            <div class="size-pills">${pillsHtml}</div>
+            <div class="mm-row-actions">
+              <div class="qty-control">
+                <button type="button" class="qty-btn" data-minus ${s.qty<=0?'disabled':''}>−</button>
+                <span class="qty-val">${s.qty}</span>
+                <button type="button" class="qty-btn" data-plus>+</button>
+              </div>
+              <button type="button" class="add-btn${s.qty>0?' added':''}" data-add>${s.qty>0?'✓ Added':'Add'}</button>
+            </div>
+          </div>
+        </div>`;
+
+      row.querySelectorAll('.size-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          s.sizeIdx = parseInt(pill.dataset.sizeIdx);
+          s.qty = 0;
+          rerender();
+        });
+      });
+      row.querySelector('[data-minus]').addEventListener('click', () => {
+        if (s.qty <= 0) return;
+        s.qty--;
+        rerender();
+      });
+      row.querySelector('[data-plus]').addEventListener('click', () => {
+        s.qty++;
+        rerender();
+      });
+      row.querySelector('[data-add]').addEventListener('click', () => {
+        if (s.qty === 0) s.qty = 1;
+        rerender();
+      });
+
+      grid.appendChild(row);
+    });
+  }
+
+  // ============================================================
+  // RENDER SUMMARY
+  // ============================================================
+  function renderSummary() {
+    const listEl = document.querySelector('[data-mm-summary-list]');
+    const totalEl = document.querySelector('[data-total]');
+    const deliveryEl = document.getElementById('delivery-note');
+    const ctaBtn = document.querySelector('[data-add-to-cart]');
+    const { total, qty } = getGrandTotal();
+
+    if (listEl) {
+      const added = Object.entries(state).filter(([,s]) => s.qty > 0);
+      listEl.innerHTML = added.length
+        ? added.map(([id, s]) => {
+            const cat = getCategoryFor(id);
+            if (!cat) return '';
+            const p = products[cat].find(x => x.id === id);
+            const sz = p.sizes[s.sizeIdx];
+            return `<div class="summary-row"><span>${p.name} <strong>${sz.label}</strong> × ${s.qty}</span><span>+${fmt(sz.price * s.qty)}</span></div>`;
+          }).join('')
+        : '<p class="summary-empty">No items added yet.</p>';
+    }
+
+    if (totalEl) totalEl.textContent = fmt(total);
+
+    if (deliveryEl) {
+      if (total >= DELIVERY_THRESHOLD) {
+        deliveryEl.textContent = '✓ You\'ve unlocked free delivery';
+        deliveryEl.className = 'delivery-note unlocked';
+      } else {
+        const rem = (DELIVERY_THRESHOLD - total).toFixed(2);
+        deliveryEl.textContent = total > 0
+          ? 'Add $' + rem + ' more to unlock free delivery'
+          : 'Add $' + DELIVERY_THRESHOLD.toFixed(2) + ' more to unlock free delivery';
+        deliveryEl.className = 'delivery-note locked';
+      }
+    }
+
+    if (ctaBtn) ctaBtn.disabled = qty === 0;
+  }
+
+  function rerender() {
+    renderGrid();
+    renderSummary();
+  }
+
+  // ============================================================
+  // TABS
+  // ============================================================
+  document.querySelectorAll('.mm-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      activeTab = tab.dataset.tab;
+      document.querySelectorAll('.mm-tab').forEach(t => {
+        const active = t === tab;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', String(active));
+        t.setAttribute('tabindex', active ? '0' : '-1');
+      });
+      renderGrid();
+    });
+    tab.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const arr = Array.from(document.querySelectorAll('.mm-tab'));
+      const next = arr[(arr.indexOf(tab) + (e.key === 'ArrowRight' ? 1 : -1) + arr.length) % arr.length];
+      next.focus();
+      next.click();
+    });
+  });
+
+  // ============================================================
+  // CTA
+  // ============================================================
+  document.querySelector('[data-add-to-cart]').addEventListener('click', () => {
+    const items = Object.entries(state).filter(([,s]) => s.qty > 0).map(([id, s]) => {
+      const cat = getCategoryFor(id);
+      if (!cat) return null;
+      const p = products[cat].find(x => x.id === id);
+      const sz = p.sizes[s.sizeIdx];
+      return { name: p.name, size: sz.label, qty: s.qty, price: sz.price };
+    }).filter(Boolean);
+    const { total } = getGrandTotal();
+    console.log('Add selected items to cart:', items, 'Total:', fmt(total));
+    alert('✓ Would add to cart:\n\n' + items.map(i => i.name + ' ' + i.size + ' ×' + i.qty + ' — ' + fmt(i.price * i.qty)).join('\n') + '\n\nTotal: ' + fmt(total));
+  });
+
+  rerender();
+})();
+</script>
 
 {% schema %}
 {
-  "name": "Mix and match collection",
-  "settings": []
+  "name": "Mix and Match Essentials",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    }
+  ]
 }
 {% endschema %}
