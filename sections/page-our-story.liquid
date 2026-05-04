@@ -37,6 +37,17 @@
     .prose h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
 
     .support-image { width:100%; border-radius:var(--radius); display:block; margin:1.5rem 0; }
+
+    .page-layout-single { padding:1.75rem 0 5rem; }
+    .page-note { font-size:.9rem; color:var(--text-muted); line-height:1.65; font-style:italic; margin-top:.5rem; }
+    .section-body h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
+    .section-body h2:first-child { margin-top:0; }
+    .section-body p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
+    .section-body p:last-child { margin-bottom:0; }
+    .section-body ul, .section-body ol { padding-left:1.25rem; margin-bottom:1rem; color:var(--text-secondary); line-height:1.75; font-size:.95rem; }
+    .section-body li { margin-bottom:.5rem; }
+    .section-body li:last-child { margin-bottom:0; }
+    .section-body strong { color:var(--text); font-weight:700; }
   </style>
 
 {%- if section.settings.hero_image -%}
@@ -58,38 +69,40 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="page-layout">
-
-      <div class="section-card">
-        <div class="section-body">
-          <div class="page-eyebrow"><span class="eyebrow-dot"></span> About</div>
-          <h1 class="page-title">Our Story</h1>
-          <p class="page-intro">GrowDirect is a Melbourne-based, family-run produce business delivering fresh fruit, vegetables, and pantry staples to households across the metro area.</p>
-
-          <div class="prose">
-            <p>We started GrowDirect because we believed Melbourne families deserved better than supermarket produce that's been sitting in cold storage for weeks. Real food, picked at peak freshness, delivered direct.</p>
-
-            <p>Every order is sourced through direct relationships with Victorian farms and the Melbourne wholesale markets. We don't run a warehouse. We don't pre-pack. Your box is picked and packed by hand the day it ships, with the same family standards we'd want for our own table.</p>
-
-            {%- if section.settings.support_image -%}
-              {{ section.settings.support_image | image_url: width: 1200 | image_tag:
-                loading: 'lazy',
-                class: 'support-image',
-                alt: section.settings.support_image.alt | default: 'GrowDirect team and produce' }}
-            {%- endif -%}
-
-            <h2>Direct from grower to door</h2>
-            <p>By cutting out third-party warehousing and middlemen, we keep prices honest, quality high, and support the Victorian families that grow our food. Most of what's on your doorstep this afternoon was at the farm this morning.</p>
-
-            <h2>Built for everyday households</h2>
-            <p>Our Saver Boxes are designed around what real Melbourne families actually buy week to week — generous, balanced, and customisable. Don't want the spinach? Swap it out. Want a 5kg of bananas instead of 2kg? Mix &amp; Match it in. The box should suit your kitchen, not the other way around.</p>
-          </div>
-        </div>
+<div class="container">
+  <div class="page-layout-single">
+    <div class="section-card">
+      <div class="section-body">
+        <div class="page-eyebrow"><span class="eyebrow-dot"></span> About</div>
+        <h1 class="page-title">Our Story</h1>
+        <div class="page-intro">Built on over 50 years of family experience in fresh produce</div>
+        <div class="page-note">From orchard operations in Harcourt, Victoria, to wholesale supply into major fresh produce markets across Australia and direct retail through our well-known Apple of the Valley store, GrowDirect is built on real industry knowledge.</div>
       </div>
+    </div>
 
+    <div class="section-card" style="margin-top:1.5rem;">
+      <div class="section-body">
+        <h2>About GrowDirect</h2>
+        <p>GrowDirect is built on over 50 years of family experience across produce growing, grading, packing, wholesale supply, and direct food retail.</p>
+        <p>Our story is grounded in generations of hands-on involvement in the fresh produce industry. Over the years, our family has worked across orchard operations, fruit washing and grading, packing produce for sale, wholesale supply into major fresh produce markets across Australia, and direct-to-customer retail. That experience has given us a practical understanding of food, quality, and how produce moves from source to household.</p>
+        <p>In Harcourt, Victoria, we operated an apple orchard and fruit processing facility where fruit was washed, graded by size and quality, and prepared for packing. We also owned and operated Apple of the Valley, a well-known roadside store that became a trusted stop for customers travelling from across Victoria, South Australia and New South Wales.</p>
+        <p>Customers visited for the freshest apples, seasonal fruit and vegetables, 100% pure honey, traditional lollies for the kids, and practical everyday value. Many still remember the small touches that made Apple of the Valley special — like receiving a complimentary takeaway coffee before heading off on the final 30 minutes to an hour of the trip home.</p>
+        <p>Quality fruit was packed for retail sale, while second-grade fruit was packed into 10kg boxes, giving families an affordable option without compromising on freshness. It was more than just a store stop — it reflected the kind of business we believed in then, and still believe in now: quality food, honest value, and genuine customer care.</p>
+        <p>Our involvement in wholesale supply to major fresh produce markets across Australia gave us a broader understanding of the industry — from product standards and packing requirements to market expectations, product movement, and the realities of supplying fresh food at scale.</p>
+        <p>GrowDirect is the modern evolution of that experience. We created GrowDirect to bring together direct sourcing, practical value, and a simpler way for households to buy fresh produce and everyday food essentials. Built on decades of real industry knowledge, GrowDirect combines traditional produce experience with a modern direct-to-household model designed around trust, convenience, and honest value.</p>
+
+        <h2>Why GrowDirect</h2>
+        <ul>
+          <li><strong>Over 50 years of family experience</strong> — Built on generations of hands-on work across produce growing, grading, packing, wholesale supply, and direct food retail.</li>
+          <li><strong>Real produce knowledge</strong> — Our background comes from working directly with food — understanding quality, handling, packing, and what freshness really means in practice.</li>
+          <li><strong>Experience across the full supply chain</strong> — From orchard operations to wholesale market supply and direct household sales, we understand how food moves and what customers value.</li>
+          <li><strong>Practical value for everyday households</strong> — We have long understood that customers shop in different ways — some for premium quality, some for value, and many for both.</li>
+          <li><strong>A modern business built on trusted foundations</strong> — GrowDirect brings traditional produce experience into a simpler, more convenient, direct-to-household food model.</li>
+        </ul>
+      </div>
     </div>
   </div>
+</div>
 
 {% schema %}
 {

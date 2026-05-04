@@ -44,6 +44,17 @@
     .suburb { padding:.625rem .9rem; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); font-family:var(--font-heading); font-size:.82rem; font-weight:600; color:var(--text); text-align:center; }
 
     .support-image { width:100%; border-radius:var(--radius); display:block; margin:1.5rem 0 0; }
+
+    .page-layout-single { padding:1.75rem 0 5rem; }
+    .page-note { font-size:.9rem; color:var(--text-muted); line-height:1.65; font-style:italic; margin-top:.5rem; }
+    .section-body h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
+    .section-body h2:first-child { margin-top:0; }
+    .section-body p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
+    .section-body p:last-child { margin-bottom:0; }
+    .section-body ul, .section-body ol { padding-left:1.25rem; margin-bottom:1rem; color:var(--text-secondary); line-height:1.75; font-size:.95rem; }
+    .section-body li { margin-bottom:.5rem; }
+    .section-body li:last-child { margin-bottom:0; }
+    .section-body strong { color:var(--text); font-weight:700; }
   </style>
 
   <div class="breadcrumb-bar">
@@ -55,63 +66,47 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="page-layout">
-
-      <div class="section-card">
-        <div class="section-body">
-          <div class="page-eyebrow"><span class="eyebrow-dot"></span> Delivery</div>
-          <h1 class="page-title">Delivery Areas</h1>
-          <p class="page-intro">GrowDirect delivers across Melbourne metro. Enter your suburb before shopping to confirm we deliver to your address.</p>
-
-          <div class="delivery-highlight">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="6" width="14" height="12" rx="1.5"/><path d="M16 10h4l2 3v5h-6"/><circle cx="6" cy="20" r="2"/><circle cx="18" cy="20" r="2"/>
-            </svg>
-            <span>Free delivery on all orders over $99.</span>
-          </div>
-
-          <div class="prose">
-            <p>We deliver Tuesday through Saturday. Same-day cut-off is <strong>9am</strong> for next-day delivery. Orders placed after the cut-off ship the following delivery day.</p>
-          </div>
-
-          <div class="suburb-section-title">Suburbs we deliver to</div>
-          <div class="suburb-section-meta">A sample of suburbs across Melbourne metro — enter your suburb at checkout to confirm.</div>
-
-          <div class="suburb-grid">
-            <div class="suburb">CBD</div>
-            <div class="suburb">Fitzroy</div>
-            <div class="suburb">Collingwood</div>
-            <div class="suburb">Richmond</div>
-            <div class="suburb">South Yarra</div>
-            <div class="suburb">St Kilda</div>
-            <div class="suburb">Prahran</div>
-            <div class="suburb">Hawthorn</div>
-            <div class="suburb">Camberwell</div>
-            <div class="suburb">Box Hill</div>
-            <div class="suburb">Doncaster</div>
-            <div class="suburb">Northcote</div>
-            <div class="suburb">Brunswick</div>
-            <div class="suburb">Coburg</div>
-            <div class="suburb">Preston</div>
-            <div class="suburb">Reservoir</div>
-            <div class="suburb">Sunshine</div>
-            <div class="suburb">Footscray</div>
-            <div class="suburb">Williamstown</div>
-            <div class="suburb">St Albans</div>
-          </div>
-
-          {%- if section.settings.support_image -%}
-            {{ section.settings.support_image | image_url: width: 1200 | image_tag:
-              loading: 'lazy',
-              class: 'support-image',
-              alt: section.settings.support_image.alt | default: 'GrowDirect delivery area' }}
-          {%- endif -%}
-        </div>
+<div class="container">
+  <div class="page-layout-single">
+    <div class="section-card">
+      <div class="section-body">
+        <div class="page-eyebrow"><span class="eyebrow-dot"></span> Delivery</div>
+        <h1 class="page-title">Delivery Areas</h1>
+        <div class="page-intro">Melbourne metro delivery across 8 service zones</div>
+        <div class="page-note">GrowDirect currently delivers across selected Melbourne metro suburbs through 8 active service zones. Before you shop, check that your suburb is within our delivery area.</div>
       </div>
+    </div>
 
+    <div class="section-card" style="margin-top:1.5rem;">
+      <div class="section-body">
+        <h2>Service Zones</h2>
+        <p><strong>Zone — CBD & Surrounds</strong><br>Melbourne CBD, Docklands, Southbank, South Melbourne, Port Melbourne, East Melbourne, West Melbourne, North Melbourne, Parkville, Carlton, Carlton North, Flemington, Kensington, Ascot Vale, Moonee Ponds, Essendon, Essendon North, Essendon West, Aberfeldie, Strathmore, Strathmore Heights, Airport West, Tullamarine, Gladstone Park, Niddrie, Travancore, Newmarket</p>
+        <p><strong>Zone — Inner North</strong><br>Fitzroy, Fitzroy North, Collingwood, Clifton Hill, Abbotsford, Carlton, Carlton North, Brunswick, Brunswick East, Brunswick West, Northcote, Thornbury, Preston, Preston West, Reservoir, Coburg, Coburg North, Pascoe Vale, Pascoe Vale South, Oak Park, Glenroy, Fawkner, Hadfield, Dallas, Broadmeadows, Campbellfield, Lalor, Thomastown, Mill Park, South Morang, Epping, Wollert, Mernda, Doreen</p>
+        <p><strong>Zone — Inner East</strong><br>Richmond, Hawthorn, Hawthorn East, Kew, Kew East, Camberwell, Canterbury, Balwyn, Balwyn North, Box Hill, Box Hill North, Box Hill South, Mont Albert, Mont Albert North, Surrey Hills, Deepdene, Doncaster, Doncaster East, Nunawading, Mitcham, Blackburn, Blackburn North, Blackburn South, Burwood, Burwood East, Ringwood, Ringwood East, Ringwood North, Vermont, Vermont South</p>
+        <p><strong>Zone — Inner West</strong><br>Footscray, West Footscray, Yarraville, Seddon, Kingsville, Spotswood, Newport, Williamstown, Williamstown North, Altona, Altona North, Altona Meadows, Laverton, Sunshine, Sunshine North, Sunshine West, Albion, Ardeer, Deer Park, Derrimut, Hoppers Crossing, Werribee, Werribee South, Point Cook, Williams Landing, Truganina, Tarneit, Wyndham Vale</p>
+        <p><strong>Zone — Inner South</strong><br>South Yarra, Prahran, Windsor, Toorak, Armadale, Malvern, Malvern East, Glen Iris, Kooyong, St Kilda, St Kilda East, St Kilda West, Elwood, Balaclava, Ripponlea, Brighton, Brighton East, Hampton, Sandringham, Black Rock, Beaumaris, Mentone, Moorabbin, Bentleigh, Bentleigh East, McKinnon, Ormond, Murrumbeena, Carnegie, Caulfield, Caulfield North, Caulfield South, Caulfield East, Glen Huntly, Elsternwick</p>
+        <p><strong>Zone — NE Suburbs</strong><br>Heidelberg, Heidelberg Heights, Heidelberg West, Rosanna, Eaglemont, Ivanhoe, Ivanhoe East, Bellfield, Macleod, Watsonia, Greensborough, St Helena, Diamond Creek, Eltham, Eltham North, Research, Templestowe, Templestowe Lower, Doncaster, Bulleen, Balwyn North, Ringwood, Croydon, Croydon Hills, Croydon North, Croydon South, Bayswater, Bayswater North, Kilsyth, Mooroolbark, Lilydale, Chirnside Park, Warranwood, Warrandyte, Park Orchards, Wonga Park</p>
+        <p><strong>Zone — SE Suburbs</strong><br>Glen Waverley, Mount Waverley, Wheelers Hill, Mulgrave, Notting Hill, Clayton, Clayton South, Oakleigh, Oakleigh East, Oakleigh South, Huntingdale, Springvale, Springvale South, Noble Park, Keysborough, Dandenong, Dandenong North, Dandenong South, Lynbrook, Lyndhurst, Cranbourne, Cranbourne North, Cranbourne East, Cranbourne West, Narre Warren, Narre Warren North, Berwick, Hallam, Hampton Park, Endeavour Hills, Cheltenham, Mordialloc, Parkdale, Carrum, Patterson Lakes, Chelsea, Aspendale, Bonbeach, Edithvale</p>
+        <p><strong>Zone — Western Suburbs</strong><br>St Albans, Keilor, Keilor East, Keilor Downs, Keilor Lodge, Keilor Park, Sydenham, Taylors Lakes, Taylors Hill, Caroline Springs, Burnside, Burnside Heights, Melton, Melton South, Melton West, Diggers Rest, Rockbank, Cobblebank, Bacchus Marsh, Ravenhall, Cairnlea, Kealba, Kings Park, Delahey, Hillside, Calder Park, Plumpton, Fraser Rise, Aintree, Deanside, Mount Cottrell</p>
+
+        <h2>Delivery & Ordering</h2>
+        <ul>
+          <li>Order by cut-off time for next-day delivery</li>
+          <li>Melbourne metro only</li>
+          <li>No subscription required</li>
+          <li>Direct to your door</li>
+        </ul>
+
+        <h2>Common Delivery Questions</h2>
+        <p><strong>Where does GrowDirect deliver?</strong><br>GrowDirect currently focuses on selected Melbourne metro suburbs across 8 active delivery zones.</p>
+        <p><strong>How do I know if my suburb is included?</strong><br>Check the zone lists above to confirm your suburb is within the active delivery area before shopping.</p>
+        <p><strong>Do you deliver outside Melbourne metro?</strong><br>At this stage, GrowDirect is focused on Melbourne metro delivery only.</p>
+        <p><strong>Do I need a subscription for delivery?</strong><br>No. GrowDirect allows you to order when needed without locking you into a subscription.</p>
+        <p><strong>When will my order arrive?</strong><br>Delivery timing depends on your suburb, the current order cut-off window, and operational scheduling.</p>
+      </div>
     </div>
   </div>
+</div>
 
 {% schema %}
 {

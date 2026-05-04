@@ -47,6 +47,17 @@
     .form-error ul { list-style:none; padding:0; margin:0; }
 
     .support-image { width:100%; border-radius:var(--radius); display:block; margin:1.5rem 0 0; }
+
+    .page-layout-single { padding:1.75rem 0 5rem; }
+    .page-note { font-size:.9rem; color:var(--text-muted); line-height:1.65; font-style:italic; margin-top:.5rem; }
+    .section-body h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
+    .section-body h2:first-child { margin-top:0; }
+    .section-body p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
+    .section-body p:last-child { margin-bottom:0; }
+    .section-body ul, .section-body ol { padding-left:1.25rem; margin-bottom:1rem; color:var(--text-secondary); line-height:1.75; font-size:.95rem; }
+    .section-body li { margin-bottom:.5rem; }
+    .section-body li:last-child { margin-bottom:0; }
+    .section-body strong { color:var(--text); font-weight:700; }
   </style>
 
   <div class="breadcrumb-bar">
@@ -58,61 +69,66 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="page-layout">
-
-      <div class="section-card">
-        <div class="section-body">
-          <div class="page-eyebrow"><span class="eyebrow-dot"></span> Get in touch</div>
-          <h1 class="page-title">Contact Us</h1>
-          <p class="page-intro">Questions about an order, delivery, or just want to say hi? Send us a message and we'll get back to you.</p>
-
-          {%- form 'contact', class: 'contact-form' -%}
-            {%- if form.posted_successfully? -%}
-              <div class="form-success">✓ Thanks — your message has been sent. We'll be in touch shortly.</div>
-            {%- endif -%}
-
-            {%- if form.errors -%}
-              <div class="form-error">
-                <ul>
-                  {%- for field in form.errors -%}
-                    <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
-                  {%- endfor -%}
-                </ul>
-              </div>
-            {%- endif -%}
-
-            <div class="field">
-              <label for="contact-name">Name</label>
-              <input type="text" id="contact-name" name="contact[name]" autocomplete="name" required>
-            </div>
-
-            <div class="field">
-              <label for="contact-email">Email</label>
-              <input type="email" id="contact-email" name="contact[email]" autocomplete="email" required>
-            </div>
-
-            <div class="field">
-              <label for="contact-message">Message</label>
-              <textarea id="contact-message" name="contact[body]" rows="5" required></textarea>
-            </div>
-
-            <button type="submit" class="submit-btn">Send message</button>
-          {%- endform -%}
-
-          <p class="form-note">We typically respond within 1 business day.</p>
-
-          {%- if section.settings.support_image -%}
-            {{ section.settings.support_image | image_url: width: 1200 | image_tag:
-              loading: 'lazy',
-              class: 'support-image',
-              alt: section.settings.support_image.alt | default: 'Contact GrowDirect' }}
-          {%- endif -%}
-        </div>
+<div class="container">
+  <div class="page-layout-single">
+    <div class="section-card">
+      <div class="section-body">
+        <div class="page-eyebrow"><span class="eyebrow-dot"></span> Get In Touch</div>
+        <h1 class="page-title">Contact</h1>
+        <div class="page-intro">Get in touch with GrowDirect</div>
+        <div class="page-note">If you have a question about ordering, delivery, Saver Boxes, or anything else, we are here to help. Use the contact form below and our team will get back to you as soon as possible.</div>
       </div>
+    </div>
 
+    <div class="section-card" style="margin-top:1.5rem;">
+      <div class="section-body">
+        <h2>Contact Details</h2>
+        <p><strong>Email:</strong> hello@growdirect.com.au<br>
+        <strong>Service Area:</strong> Melbourne metro<br>
+        <strong>Response Time:</strong> As soon as possible</p>
+
+        <h2>Send a Message</h2>
+        {% form 'contact' %}
+          <div style="margin-bottom:1rem;">
+            <label for="ContactFormName" style="display:block;margin-bottom:.375rem;font-weight:600;">Full name</label>
+            <input type="text" id="ContactFormName" name="contact[name]" autocomplete="name" style="width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.5rem;font-size:1rem;">
+          </div>
+          <div style="margin-bottom:1rem;">
+            <label for="ContactFormEmail" style="display:block;margin-bottom:.375rem;font-weight:600;">Email address</label>
+            <input type="email" id="ContactFormEmail" name="contact[email]" autocomplete="email" style="width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.5rem;font-size:1rem;">
+          </div>
+          <div style="margin-bottom:1rem;">
+            <label for="ContactFormPhone" style="display:block;margin-bottom:.375rem;font-weight:600;">Phone number <span style="font-weight:400;color:var(--text-muted);">(optional)</span></label>
+            <input type="tel" id="ContactFormPhone" name="contact[phone]" autocomplete="tel" style="width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.5rem;font-size:1rem;">
+          </div>
+          <div style="margin-bottom:1rem;">
+            <label for="ContactFormTopic" style="display:block;margin-bottom:.375rem;font-weight:600;">Enquiry type</label>
+            <select id="ContactFormTopic" name="contact[topic]" style="width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.5rem;font-size:1rem;background:white;">
+              <option value="">Select a topic</option>
+              <option value="existing-order">Existing order</option>
+              <option value="delivery-question">Delivery question</option>
+              <option value="product-question">Product question</option>
+              <option value="saver-box">Saver Box enquiry</option>
+              <option value="general">General enquiry</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <label for="ContactFormMessage" style="display:block;margin-bottom:.375rem;font-weight:600;">Message</label>
+            <textarea id="ContactFormMessage" name="contact[body]" rows="6" style="width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.5rem;font-size:1rem;resize:vertical;"></textarea>
+          </div>
+          <button type="submit" style="background:var(--green);color:white;padding:.75rem 2rem;border:none;border-radius:2rem;font-size:1rem;font-weight:600;cursor:pointer;">Send message</button>
+          <p style="margin-top:.75rem;font-size:.875rem;color:var(--text-muted);">We will get back to you as soon as possible.</p>
+        {% endform %}
+
+        <h2 style="margin-top:2rem;">Common Questions</h2>
+        <p><strong>What should I contact GrowDirect about?</strong><br>You can contact GrowDirect for general enquiries, ordering support, delivery questions, or help after placing an order.</p>
+        <p><strong>Where can I check delivery information first?</strong><br>Visit the Delivery Areas page to review suburb coverage before getting in touch.</p>
+        <p><strong>How long does it take to get a response?</strong><br>GrowDirect will aim to respond as soon as possible to customer enquiries and support questions.</p>
+      </div>
     </div>
   </div>
+</div>
 
 {% schema %}
 {

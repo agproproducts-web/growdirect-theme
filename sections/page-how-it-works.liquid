@@ -41,6 +41,17 @@
 
     .support-image { width:100%; border-radius:var(--radius); display:block; margin:1.5rem 0 0; }
 
+    .page-layout-single { padding:1.75rem 0 5rem; }
+    .page-note { font-size:.9rem; color:var(--text-muted); line-height:1.65; font-style:italic; margin-top:.5rem; }
+    .section-body h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
+    .section-body h2:first-child { margin-top:0; }
+    .section-body p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
+    .section-body p:last-child { margin-bottom:0; }
+    .section-body ul, .section-body ol { padding-left:1.25rem; margin-bottom:1rem; color:var(--text-secondary); line-height:1.75; font-size:.95rem; }
+    .section-body li { margin-bottom:.5rem; }
+    .section-body li:last-child { margin-bottom:0; }
+    .section-body strong { color:var(--text); font-weight:700; }
+
     @media(max-width:560px) {
       .step { gap:1rem; padding:1rem 1.125rem; }
       .step-icon { width:40px; height:40px; min-width:40px; }
@@ -56,82 +67,53 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="page-layout">
-
-      <div class="section-card">
-        <div class="section-body">
-          <div class="page-eyebrow"><span class="eyebrow-dot"></span> Get started</div>
-          <h1 class="page-title">How It Works</h1>
-          <p class="page-intro">From Saver Box to doorstep in four simple steps.</p>
-
-          <div class="steps">
-
-            <div class="step">
-              <div class="step-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M3 11h18"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/>
-                </svg>
-              </div>
-              <div class="step-content">
-                <div class="step-num">Step 1</div>
-                <div class="step-title">Choose your box or build your own</div>
-                <div class="step-desc">Pick a Saver Box for everyday value, or shop our fruit, vegetables, and pantry collections to build a custom order.</div>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s-8-7.5-8-13a8 8 0 0 1 16 0c0 5.5-8 13-8 13Z"/><circle cx="12" cy="9" r="3"/>
-                </svg>
-              </div>
-              <div class="step-content">
-                <div class="step-num">Step 2</div>
-                <div class="step-title">Enter your suburb to check delivery</div>
-                <div class="step-desc">We deliver across Melbourne metro. A quick suburb check confirms your address is in our zone before you shop.</div>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 8l9-5 9 5v8a2 2 0 0 1-1 1.7l-7 4a2 2 0 0 1-2 0l-7-4A2 2 0 0 1 3 16Z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v9"/>
-                </svg>
-              </div>
-              <div class="step-content">
-                <div class="step-num">Step 3</div>
-                <div class="step-title">We pack fresh to order — same day</div>
-                <div class="step-desc">Our team picks and packs your order by hand the day it ships. Nothing comes out of long-term warehousing.</div>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="6" width="14" height="12" rx="1.5"/><path d="M16 10h4l2 3v5h-6"/><circle cx="6" cy="20" r="2"/><circle cx="18" cy="20" r="2"/>
-                </svg>
-              </div>
-              <div class="step-content">
-                <div class="step-num">Step 4</div>
-                <div class="step-title">Delivered to your door</div>
-                <div class="step-desc">Fresh, direct, and on your doorstep. Free delivery on orders over $99.</div>
-              </div>
-            </div>
-
-          </div>
-
-          {%- if section.settings.support_image -%}
-            {{ section.settings.support_image | image_url: width: 1200 | image_tag:
-              loading: 'lazy',
-              class: 'support-image',
-              alt: section.settings.support_image.alt | default: 'How GrowDirect works' }}
-          {%- endif -%}
-        </div>
+<div class="container">
+  <div class="page-layout-single">
+    <div class="section-card">
+      <div class="section-body">
+        <div class="page-eyebrow"><span class="eyebrow-dot"></span> How It Works</div>
+        <h1 class="page-title">How It Works</h1>
+        <div class="page-intro">A simpler way to shop for your weekly food essentials</div>
+        <div class="page-note">GrowDirect is designed to make everyday food shopping more straightforward. Start with a Saver Box that suits your household, add extra produce or pantry staples if needed, and get it delivered across Melbourne metro — with no subscription and no unnecessary complexity.</div>
       </div>
+    </div>
 
+    <div class="section-card" style="margin-top:1.5rem;">
+      <div class="section-body">
+        <h2>How GrowDirect Works</h2>
+        <ol>
+          <li><strong>Check your delivery area</strong> — We currently deliver across Melbourne metro. Before you shop, check that your suburb is within our delivery zone.</li>
+          <li><strong>Start with a Saver Box</strong> — The easiest way to shop GrowDirect is to begin with a Saver Box. Each box is designed to suit different household sizes and weekly budgets.</li>
+          <li><strong>Add extra items if needed</strong> — Once you have chosen your box, you can top up with additional produce, pantry staples, or Weekly Specials.</li>
+          <li><strong>Place your order</strong> — Add your selected items to cart and complete checkout online.</li>
+          <li><strong>Get it delivered</strong> — Order by the stated cut-off time and we will prepare your order for delivery across Melbourne metro, direct to your door.</li>
+        </ol>
+
+        <h2>Why GrowDirect</h2>
+        <ul>
+          <li><strong>Start with the essentials</strong> — Saver Boxes give you a simple foundation for your weekly shop.</li>
+          <li><strong>Top up only what you need</strong> — Add extra produce, pantry staples, or Weekly Specials depending on what your household needs.</li>
+          <li><strong>No subscription required</strong> — Order when it suits you. GrowDirect is designed for flexibility, not lock-in.</li>
+          <li><strong>Built for practical value</strong> — Our range is shaped around real household buying habits, combining convenience with everyday value.</li>
+        </ul>
+
+        <h2>What You Can Shop</h2>
+        <ul>
+          <li><strong>Saver Boxes</strong> — Pre-packed options designed around different household sizes and value needs.</li>
+          <li><strong>Weekly Specials</strong> — Seasonal opportunities and value-led offers available for a limited time.</li>
+          <li><strong>Mix & Match Essentials</strong> — Extra produce and pantry staples to round out your order.</li>
+          <li><strong>Everyday Staples</strong> — Food essentials chosen to make weekly shopping more practical and convenient.</li>
+        </ul>
+
+        <h2>Common Questions</h2>
+        <p><strong>Do I need a subscription?</strong><br>No. GrowDirect is designed so you can order when needed, without being locked into a subscription.</p>
+        <p><strong>How do I start an order?</strong><br>The easiest way is to begin with a Saver Box, then add extra items such as produce, pantry staples, or Weekly Specials if needed.</p>
+        <p><strong>Where do you deliver?</strong><br>GrowDirect currently focuses on Melbourne metro delivery areas. Customers should check suburb availability before ordering.</p>
+        <p><strong>Can I add extra items to my box?</strong><br>Yes. After choosing a Saver Box, you can top up with additional items to suit your household.</p>
+      </div>
     </div>
   </div>
+</div>
 
 {% schema %}
 {

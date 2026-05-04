@@ -37,6 +37,17 @@
     .prose h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
 
     .support-image { width:100%; border-radius:var(--radius); display:block; margin:1.5rem 0; }
+
+    .page-layout-single { padding:1.75rem 0 5rem; }
+    .page-note { font-size:.9rem; color:var(--text-muted); line-height:1.65; font-style:italic; margin-top:.5rem; }
+    .section-body h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
+    .section-body h2:first-child { margin-top:0; }
+    .section-body p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
+    .section-body p:last-child { margin-bottom:0; }
+    .section-body ul, .section-body ol { padding-left:1.25rem; margin-bottom:1rem; color:var(--text-secondary); line-height:1.75; font-size:.95rem; }
+    .section-body li { margin-bottom:.5rem; }
+    .section-body li:last-child { margin-bottom:0; }
+    .section-body strong { color:var(--text); font-weight:700; }
   </style>
 
 {%- if section.settings.hero_image -%}
@@ -58,40 +69,49 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="page-layout">
-
-      <div class="section-card">
-        <div class="section-body">
-          <div class="page-eyebrow"><span class="eyebrow-dot"></span> Sourcing</div>
-          <h1 class="page-title">How We Source</h1>
-          <p class="page-intro">Direct relationships with Victorian growers, daily market runs, and no third-party warehousing — fresh produce packed to order, the way it should be.</p>
-
-          <div class="prose">
-            <h2>Direct from Victorian growers</h2>
-            <p>We work hand-in-hand with farms across Victoria — orchards in the Goulburn Valley, market gardens in the Werribee plains, dairies in Gippsland. No agents, no resellers. Just direct relationships built over years.</p>
-
-            <h2>Daily market runs</h2>
-            <p>Every weekday morning, our buyers are at the Melbourne wholesale markets selecting what's freshest, ripest, and best value. If a crate doesn't meet our standards, we walk past it.</p>
-
-            {%- if section.settings.support_image -%}
-              {{ section.settings.support_image | image_url: width: 1200 | image_tag:
-                loading: 'lazy',
-                class: 'support-image',
-                alt: section.settings.support_image.alt | default: 'Sourcing produce from Victorian growers' }}
-            {%- endif -%}
-
-            <h2>No third-party warehousing</h2>
-            <p>Most online produce sellers store inventory for days or weeks before shipping. We don't. Produce arrives at our facility in the morning and leaves the same afternoon — there's no warehouse for things to sit in.</p>
-
-            <h2>Packed fresh to order</h2>
-            <p>When you place an order, your box is picked and packed by hand that day. Quantities, sizes, swap-outs — all handled by humans who care about what goes into your kitchen.</p>
-          </div>
-        </div>
+<div class="container">
+  <div class="page-layout-single">
+    <div class="section-card">
+      <div class="section-body">
+        <div class="page-eyebrow"><span class="eyebrow-dot"></span> Sourcing</div>
+        <h1 class="page-title">Sourcing</h1>
+        <div class="page-intro">Freshness starts with how we source</div>
+        <div class="page-note">At GrowDirect, our sourcing approach is built around one core principle: freshness comes first. Our aim is to source as directly as possible from farmers and producers, building a food business shaped by real supply relationships, practical quality standards, and better value for modern households.</div>
       </div>
+    </div>
 
+    <div class="section-card" style="margin-top:1.5rem;">
+      <div class="section-body">
+        <h2>Our Approach</h2>
+        <p>GrowDirect is being built with a clear sourcing focus: wherever possible, we aim to source directly from farmers and producers. That approach helps us stay closer to the product, closer to quality, and closer to the standards we want customers to associate with GrowDirect.</p>
+        <p>Freshness is the blueprint behind the way we build our range. It is not just something we apply to fresh produce — it is the standard we want reflected across everything we source. As GrowDirect grows, that same fresh-first approach will continue to shape how we source across produce, pantry staples, and future categories including meat, seafood, and dairy.</p>
+
+        <h2>Our Principles</h2>
+        <ul>
+          <li><strong>Freshness first</strong> — Freshness is our staple and the standard we want reflected across every category we source.</li>
+          <li><strong>Farmer and producer focus</strong> — Our aim is to build direct sourcing relationships with farmers and producers wherever possible.</li>
+          <li><strong>Practical household value</strong> — We source with everyday households in mind, balancing freshness, usefulness, and value.</li>
+          <li><strong>A better selected range</strong> — We want GrowDirect to feel considered and dependable, not overcrowded or confusing.</li>
+        </ul>
+
+        <h2>The Range</h2>
+        <ul>
+          <li><strong>Fresh produce</strong> — Fresh produce sits at the heart of GrowDirect and reflects the direct sourcing and freshness standards we want the business to be known for.</li>
+          <li><strong>Pantry staples</strong> — We apply the same practical sourcing mindset to pantry products, focusing on useful everyday items for the weekly shop.</li>
+          <li><strong>Value-led household shopping</strong> — Our sourcing is shaped not only by product type, but by how real households buy — with a focus on freshness, simplicity, and everyday value.</li>
+          <li><strong>Expanding categories</strong> — As GrowDirect grows, we plan to extend our fresh-first sourcing approach into future categories including meat, seafood, and dairy.</li>
+        </ul>
+
+        <h2>Common Sourcing Questions</h2>
+        <p><strong>Who does GrowDirect aim to source from?</strong><br>Wherever possible, GrowDirect aims to source directly from farmers and producers.</p>
+        <p><strong>What is the main principle behind GrowDirect sourcing?</strong><br>Freshness is the core principle behind GrowDirect sourcing and the standard the business wants reflected across all sourced products.</p>
+        <p><strong>Does sourcing only apply to fresh produce?</strong><br>No. While fresh produce is central to GrowDirect, the same fresh-first thinking is intended to guide pantry staples and future product categories as well.</p>
+        <p><strong>Will GrowDirect add more categories in the future?</strong><br>Yes. As the business grows, GrowDirect plans to introduce additional categories including meat, seafood, and dairy.</p>
+        <p><strong>Why does GrowDirect focus on direct sourcing?</strong><br>Direct sourcing helps keep the business closer to quality, freshness, and the kinds of supplier relationships GrowDirect wants to build over time.</p>
+      </div>
     </div>
   </div>
+</div>
 
 {% schema %}
 {
