@@ -1,112 +1,408 @@
 <style>
-  /* ── GrowDirect — Delivery Areas ── */
-    :root {
-      --green:#0A4A2F; --accent:#F28C38; --accent-hover:#E07B2D;
-      --text:#1A3C34; --text-secondary:#5C6B66; --text-muted:#8A9A94;
-      --border:#E8F0EB; --bg:#F8F9FA; --white:#fff;
-      --radius:1rem; --radius-xl:1.5rem;
-      --font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
-      --font-body:"Inter",-apple-system,sans-serif;
-    }
-    *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:var(--font-body); color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
-    .container { max-width:880px; margin:0 auto; padding:0 1.5rem; }
+  :root {
+    --color-bg-primary:#F8F9FA;
+    --color-bg-header:#0A4A2F;
+    --color-accent:#F28C38;
+    --color-accent-hover:#E07B2D;
+    --color-text-primary:#1A3C34;
+    --color-text-secondary:#5C6B66;
+    --color-text-muted:#8A9A94;
+    --color-border:#E8F0EB;
+    --font-heading:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-body:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+    --container:1200px;
+    --radius-lg:1rem;
+    --radius-xl:1.5rem;
+  }
+  *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:var(--font-body); color:var(--color-text-primary); line-height:1.6; -webkit-font-smoothing:antialiased; background:#fff; }
+  .container { max-width:var(--container); margin:0 auto; padding:0 1.5rem; }
+  .container-narrow { max-width:780px; margin:0 auto; padding:0 1.5rem; }
 
-    .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--border); }
-    .breadcrumb-bar .container { max-width:1100px; }
-    .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); }
-    .breadcrumb a { color:var(--text-muted); text-decoration:none; }
-    .breadcrumb a:hover { color:var(--text); }
-    .breadcrumb span { margin:0 .4rem; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.5rem; border:none; border-radius:999px; font-family:var(--font-heading); font-weight:700; font-size:.9rem; text-decoration:none; cursor:pointer; transition:all .2s; white-space:nowrap; }
+  .btn-primary { background:var(--color-accent); color:#fff; }
+  .btn-primary:hover { background:var(--color-accent-hover); transform:translateY(-1px); }
+  .btn-secondary { background:transparent; color:#fff; border:2px solid rgba(255,255,255,.4); }
+  .btn-secondary:hover { border-color:var(--color-accent); color:var(--color-accent); }
+  .btn-outline { background:transparent; color:var(--color-text-primary); border:2px solid var(--color-border); }
+  .btn-outline:hover { border-color:#0A4A2F; color:#0A4A2F; }
+  .btn-row { display:flex; gap:1rem; flex-wrap:wrap; }
 
-    .page-layout { padding:1.75rem 0 5rem; }
-    .section-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; margin-bottom:1.25rem; }
-    .section-body { padding:2rem 1.75rem; }
+  /* ── HERO ── */
+  .hero-page { background:var(--color-bg-header); padding:5rem 0 4rem; position:relative; overflow:hidden; }
+  .hero-page::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%, rgba(242,140,56,.07) 0%, transparent 60%); pointer-events:none; }
+  .eyebrow { display:inline-block; background:rgba(242,140,56,.15); color:var(--color-accent); border:1px solid rgba(242,140,56,.3); padding:.4rem 1rem; border-radius:999px; font-size:.75rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; margin-bottom:1.5rem; font-family:var(--font-heading); }
+  .hero-page h1 { font-family:var(--font-heading); font-size:clamp(2.2rem,5vw,3.5rem); font-weight:800; color:#fff; line-height:1.1; margin-bottom:1.25rem; max-width:640px; letter-spacing:-.02em; }
+  .hero-page p { color:rgba(255,255,255,.7); font-size:1.05rem; line-height:1.75; max-width:560px; margin-bottom:2rem; }
 
-    .page-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; font-family:var(--font-heading); display:inline-flex; align-items:center; gap:.4rem; }
-    .page-title { font-family:var(--font-heading); font-size:1.85rem; font-weight:800; color:var(--text); line-height:1.1; margin-bottom:.6rem; }
-    .page-intro { font-size:1rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.25rem; }
-    .eyebrow-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  /* ── SECTIONS ── */
+  .section { padding:5rem 0; }
+  .section-alt { background:var(--color-bg-primary); }
+  .section-dark { background:var(--color-bg-header); }
+  .section-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--color-accent); margin-bottom:.6rem; font-family:var(--font-heading); }
+  .section-heading { font-family:var(--font-heading); font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:800; color:var(--color-text-primary); line-height:1.15; letter-spacing:-.02em; margin-bottom:.75rem; }
+  .section-intro { color:var(--color-text-secondary); font-size:1rem; line-height:1.7; max-width:600px; margin-bottom:3rem; }
+  .section-header-center { text-align:center; margin-bottom:3rem; }
+  .section-header-center .section-intro { margin-left:auto; margin-right:auto; }
 
-    .prose p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
-    .prose p:last-child { margin-bottom:0; }
-    .prose strong { color:var(--text); font-weight:700; }
+  /* ── DELIVERY OVERVIEW ── */
+  .overview-body { font-size:1rem; color:var(--color-text-secondary); line-height:1.85; max-width:680px; }
+  .overview-body p { margin-bottom:1.25rem; }
 
-    /* DELIVERY HIGHLIGHT */
-    .delivery-highlight { display:flex; align-items:center; gap:.8rem; padding:.875rem 1.125rem; background:rgba(10,74,47,.05); border:1px solid rgba(10,74,47,.12); border-radius:var(--radius); margin:1.25rem 0; font-size:.875rem; color:var(--green); font-weight:600; font-family:var(--font-heading); }
-    .delivery-highlight svg { flex-shrink:0; }
+  /* ── HIGHLIGHTS CARDS ── */
+  .highlights-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
+  .highlight-card { background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-xl); padding:2rem; transition:all .3s; }
+  .highlight-card:hover { border-color:#0A4A2F; box-shadow:0 8px 24px rgba(10,74,47,.1); transform:translateY(-3px); }
+  .highlight-card .icon { width:44px; height:44px; background:#F0F7F2; border-radius:.875rem; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
+  .highlight-card h3 { font-family:var(--font-heading); font-size:1rem; font-weight:700; color:var(--color-text-primary); margin-bottom:.5rem; line-height:1.3; }
+  .highlight-card p { font-size:.875rem; color:var(--color-text-secondary); line-height:1.65; margin:0; }
 
-    /* SUBURB GROUP */
-    .suburb-section-title { font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:var(--text); margin:1.75rem 0 .25rem; }
-    .suburb-section-meta { font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); font-weight:600; margin-bottom:1rem; }
-    .suburb-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:.5rem; }
-    .suburb { padding:.625rem .9rem; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); font-family:var(--font-heading); font-size:.82rem; font-weight:600; color:var(--text); text-align:center; }
+  /* ── ZONE SEARCH ── */
+  .zone-search-wrap { position:relative; margin-bottom:2.5rem; max-width:480px; }
+  .zone-search-wrap input { width:100%; padding:.875rem 1rem .875rem 3rem; border:2px solid var(--color-border); border-radius:999px; font-family:var(--font-body); font-size:.95rem; color:var(--color-text-primary); outline:none; transition:border-color .2s; }
+  .zone-search-wrap input:focus { border-color:#0A4A2F; }
+  .zone-search-wrap svg { position:absolute; left:1rem; top:50%; transform:translateY(-50%); pointer-events:none; }
+  #search-result { margin-top:.75rem; font-size:.9rem; font-weight:600; font-family:var(--font-heading); min-height:1.5rem; }
+  #search-result.found { color:#16A34A; }
+  #search-result.not-found { color:#DC2626; }
 
-    .support-image { width:100%; border-radius:var(--radius); display:block; margin:1.5rem 0 0; }
+  /* ── ZONE GRID ── */
+  .zones-grid-full { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
+  .zone-block { background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-xl); padding:1.75rem 2rem; }
+  .zone-block h3 { font-family:var(--font-heading); font-size:1rem; font-weight:800; color:var(--color-text-primary); margin-bottom:.75rem; display:flex; align-items:center; gap:.5rem; }
+  .zone-badge { background:#0A4A2F; color:#fff; font-size:.65rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.2rem .6rem; border-radius:999px; }
+  .zone-block p { font-size:.8rem; color:var(--color-text-secondary); line-height:1.8; margin:0; }
+  .zone-block p span { color:var(--color-text-primary); font-weight:500; }
 
-    .page-layout-single { padding:1.75rem 0 5rem; }
-    .page-note { font-size:.9rem; color:var(--text-muted); line-height:1.65; font-style:italic; margin-top:.5rem; }
-    .section-body h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
-    .section-body h2:first-child { margin-top:0; }
-    .section-body p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
-    .section-body p:last-child { margin-bottom:0; }
-    .section-body ul, .section-body ol { padding-left:1.25rem; margin-bottom:1rem; color:var(--text-secondary); line-height:1.75; font-size:.95rem; }
-    .section-body li { margin-bottom:.5rem; }
-    .section-body li:last-child { margin-bottom:0; }
-    .section-body strong { color:var(--text); font-weight:700; }
-  </style>
+  /* ── TIMING SECTION ── */
+  .timing-pills { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.5rem; }
+  .timing-pill { display:inline-flex; align-items:center; gap:.5rem; background:#F0F7F2; border:1px solid var(--color-border); padding:.5rem 1rem; border-radius:999px; font-size:.85rem; font-weight:600; color:var(--color-text-primary); font-family:var(--font-heading); }
 
-  <div class="breadcrumb-bar">
-    <div class="container">
-      <div class="breadcrumb">
-        <a href="/">Home</a><span>›</span>
-        <span style="color:var(--text);font-weight:600;">Delivery Areas</span>
-      </div>
-    </div>
-  </div>
+  /* ── FAQ ── */
+  .faq-list { display:flex; flex-direction:column; gap:.75rem; }
+  .faq-item { border:1.5px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; background:#fff; transition:border-color .2s; }
+  .faq-item.open { border-color:#c8dcc8; }
+  .faq-q { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 1.5rem; cursor:pointer; font-family:var(--font-heading); font-weight:700; font-size:.95rem; color:var(--color-text-primary); user-select:none; }
+  .faq-icon { width:32px; height:32px; border-radius:50%; background:var(--color-bg-header); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .faq-icon svg { transition:transform .2s; }
+  .faq-item.open .faq-icon svg { transform:rotate(45deg); }
+  .faq-a { display:none; padding:0 1.5rem 1.25rem; color:var(--color-text-secondary); font-size:.9rem; line-height:1.75; }
+  .faq-item.open .faq-a { display:block; }
 
-<div class="container">
-  <div class="page-layout-single">
-    <div class="section-card">
-      <div class="section-body">
-        <div class="page-eyebrow"><span class="eyebrow-dot"></span> Delivery</div>
-        <h1 class="page-title">Delivery Areas</h1>
-        <div class="page-intro">Melbourne metro delivery across 8 service zones</div>
-        <div class="page-note">GrowDirect currently delivers across selected Melbourne metro suburbs through 8 active service zones. Before you shop, check that your suburb is within our delivery area.</div>
-      </div>
-    </div>
+  /* ── CTA STRIP ── */
+  .cta-strip { background:var(--color-bg-header); padding:5rem 0; text-align:center; }
+  .cta-strip h2 { font-family:var(--font-heading); font-size:clamp(2rem,4vw,3rem); font-weight:800; color:#fff; margin-bottom:.5rem; letter-spacing:-.02em; }
+  .cta-strip h2 em { font-family:'Lora',serif; font-style:italic; color:var(--color-accent); display:block; }
+  .cta-strip p { color:rgba(255,255,255,.65); font-size:.95rem; margin-bottom:2rem; max-width:520px; margin-left:auto; margin-right:auto; line-height:1.7; }
+  .cta-strip .btn-row { justify-content:center; }
 
-    <div class="section-card" style="margin-top:1.5rem;">
-      <div class="section-body">
-        <h2>Service Zones</h2>
-        <p><strong>Zone — CBD & Surrounds</strong><br>Melbourne CBD, Docklands, Southbank, South Melbourne, Port Melbourne, East Melbourne, West Melbourne, North Melbourne, Parkville, Carlton, Carlton North, Flemington, Kensington, Ascot Vale, Moonee Ponds, Essendon, Essendon North, Essendon West, Aberfeldie, Strathmore, Strathmore Heights, Airport West, Tullamarine, Gladstone Park, Niddrie, Travancore, Newmarket</p>
-        <p><strong>Zone — Inner North</strong><br>Fitzroy, Fitzroy North, Collingwood, Clifton Hill, Abbotsford, Carlton, Carlton North, Brunswick, Brunswick East, Brunswick West, Northcote, Thornbury, Preston, Preston West, Reservoir, Coburg, Coburg North, Pascoe Vale, Pascoe Vale South, Oak Park, Glenroy, Fawkner, Hadfield, Dallas, Broadmeadows, Campbellfield, Lalor, Thomastown, Mill Park, South Morang, Epping, Wollert, Mernda, Doreen</p>
-        <p><strong>Zone — Inner East</strong><br>Richmond, Hawthorn, Hawthorn East, Kew, Kew East, Camberwell, Canterbury, Balwyn, Balwyn North, Box Hill, Box Hill North, Box Hill South, Mont Albert, Mont Albert North, Surrey Hills, Deepdene, Doncaster, Doncaster East, Nunawading, Mitcham, Blackburn, Blackburn North, Blackburn South, Burwood, Burwood East, Ringwood, Ringwood East, Ringwood North, Vermont, Vermont South</p>
-        <p><strong>Zone — Inner West</strong><br>Footscray, West Footscray, Yarraville, Seddon, Kingsville, Spotswood, Newport, Williamstown, Williamstown North, Altona, Altona North, Altona Meadows, Laverton, Sunshine, Sunshine North, Sunshine West, Albion, Ardeer, Deer Park, Derrimut, Hoppers Crossing, Werribee, Werribee South, Point Cook, Williams Landing, Truganina, Tarneit, Wyndham Vale</p>
-        <p><strong>Zone — Inner South</strong><br>South Yarra, Prahran, Windsor, Toorak, Armadale, Malvern, Malvern East, Glen Iris, Kooyong, St Kilda, St Kilda East, St Kilda West, Elwood, Balaclava, Ripponlea, Brighton, Brighton East, Hampton, Sandringham, Black Rock, Beaumaris, Mentone, Moorabbin, Bentleigh, Bentleigh East, McKinnon, Ormond, Murrumbeena, Carnegie, Caulfield, Caulfield North, Caulfield South, Caulfield East, Glen Huntly, Elsternwick</p>
-        <p><strong>Zone — NE Suburbs</strong><br>Heidelberg, Heidelberg Heights, Heidelberg West, Rosanna, Eaglemont, Ivanhoe, Ivanhoe East, Bellfield, Macleod, Watsonia, Greensborough, St Helena, Diamond Creek, Eltham, Eltham North, Research, Templestowe, Templestowe Lower, Doncaster, Bulleen, Balwyn North, Ringwood, Croydon, Croydon Hills, Croydon North, Croydon South, Bayswater, Bayswater North, Kilsyth, Mooroolbark, Lilydale, Chirnside Park, Warranwood, Warrandyte, Park Orchards, Wonga Park</p>
-        <p><strong>Zone — SE Suburbs</strong><br>Glen Waverley, Mount Waverley, Wheelers Hill, Mulgrave, Notting Hill, Clayton, Clayton South, Oakleigh, Oakleigh East, Oakleigh South, Huntingdale, Springvale, Springvale South, Noble Park, Keysborough, Dandenong, Dandenong North, Dandenong South, Lynbrook, Lyndhurst, Cranbourne, Cranbourne North, Cranbourne East, Cranbourne West, Narre Warren, Narre Warren North, Berwick, Hallam, Hampton Park, Endeavour Hills, Cheltenham, Mordialloc, Parkdale, Carrum, Patterson Lakes, Chelsea, Aspendale, Bonbeach, Edithvale</p>
-        <p><strong>Zone — Western Suburbs</strong><br>St Albans, Keilor, Keilor East, Keilor Downs, Keilor Lodge, Keilor Park, Sydenham, Taylors Lakes, Taylors Hill, Caroline Springs, Burnside, Burnside Heights, Melton, Melton South, Melton West, Diggers Rest, Rockbank, Cobblebank, Bacchus Marsh, Ravenhall, Cairnlea, Kealba, Kings Park, Delahey, Hillside, Calder Park, Plumpton, Fraser Rise, Aintree, Deanside, Mount Cottrell</p>
+  /* ── BREADCRUMB ── */
+  .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--color-border); }
+  .breadcrumb-bar .container { max-width:1100px; }
+  .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--color-text-muted); font-family:var(--font-heading); }
+  .breadcrumb a { color:var(--color-text-muted); text-decoration:none; }
+  .breadcrumb a:hover { color:var(--color-text-primary); }
+  .breadcrumb span { margin:0 .4rem; }
 
-        <h2>Delivery & Ordering</h2>
-        <ul>
-          <li>Order by cut-off time for next-day delivery</li>
-          <li>Melbourne metro only</li>
-          <li>No subscription required</li>
-          <li>Direct to your door</li>
-        </ul>
+  /* ── RESPONSIVE ── */
+  @media (max-width:1024px) { .highlights-grid { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:768px) {
+    .hero-page { padding:3rem 0 2.5rem; }
+    .highlights-grid { grid-template-columns:1fr; }
+    .zones-grid-full { grid-template-columns:1fr; }
+    .section { padding:3rem 0; }
+  }
+  @media (max-width:480px) {
+    .btn-row { flex-direction:column; }
+    .cta-strip .btn-row { align-items:center; }
+  }
+</style>
 
-        <h2>Common Delivery Questions</h2>
-        <p><strong>Where does GrowDirect deliver?</strong><br>GrowDirect currently focuses on selected Melbourne metro suburbs across 8 active delivery zones.</p>
-        <p><strong>How do I know if my suburb is included?</strong><br>Check the zone lists above to confirm your suburb is within the active delivery area before shopping.</p>
-        <p><strong>Do you deliver outside Melbourne metro?</strong><br>At this stage, GrowDirect is focused on Melbourne metro delivery only.</p>
-        <p><strong>Do I need a subscription for delivery?</strong><br>No. GrowDirect allows you to order when needed without locking you into a subscription.</p>
-        <p><strong>When will my order arrive?</strong><br>Delivery timing depends on your suburb, the current order cut-off window, and operational scheduling.</p>
-      </div>
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <span style="color:var(--color-text-primary);font-weight:600;">Delivery Areas</span>
     </div>
   </div>
 </div>
+
+<!-- Section 1 — Hero -->
+<section class="hero-page">
+  <div class="container">
+    <div class="eyebrow">Delivery Areas</div>
+    <h1>Melbourne metro delivery across 8 service zones</h1>
+    <p>GrowDirect currently delivers across selected Melbourne metro suburbs through 8 active service zones. Before you shop, check that your suburb is within our delivery area so you can order with confidence.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#delivery-zones">Check Your Suburb</a>
+      <a class="btn btn-secondary" href="/collections/saver-boxes">Shop Saver Boxes</a>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2 — Delivery overview -->
+<section class="section">
+  <div class="container-narrow">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-heading">How delivery works</h2>
+    <div class="overview-body">
+      <p>GrowDirect is designed to make ordering simple for Melbourne households. Customers can shop online, choose the products that suit their household, and have their order delivered direct to their door within our active delivery area.</p>
+      <p>Delivery availability depends on your suburb, so we recommend checking coverage before placing your order.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3 — Delivery highlights -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-eyebrow">Delivery Highlights</div>
+      <h2 class="section-heading">Delivery highlights</h2>
+      <p class="section-intro">A simple, flexible model designed around local delivery and straightforward ordering.</p>
+    </div>
+    <div class="highlights-grid">
+
+      <div class="highlight-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </div>
+        <h3>Melbourne metro focus</h3>
+        <p>GrowDirect currently services selected Melbourne metro suburbs through clearly defined delivery zones.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h3>Check coverage first</h3>
+        <p>Customers should confirm that their suburb is within the current delivery area before shopping or placing an order.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Direct-to-door delivery</h3>
+        <p>Orders are prepared for dispatch and delivered direct to your household within the active service zone.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>No subscription required</h3>
+        <p>You can order when needed, without being locked into a weekly subscription model.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section 4 — Suburb checker + Zone list -->
+<section class="section" id="delivery-zones">
+  <div class="container">
+    <div class="section-eyebrow">Check Your Suburb</div>
+    <h2 class="section-heading">Check your suburb</h2>
+    <p style="color:var(--color-text-secondary);font-size:1rem;line-height:1.7;margin-bottom:2rem;max-width:560px;">GrowDirect currently delivers across the following Melbourne metro service zones. Type your suburb below to check coverage.</p>
+
+    <!-- Suburb search -->
+    <div class="zone-search-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A9A94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="suburb-search" placeholder="Type your suburb name..." autocomplete="off" />
+      <div id="search-result"></div>
+    </div>
+
+    <!-- Zone blocks -->
+    <div class="zones-grid-full">
+
+      <div class="zone-block">
+        <h3><span class="zone-badge">Zone</span> CBD &amp; Surrounds</h3>
+        <p>Melbourne CBD · Docklands · Southbank · South Melbourne · Port Melbourne · East Melbourne · West Melbourne · North Melbourne · Parkville · Carlton · Carlton North · Flemington · Kensington · Ascot Vale · Moonee Ponds · Essendon · Essendon North · Essendon West · Aberfeldie · Strathmore · Strathmore Heights · Airport West · Tullamarine · Gladstone Park · Niddrie · Travancore · Newmarket</p>
+      </div>
+
+      <div class="zone-block">
+        <h3><span class="zone-badge">Zone</span> Inner North</h3>
+        <p>Fitzroy · Fitzroy North · Collingwood · Clifton Hill · Abbotsford · Carlton · Carlton North · Brunswick · Brunswick East · Brunswick West · Northcote · Thornbury · Preston · Preston West · Reservoir · Coburg · Coburg North · Pascoe Vale · Pascoe Vale South · Oak Park · Glenroy · Fawkner · Hadfield · Dallas · Broadmeadows · Campbellfield · Lalor · Thomastown · Mill Park · South Morang · Epping · Wollert · Mernda · Doreen</p>
+      </div>
+
+      <div class="zone-block">
+        <h3><span class="zone-badge">Zone</span> Inner East</h3>
+        <p>Richmond · Hawthorn · Hawthorn East · Kew · Kew East · Camberwell · Canterbury · Balwyn · Balwyn North · Box Hill · Box Hill North · Box Hill South · Mont Albert · Mont Albert North · Surrey Hills · Deepdene · Doncaster · Doncaster East · Nunawading · Mitcham · Blackburn · Blackburn North · Blackburn South · Burwood · Burwood East · Ringwood · Ringwood East · Ringwood North · Vermont · Vermont South</p>
+      </div>
+
+      <div class="zone-block">
+        <h3><span class="zone-badge">Zone</span> Inner West</h3>
+        <p>Footscray · West Footscray · Yarraville · Seddon · Kingsville · Spotswood · Newport · Williamstown · Williamstown North · Altona · Altona North · Altona Meadows · Laverton · Sunshine · Sunshine North · Sunshine West · Albion · Ardeer · Deer Park · Derrimut · Hoppers Crossing · Werribee · Werribee South · Point Cook · Williams Landing · Truganina · Tarneit · Wyndham Vale</p>
+      </div>
+
+      <div class="zone-block">
+        <h3><span class="zone-badge">Zone</span> Inner South</h3>
+        <p>South Yarra · Prahran · Windsor · Toorak · Armadale · Malvern · Malvern East · Glen Iris · Kooyong · St Kilda · St Kilda East · St Kilda West · Elwood · Balaclava · Ripponlea · Brighton · Brighton East · Hampton · Sandringham · Black Rock · Beaumaris · Mentone · Moorabbin · Bentleigh · Bentleigh East · McKinnon · Ormond · Murrumbeena · Carnegie · Caulfield · Caulfield North · Caulfield South · Caulfield East · Glen Huntly · Elsternwick</p>
+      </div>
+
+      <div class="zone-block">
+        <h3><span class="zone-badge">Zone</span> NE Suburbs</h3>
+        <p>Heidelberg · Heidelberg Heights · Heidelberg West · Rosanna · Eaglemont · Ivanhoe · Ivanhoe East · Bellfield · Macleod · Watsonia · Greensborough · St Helena · Diamond Creek · Eltham · Eltham North · Research · Templestowe · Templestowe Lower · Doncaster · Bulleen · Balwyn North · Ringwood · Croydon · Croydon Hills · Croydon North · Croydon South · Bayswater · Bayswater North · Kilsyth · Mooroolbark · Lilydale · Chirnside Park · Warranwood · Warrandyte · Park Orchards · Wonga Park</p>
+      </div>
+
+      <div class="zone-block">
+        <h3><span class="zone-badge">Zone</span> SE Suburbs</h3>
+        <p>Glen Waverley · Mount Waverley · Wheelers Hill · Mulgrave · Notting Hill · Clayton · Clayton South · Oakleigh · Oakleigh East · Oakleigh South · Huntingdale · Springvale · Springvale South · Noble Park · Keysborough · Dandenong · Dandenong North · Dandenong South · Lynbrook · Lyndhurst · Cranbourne · Cranbourne North · Cranbourne East · Cranbourne West · Narre Warren · Narre Warren North · Berwick · Hallam · Hampton Park · Endeavour Hills · Cheltenham · Mordialloc · Parkdale · Carrum · Patterson Lakes · Chelsea · Aspendale · Bonbeach · Edithvale</p>
+      </div>
+
+      <div class="zone-block">
+        <h3><span class="zone-badge">Zone</span> Western Suburbs</h3>
+        <p>St Albans · Keilor · Keilor East · Keilor Downs · Keilor Lodge · Keilor Park · Sydenham · Taylors Lakes · Taylors Hill · Caroline Springs · Burnside · Burnside Heights · Melton · Melton South · Melton West · Diggers Rest · Rockbank · Cobblebank · Bacchus Marsh · Ravenhall · Cairnlea · Kealba · Kings Park · Delahey · Hillside · Calder Park · Plumpton · Fraser Rise · Aintree · Deanside · Mount Cottrell</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section 5 — Delivery timing -->
+<section class="section section-alt">
+  <div class="container-narrow">
+    <div class="section-eyebrow">Ordering</div>
+    <h2 class="section-heading">Delivery timing and ordering</h2>
+    <div class="overview-body">
+      <p>Orders must be placed within the current order cut-off window for the next available delivery run. Delivery timing may vary depending on suburb coverage, operational scheduling, and product availability. Customers should refer to the latest checkout and delivery information when placing an order.</p>
+    </div>
+    <div class="timing-pills">
+      <div class="timing-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Order by cut-off time
+      </div>
+      <div class="timing-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        Next-day delivery
+      </div>
+      <div class="timing-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+        Melbourne metro only
+      </div>
+      <div class="timing-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        No subscription
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 6 — FAQ -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
+      <div>
+        <div class="section-eyebrow">FAQ</div>
+        <h2 class="section-heading">Common delivery questions</h2>
+        <p style="color:var(--color-text-secondary);font-size:.9rem;line-height:1.7;">Everything you need to know about delivery at GrowDirect.</p>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Where does GrowDirect deliver?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">GrowDirect currently focuses on selected Melbourne metro suburbs across 8 active delivery zones. Customers should check delivery coverage before ordering.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>How do I know if my suburb is included?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">You should confirm that your suburb is within the active delivery area before shopping or completing checkout. Use the suburb search above to check quickly.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Do you deliver outside Melbourne metro?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">At this stage, GrowDirect is focused on Melbourne metro delivery only.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Do I need a subscription for delivery?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">No. GrowDirect allows you to order when needed without locking you into a subscription.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>When will my order arrive?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">Delivery timing depends on your suburb, the current order cut-off window, and operational scheduling. Customers should refer to the latest delivery guidance at checkout.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 7 — Closing CTA -->
+<section class="cta-strip">
+  <div class="container">
+    <h2>Ready to check delivery <em>and start shopping?</em></h2>
+    <p>Once you have confirmed your suburb is within our delivery area, you can start with a Saver Box and add extra items to suit your household.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/collections/saver-boxes" style="padding:1rem 2rem;">Shop Saver Boxes</a>
+      <a class="btn btn-secondary" href="/pages/how-it-works" style="padding:1rem 2rem;">How It Works</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(q) {
+    q.addEventListener('click', function() {
+      var item = q.parentElement;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Suburb search
+  var allSuburbs = [
+    {name:'Melbourne CBD',zone:'CBD & Surrounds'},{name:'Docklands',zone:'CBD & Surrounds'},{name:'Southbank',zone:'CBD & Surrounds'},{name:'South Melbourne',zone:'CBD & Surrounds'},{name:'Port Melbourne',zone:'CBD & Surrounds'},{name:'East Melbourne',zone:'CBD & Surrounds'},{name:'West Melbourne',zone:'CBD & Surrounds'},{name:'North Melbourne',zone:'CBD & Surrounds'},{name:'Parkville',zone:'CBD & Surrounds'},{name:'Carlton',zone:'CBD & Surrounds'},{name:'Carlton North',zone:'CBD & Surrounds'},{name:'Flemington',zone:'CBD & Surrounds'},{name:'Kensington',zone:'CBD & Surrounds'},{name:'Ascot Vale',zone:'CBD & Surrounds'},{name:'Moonee Ponds',zone:'CBD & Surrounds'},{name:'Essendon',zone:'CBD & Surrounds'},{name:'Essendon North',zone:'CBD & Surrounds'},{name:'Essendon West',zone:'CBD & Surrounds'},{name:'Aberfeldie',zone:'CBD & Surrounds'},{name:'Strathmore',zone:'CBD & Surrounds'},{name:'Strathmore Heights',zone:'CBD & Surrounds'},{name:'Airport West',zone:'CBD & Surrounds'},{name:'Tullamarine',zone:'CBD & Surrounds'},{name:'Gladstone Park',zone:'CBD & Surrounds'},{name:'Niddrie',zone:'CBD & Surrounds'},{name:'Travancore',zone:'CBD & Surrounds'},{name:'Newmarket',zone:'CBD & Surrounds'},
+    {name:'Fitzroy',zone:'Inner North'},{name:'Fitzroy North',zone:'Inner North'},{name:'Collingwood',zone:'Inner North'},{name:'Clifton Hill',zone:'Inner North'},{name:'Abbotsford',zone:'Inner North'},{name:'Brunswick',zone:'Inner North'},{name:'Brunswick East',zone:'Inner North'},{name:'Brunswick West',zone:'Inner North'},{name:'Northcote',zone:'Inner North'},{name:'Thornbury',zone:'Inner North'},{name:'Preston',zone:'Inner North'},{name:'Preston West',zone:'Inner North'},{name:'Reservoir',zone:'Inner North'},{name:'Coburg',zone:'Inner North'},{name:'Coburg North',zone:'Inner North'},{name:'Pascoe Vale',zone:'Inner North'},{name:'Pascoe Vale South',zone:'Inner North'},{name:'Oak Park',zone:'Inner North'},{name:'Glenroy',zone:'Inner North'},{name:'Fawkner',zone:'Inner North'},{name:'Hadfield',zone:'Inner North'},{name:'Dallas',zone:'Inner North'},{name:'Broadmeadows',zone:'Inner North'},{name:'Campbellfield',zone:'Inner North'},{name:'Lalor',zone:'Inner North'},{name:'Thomastown',zone:'Inner North'},{name:'Mill Park',zone:'Inner North'},{name:'South Morang',zone:'Inner North'},{name:'Epping',zone:'Inner North'},{name:'Wollert',zone:'Inner North'},{name:'Mernda',zone:'Inner North'},{name:'Doreen',zone:'Inner North'},
+    {name:'Richmond',zone:'Inner East'},{name:'Hawthorn',zone:'Inner East'},{name:'Hawthorn East',zone:'Inner East'},{name:'Kew',zone:'Inner East'},{name:'Kew East',zone:'Inner East'},{name:'Camberwell',zone:'Inner East'},{name:'Canterbury',zone:'Inner East'},{name:'Balwyn',zone:'Inner East'},{name:'Balwyn North',zone:'Inner East'},{name:'Box Hill',zone:'Inner East'},{name:'Box Hill North',zone:'Inner East'},{name:'Box Hill South',zone:'Inner East'},{name:'Mont Albert',zone:'Inner East'},{name:'Mont Albert North',zone:'Inner East'},{name:'Surrey Hills',zone:'Inner East'},{name:'Deepdene',zone:'Inner East'},{name:'Doncaster',zone:'Inner East'},{name:'Doncaster East',zone:'Inner East'},{name:'Nunawading',zone:'Inner East'},{name:'Mitcham',zone:'Inner East'},{name:'Blackburn',zone:'Inner East'},{name:'Blackburn North',zone:'Inner East'},{name:'Blackburn South',zone:'Inner East'},{name:'Burwood',zone:'Inner East'},{name:'Burwood East',zone:'Inner East'},{name:'Ringwood',zone:'Inner East'},{name:'Ringwood East',zone:'Inner East'},{name:'Ringwood North',zone:'Inner East'},{name:'Vermont',zone:'Inner East'},{name:'Vermont South',zone:'Inner East'},
+    {name:'Footscray',zone:'Inner West'},{name:'West Footscray',zone:'Inner West'},{name:'Yarraville',zone:'Inner West'},{name:'Seddon',zone:'Inner West'},{name:'Kingsville',zone:'Inner West'},{name:'Spotswood',zone:'Inner West'},{name:'Newport',zone:'Inner West'},{name:'Williamstown',zone:'Inner West'},{name:'Williamstown North',zone:'Inner West'},{name:'Altona',zone:'Inner West'},{name:'Altona North',zone:'Inner West'},{name:'Altona Meadows',zone:'Inner West'},{name:'Laverton',zone:'Inner West'},{name:'Sunshine',zone:'Inner West'},{name:'Sunshine North',zone:'Inner West'},{name:'Sunshine West',zone:'Inner West'},{name:'Albion',zone:'Inner West'},{name:'Ardeer',zone:'Inner West'},{name:'Deer Park',zone:'Inner West'},{name:'Derrimut',zone:'Inner West'},{name:'Hoppers Crossing',zone:'Inner West'},{name:'Werribee',zone:'Inner West'},{name:'Werribee South',zone:'Inner West'},{name:'Point Cook',zone:'Inner West'},{name:'Williams Landing',zone:'Inner West'},{name:'Truganina',zone:'Inner West'},{name:'Tarneit',zone:'Inner West'},{name:'Wyndham Vale',zone:'Inner West'},
+    {name:'South Yarra',zone:'Inner South'},{name:'Prahran',zone:'Inner South'},{name:'Windsor',zone:'Inner South'},{name:'Toorak',zone:'Inner South'},{name:'Armadale',zone:'Inner South'},{name:'Malvern',zone:'Inner South'},{name:'Malvern East',zone:'Inner South'},{name:'Glen Iris',zone:'Inner South'},{name:'Kooyong',zone:'Inner South'},{name:'St Kilda',zone:'Inner South'},{name:'St Kilda East',zone:'Inner South'},{name:'St Kilda West',zone:'Inner South'},{name:'Elwood',zone:'Inner South'},{name:'Balaclava',zone:'Inner South'},{name:'Ripponlea',zone:'Inner South'},{name:'Brighton',zone:'Inner South'},{name:'Brighton East',zone:'Inner South'},{name:'Hampton',zone:'Inner South'},{name:'Sandringham',zone:'Inner South'},{name:'Black Rock',zone:'Inner South'},{name:'Beaumaris',zone:'Inner South'},{name:'Mentone',zone:'Inner South'},{name:'Moorabbin',zone:'Inner South'},{name:'Bentleigh',zone:'Inner South'},{name:'Bentleigh East',zone:'Inner South'},{name:'McKinnon',zone:'Inner South'},{name:'Ormond',zone:'Inner South'},{name:'Murrumbeena',zone:'Inner South'},{name:'Carnegie',zone:'Inner South'},{name:'Caulfield',zone:'Inner South'},{name:'Caulfield North',zone:'Inner South'},{name:'Caulfield South',zone:'Inner South'},{name:'Caulfield East',zone:'Inner South'},{name:'Glen Huntly',zone:'Inner South'},{name:'Elsternwick',zone:'Inner South'},
+    {name:'Heidelberg',zone:'NE Suburbs'},{name:'Heidelberg Heights',zone:'NE Suburbs'},{name:'Heidelberg West',zone:'NE Suburbs'},{name:'Rosanna',zone:'NE Suburbs'},{name:'Eaglemont',zone:'NE Suburbs'},{name:'Ivanhoe',zone:'NE Suburbs'},{name:'Ivanhoe East',zone:'NE Suburbs'},{name:'Bellfield',zone:'NE Suburbs'},{name:'Macleod',zone:'NE Suburbs'},{name:'Watsonia',zone:'NE Suburbs'},{name:'Greensborough',zone:'NE Suburbs'},{name:'St Helena',zone:'NE Suburbs'},{name:'Diamond Creek',zone:'NE Suburbs'},{name:'Eltham',zone:'NE Suburbs'},{name:'Eltham North',zone:'NE Suburbs'},{name:'Research',zone:'NE Suburbs'},{name:'Templestowe',zone:'NE Suburbs'},{name:'Templestowe Lower',zone:'NE Suburbs'},{name:'Bulleen',zone:'NE Suburbs'},{name:'Croydon',zone:'NE Suburbs'},{name:'Croydon Hills',zone:'NE Suburbs'},{name:'Croydon North',zone:'NE Suburbs'},{name:'Croydon South',zone:'NE Suburbs'},{name:'Bayswater',zone:'NE Suburbs'},{name:'Bayswater North',zone:'NE Suburbs'},{name:'Kilsyth',zone:'NE Suburbs'},{name:'Mooroolbark',zone:'NE Suburbs'},{name:'Lilydale',zone:'NE Suburbs'},{name:'Chirnside Park',zone:'NE Suburbs'},{name:'Warranwood',zone:'NE Suburbs'},{name:'Warrandyte',zone:'NE Suburbs'},{name:'Park Orchards',zone:'NE Suburbs'},{name:'Wonga Park',zone:'NE Suburbs'},
+    {name:'Glen Waverley',zone:'SE Suburbs'},{name:'Mount Waverley',zone:'SE Suburbs'},{name:'Wheelers Hill',zone:'SE Suburbs'},{name:'Mulgrave',zone:'SE Suburbs'},{name:'Notting Hill',zone:'SE Suburbs'},{name:'Clayton',zone:'SE Suburbs'},{name:'Clayton South',zone:'SE Suburbs'},{name:'Oakleigh',zone:'SE Suburbs'},{name:'Oakleigh East',zone:'SE Suburbs'},{name:'Oakleigh South',zone:'SE Suburbs'},{name:'Huntingdale',zone:'SE Suburbs'},{name:'Springvale',zone:'SE Suburbs'},{name:'Springvale South',zone:'SE Suburbs'},{name:'Noble Park',zone:'SE Suburbs'},{name:'Keysborough',zone:'SE Suburbs'},{name:'Dandenong',zone:'SE Suburbs'},{name:'Dandenong North',zone:'SE Suburbs'},{name:'Dandenong South',zone:'SE Suburbs'},{name:'Lynbrook',zone:'SE Suburbs'},{name:'Lyndhurst',zone:'SE Suburbs'},{name:'Cranbourne',zone:'SE Suburbs'},{name:'Cranbourne North',zone:'SE Suburbs'},{name:'Cranbourne East',zone:'SE Suburbs'},{name:'Cranbourne West',zone:'SE Suburbs'},{name:'Narre Warren',zone:'SE Suburbs'},{name:'Narre Warren North',zone:'SE Suburbs'},{name:'Berwick',zone:'SE Suburbs'},{name:'Hallam',zone:'SE Suburbs'},{name:'Hampton Park',zone:'SE Suburbs'},{name:'Endeavour Hills',zone:'SE Suburbs'},{name:'Cheltenham',zone:'SE Suburbs'},{name:'Mordialloc',zone:'SE Suburbs'},{name:'Parkdale',zone:'SE Suburbs'},{name:'Carrum',zone:'SE Suburbs'},{name:'Patterson Lakes',zone:'SE Suburbs'},{name:'Chelsea',zone:'SE Suburbs'},{name:'Aspendale',zone:'SE Suburbs'},{name:'Bonbeach',zone:'SE Suburbs'},{name:'Edithvale',zone:'SE Suburbs'},
+    {name:'St Albans',zone:'Western Suburbs'},{name:'Keilor',zone:'Western Suburbs'},{name:'Keilor East',zone:'Western Suburbs'},{name:'Keilor Downs',zone:'Western Suburbs'},{name:'Keilor Lodge',zone:'Western Suburbs'},{name:'Keilor Park',zone:'Western Suburbs'},{name:'Sydenham',zone:'Western Suburbs'},{name:'Taylors Lakes',zone:'Western Suburbs'},{name:'Taylors Hill',zone:'Western Suburbs'},{name:'Caroline Springs',zone:'Western Suburbs'},{name:'Burnside',zone:'Western Suburbs'},{name:'Burnside Heights',zone:'Western Suburbs'},{name:'Melton',zone:'Western Suburbs'},{name:'Melton South',zone:'Western Suburbs'},{name:'Melton West',zone:'Western Suburbs'},{name:'Diggers Rest',zone:'Western Suburbs'},{name:'Rockbank',zone:'Western Suburbs'},{name:'Cobblebank',zone:'Western Suburbs'},{name:'Bacchus Marsh',zone:'Western Suburbs'},{name:'Ravenhall',zone:'Western Suburbs'},{name:'Cairnlea',zone:'Western Suburbs'},{name:'Kealba',zone:'Western Suburbs'},{name:'Kings Park',zone:'Western Suburbs'},{name:'Delahey',zone:'Western Suburbs'},{name:'Hillside',zone:'Western Suburbs'},{name:'Calder Park',zone:'Western Suburbs'},{name:'Plumpton',zone:'Western Suburbs'},{name:'Fraser Rise',zone:'Western Suburbs'},{name:'Aintree',zone:'Western Suburbs'},{name:'Deanside',zone:'Western Suburbs'},{name:'Mount Cottrell',zone:'Western Suburbs'}
+  ];
+
+  var input = document.getElementById('suburb-search');
+  var result = document.getElementById('search-result');
+
+  if (input && result) {
+    input.addEventListener('input', function() {
+      var val = input.value.trim().toLowerCase();
+      result.textContent = '';
+      result.className = '';
+      if (val.length < 2) return;
+      var match = allSuburbs.find(function(s) {
+        return s.name.toLowerCase() === val || s.name.toLowerCase().startsWith(val);
+      });
+      if (match) {
+        result.textContent = '✓ ' + match.name + ' is in our ' + match.zone + ' delivery zone.';
+        result.className = 'found';
+      } else {
+        result.textContent = '✗ Suburb not found in our current delivery area. Check back as we expand.';
+        result.className = 'not-found';
+      }
+    });
+  }
+</script>
 
 {% schema %}
 {

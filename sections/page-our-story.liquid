@@ -1,108 +1,225 @@
 <style>
-  /* ── GrowDirect — Our Story ── */
-    :root {
-      --green:#0A4A2F; --accent:#F28C38; --accent-hover:#E07B2D;
-      --text:#1A3C34; --text-secondary:#5C6B66; --text-muted:#8A9A94;
-      --border:#E8F0EB; --bg:#F8F9FA; --white:#fff;
-      --radius:1rem; --radius-xl:1.5rem;
-      --font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
-      --font-body:"Inter",-apple-system,sans-serif;
-    }
-    *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:var(--font-body); color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
-    .container { max-width:780px; margin:0 auto; padding:0 1.5rem; }
+  :root {
+    --color-bg-primary:#F8F9FA;
+    --color-bg-header:#0A4A2F;
+    --color-accent:#F28C38;
+    --color-accent-hover:#E07B2D;
+    --color-text-primary:#1A3C34;
+    --color-text-secondary:#5C6B66;
+    --color-text-muted:#8A9A94;
+    --color-border:#E8F0EB;
+    --font-heading:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-body:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+    --container:1200px;
+    --radius-lg:1rem;
+    --radius-xl:1.5rem;
+  }
+  *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:var(--font-body); color:var(--color-text-primary); line-height:1.6; -webkit-font-smoothing:antialiased; background:#fff; }
+  .container { max-width:var(--container); margin:0 auto; padding:0 1.5rem; }
+  .container-narrow { max-width:780px; margin:0 auto; padding:0 1.5rem; }
 
-    .collection-hero { width:100%; aspect-ratio:21/6; overflow:hidden; background:var(--green); }
-    .collection-hero .hero-img { width:100%; height:100%; object-fit:cover; display:block; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.5rem; border:none; border-radius:999px; font-family:var(--font-heading); font-weight:700; font-size:.9rem; text-decoration:none; cursor:pointer; transition:all .2s; }
+  .btn-primary { background:var(--color-accent); color:#fff; }
+  .btn-primary:hover { background:var(--color-accent-hover); transform:translateY(-1px); }
+  .btn-secondary { background:transparent; color:#fff; border:2px solid rgba(255,255,255,.4); }
+  .btn-secondary:hover { border-color:var(--color-accent); color:var(--color-accent); }
 
-    .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--border); }
-    .breadcrumb-bar .container { max-width:1100px; }
-    .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); }
-    .breadcrumb a { color:var(--text-muted); text-decoration:none; }
-    .breadcrumb a:hover { color:var(--text); }
-    .breadcrumb span { margin:0 .4rem; }
+  /* ── HERO ── */
+  .hero-story { background:var(--color-bg-header); padding:5rem 0 4rem; position:relative; overflow:hidden; }
+  .hero-story::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 70% 50%, rgba(242,140,56,.08) 0%, transparent 60%); pointer-events:none; }
+  .hero-story .eyebrow { display:inline-block; background:rgba(242,140,56,.15); color:var(--color-accent); border:1px solid rgba(242,140,56,.3); padding:.4rem 1rem; border-radius:999px; font-size:.75rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; margin-bottom:1.5rem; font-family:var(--font-heading); }
+  .hero-story h1 { font-family:var(--font-heading); font-size:clamp(2.2rem,5vw,3.5rem); font-weight:800; color:#fff; line-height:1.1; margin-bottom:1.25rem; max-width:680px; letter-spacing:-.02em; }
+  .hero-story h1 em { font-family:'Lora',serif; font-style:italic; font-weight:700; color:var(--color-accent); }
+  .hero-story p { color:rgba(255,255,255,.7); font-size:1.05rem; line-height:1.75; max-width:580px; margin-bottom:2rem; }
+  .hero-story .btn-row { display:flex; gap:1rem; flex-wrap:wrap; }
 
-    .page-layout { padding:1.75rem 0 5rem; }
-    .section-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; margin-bottom:1.25rem; }
-    .section-body { padding:2rem 1.75rem; }
+  /* ── ABOUT SECTION ── */
+  .section { padding:5rem 0; }
+  .section-alt { background:var(--color-bg-primary); }
+  .section-dark { background:var(--color-bg-header); }
 
-    .page-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; font-family:var(--font-heading); display:inline-flex; align-items:center; gap:.4rem; }
-    .page-title { font-family:var(--font-heading); font-size:1.85rem; font-weight:800; color:var(--text); line-height:1.1; margin-bottom:.6rem; }
-    .page-intro { font-size:1rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.25rem; }
-    .eyebrow-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .story-body { font-size:1rem; color:var(--color-text-secondary); line-height:1.85; }
+  .story-body p { margin-bottom:1.5rem; }
+  .story-body p:last-child { margin-bottom:0; }
+  .story-body strong { color:var(--color-text-primary); font-weight:600; }
 
-    .prose p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
-    .prose p:last-child { margin-bottom:0; }
-    .prose h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
+  .section-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--color-accent); margin-bottom:.6rem; font-family:var(--font-heading); }
+  .section-heading { font-family:var(--font-heading); font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:800; color:var(--color-text-primary); line-height:1.15; letter-spacing:-.02em; margin-bottom:1rem; }
+  .section-heading-white { color:#fff; }
+  .section-subtext { color:var(--color-text-secondary); font-size:1rem; line-height:1.7; max-width:600px; margin-bottom:3rem; }
 
-    .support-image { width:100%; border-radius:var(--radius); display:block; margin:1.5rem 0; }
+  /* ── STORY CALLOUT BOX ── */
+  .story-callout { background:#F0F7F2; border-left:4px solid var(--color-bg-header); border-radius:0 var(--radius-lg) var(--radius-lg) 0; padding:1.5rem 2rem; margin:2.5rem 0; }
+  .story-callout p { color:var(--color-text-primary); font-size:1rem; line-height:1.75; margin:0; font-style:italic; }
 
-    .page-layout-single { padding:1.75rem 0 5rem; }
-    .page-note { font-size:.9rem; color:var(--text-muted); line-height:1.65; font-style:italic; margin-top:.5rem; }
-    .section-body h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
-    .section-body h2:first-child { margin-top:0; }
-    .section-body p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
-    .section-body p:last-child { margin-bottom:0; }
-    .section-body ul, .section-body ol { padding-left:1.25rem; margin-bottom:1rem; color:var(--text-secondary); line-height:1.75; font-size:.95rem; }
-    .section-body li { margin-bottom:.5rem; }
-    .section-body li:last-child { margin-bottom:0; }
-    .section-body strong { color:var(--text); font-weight:700; }
-  </style>
+  /* ── WHY CARDS ── */
+  .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .why-card { background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-xl); padding:2rem; transition:all .3s; }
+  .why-card:hover { border-color:#0A4A2F; box-shadow:0 8px 24px rgba(10,74,47,.1); transform:translateY(-3px); }
+  .why-card .icon { width:44px; height:44px; background:#F0F7F2; border-radius:.875rem; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
+  .why-card h3 { font-family:var(--font-heading); font-size:1rem; font-weight:700; color:var(--color-text-primary); margin-bottom:.5rem; line-height:1.3; }
+  .why-card p { font-size:.875rem; color:var(--color-text-secondary); line-height:1.65; margin:0; }
 
-{%- if section.settings.hero_image -%}
-  <div class="collection-hero">
-    {{ section.settings.hero_image | image_url: width: 1440 | image_tag:
-      loading: 'eager',
-      fetchpriority: 'high',
-      class: 'hero-img',
-      alt: section.settings.hero_image.alt | default: 'Our Story' }}
-  </div>
-{%- endif -%}
+  /* ── CLOSING TRUST LINE ── */
+  .trust-line { text-align:center; padding:4rem 0; }
+  .trust-line h2 { font-family:var(--font-heading); font-size:clamp(1.5rem,3vw,2.25rem); font-weight:800; color:var(--color-text-primary); max-width:600px; margin:0 auto; line-height:1.25; letter-spacing:-.02em; }
 
-  <div class="breadcrumb-bar">
-    <div class="container">
-      <div class="breadcrumb">
-        <a href="/">Home</a><span>›</span>
-        <span style="color:var(--text);font-weight:600;">Our Story</span>
-      </div>
-    </div>
-  </div>
+  /* ── CTA STRIP ── */
+  .cta-strip { background:var(--color-bg-header); padding:5rem 0; text-align:center; }
+  .cta-strip h2 { font-family:var(--font-heading); font-size:clamp(2rem,4vw,3rem); font-weight:800; color:#fff; margin-bottom:.25rem; }
+  .cta-strip h2 em { font-family:'Lora',serif; font-style:italic; color:var(--color-accent); display:block; }
+  .cta-strip p { color:rgba(255,255,255,.65); font-size:.95rem; margin-bottom:2rem; }
+  .cta-strip .btn-row { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
 
-<div class="container">
-  <div class="page-layout-single">
-    <div class="section-card">
-      <div class="section-body">
-        <div class="page-eyebrow"><span class="eyebrow-dot"></span> About</div>
-        <h1 class="page-title">Our Story</h1>
-        <div class="page-intro">Built on over 50 years of family experience in fresh produce</div>
-        <div class="page-note">From orchard operations in Harcourt, Victoria, to wholesale supply into major fresh produce markets across Australia and direct retail through our well-known Apple of the Valley store, GrowDirect is built on real industry knowledge.</div>
-      </div>
-    </div>
+  /* ── BREADCRUMB ── */
+  .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--color-border); }
+  .breadcrumb-bar .container { max-width:1100px; }
+  .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--color-text-muted); font-family:var(--font-heading); }
+  .breadcrumb a { color:var(--color-text-muted); text-decoration:none; }
+  .breadcrumb a:hover { color:var(--color-text-primary); }
+  .breadcrumb span { margin:0 .4rem; }
 
-    <div class="section-card" style="margin-top:1.5rem;">
-      <div class="section-body">
-        <h2>About GrowDirect</h2>
-        <p>GrowDirect is built on over 50 years of family experience across produce growing, grading, packing, wholesale supply, and direct food retail.</p>
-        <p>Our story is grounded in generations of hands-on involvement in the fresh produce industry. Over the years, our family has worked across orchard operations, fruit washing and grading, packing produce for sale, wholesale supply into major fresh produce markets across Australia, and direct-to-customer retail. That experience has given us a practical understanding of food, quality, and how produce moves from source to household.</p>
-        <p>In Harcourt, Victoria, we operated an apple orchard and fruit processing facility where fruit was washed, graded by size and quality, and prepared for packing. We also owned and operated Apple of the Valley, a well-known roadside store that became a trusted stop for customers travelling from across Victoria, South Australia and New South Wales.</p>
-        <p>Customers visited for the freshest apples, seasonal fruit and vegetables, 100% pure honey, traditional lollies for the kids, and practical everyday value. Many still remember the small touches that made Apple of the Valley special — like receiving a complimentary takeaway coffee before heading off on the final 30 minutes to an hour of the trip home.</p>
-        <p>Quality fruit was packed for retail sale, while second-grade fruit was packed into 10kg boxes, giving families an affordable option without compromising on freshness. It was more than just a store stop — it reflected the kind of business we believed in then, and still believe in now: quality food, honest value, and genuine customer care.</p>
-        <p>Our involvement in wholesale supply to major fresh produce markets across Australia gave us a broader understanding of the industry — from product standards and packing requirements to market expectations, product movement, and the realities of supplying fresh food at scale.</p>
-        <p>GrowDirect is the modern evolution of that experience. We created GrowDirect to bring together direct sourcing, practical value, and a simpler way for households to buy fresh produce and everyday food essentials. Built on decades of real industry knowledge, GrowDirect combines traditional produce experience with a modern direct-to-household model designed around trust, convenience, and honest value.</p>
+  /* ── RESPONSIVE ── */
+  @media (max-width:1024px) { .why-grid { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:768px) {
+    .hero-story { padding:3rem 0 2.5rem; }
+    .why-grid { grid-template-columns:1fr; }
+    .section { padding:3rem 0; }
+  }
+  @media (max-width:480px) {
+    .hero-story .btn-row { flex-direction:column; }
+    .cta-strip .btn-row { flex-direction:column; align-items:center; }
+  }
+</style>
 
-        <h2>Why GrowDirect</h2>
-        <ul>
-          <li><strong>Over 50 years of family experience</strong> — Built on generations of hands-on work across produce growing, grading, packing, wholesale supply, and direct food retail.</li>
-          <li><strong>Real produce knowledge</strong> — Our background comes from working directly with food — understanding quality, handling, packing, and what freshness really means in practice.</li>
-          <li><strong>Experience across the full supply chain</strong> — From orchard operations to wholesale market supply and direct household sales, we understand how food moves and what customers value.</li>
-          <li><strong>Practical value for everyday households</strong> — We have long understood that customers shop in different ways — some for premium quality, some for value, and many for both.</li>
-          <li><strong>A modern business built on trusted foundations</strong> — GrowDirect brings traditional produce experience into a simpler, more convenient, direct-to-household food model.</li>
-        </ul>
-      </div>
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <span style="color:var(--color-text-primary);font-weight:600;">Our Story</span>
     </div>
   </div>
 </div>
+
+<!-- Hero -->
+<section class="hero-story">
+  <div class="container">
+    <div class="eyebrow">Our Story</div>
+    <h1>Built on over 50 years of <em>family experience</em> in fresh produce</h1>
+    <p>From orchard operations in Harcourt, Victoria, to wholesale supply into major fresh produce markets across Australia and direct retail through our well-known Apple of the Valley store, GrowDirect is built on real industry knowledge.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#about-growdirect">Read Our Story</a>
+      <a class="btn btn-secondary" href="/collections/saver-boxes">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- About GrowDirect -->
+<section class="section" id="about-growdirect">
+  <div class="container-narrow">
+    <div class="section-eyebrow">About GrowDirect</div>
+    <h2 class="section-heading">About GrowDirect</h2>
+
+    <div class="story-body">
+      <p>GrowDirect is built on over 50 years of family experience across produce growing, grading, packing, wholesale supply, and direct food retail.</p>
+
+      <p>Our story is grounded in generations of hands-on involvement in the fresh produce industry. Over the years, our family has worked across orchard operations, fruit washing and grading, packing produce for sale, wholesale supply into major fresh produce markets across Australia, and direct-to-customer retail. That experience has given us a practical understanding of food, quality, and how produce moves from source to household.</p>
+
+      <p>In Harcourt, Victoria, we operated an apple orchard and fruit processing facility where fruit was washed, graded by size and quality, and prepared for packing. We also owned and operated <strong>Apple of the Valley</strong>, a well-known roadside store that became a trusted stop for customers travelling from across Victoria, South Australia and New South Wales.</p>
+
+      <div class="story-callout">
+        <p>Customers visited for the freshest apples, seasonal fruit and vegetables, 100% pure honey, traditional lollies for the kids, and practical everyday value. Many still remember the small touches that made Apple of the Valley special — like receiving a complimentary takeaway coffee before heading off on the final 30 minutes to an hour of the trip home.</p>
+      </div>
+
+      <p>Quality fruit was packed for retail sale, while second-grade fruit was packed into 10kg boxes, giving families an affordable option without compromising on freshness. It was more than just a store stop; it reflected the kind of business we believed in then, and still believe in now: <strong>quality food, honest value, and genuine customer care.</strong></p>
+
+      <p>Our involvement in wholesale supply to major fresh produce markets across Australia gave us a broader understanding of the industry — from product standards and packing requirements to market expectations, product movement, and the realities of supplying fresh food at scale.</p>
+
+      <p><strong>GrowDirect is the modern evolution of that experience.</strong></p>
+
+      <p>We created GrowDirect to bring together direct sourcing, practical value, and a simpler way for households to buy fresh produce and everyday food essentials. Built on decades of real industry knowledge, GrowDirect combines traditional produce experience with a modern direct-to-household model designed around trust, convenience, and honest value.</p>
+
+      <p>At its core, GrowDirect is a family business shaped by generations in the industry and built for the way modern households shop today.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Why GrowDirect -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <div class="section-eyebrow">Why GrowDirect</div>
+      <h2 class="section-heading" style="margin:0 auto .75rem;">Why GrowDirect</h2>
+      <p style="color:var(--color-text-secondary);font-size:1rem;max-width:560px;margin:0 auto;line-height:1.7;">Built on real produce experience, shaped by generations in the industry, and designed for the way households shop today.</p>
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-5 8-12a8 8 0 0 0-16 0c0 7 8 12 8 12z"/><path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M12 10v5"/></svg>
+        </div>
+        <h3>Over 50 years of family experience</h3>
+        <p>Built on generations of hands-on work across produce growing, grading, packing, wholesale supply, and direct food retail.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        </div>
+        <h3>Real produce knowledge</h3>
+        <p>Our background comes from working directly with food — understanding quality, handling, packing, and what freshness really means in practice.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Experience across the full supply chain</h3>
+        <p>From orchard operations to wholesale market supply and direct household sales, we understand how food moves and what customers value.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Practical value for everyday households</h3>
+        <p>We have long understood that customers shop in different ways — some for premium quality, some for value, and many for both.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>A modern business built on trusted foundations</h3>
+        <p>GrowDirect brings traditional produce experience into a simpler, more convenient, direct-to-household food model.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Closing Trust Line -->
+<section class="trust-line">
+  <div class="container">
+    <h2>Fresh produce knowledge built over generations,<br>now delivered for modern households.</h2>
+  </div>
+</section>
+
+<!-- CTA Strip -->
+<section class="cta-strip">
+  <div class="container">
+    <h2>Ready to shop GrowDirect? <em>weekly shop?</em></h2>
+    <p>Explore Saver Boxes, Weekly Specials, and everyday food essentials delivered across Melbourne metro.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/collections/saver-boxes" style="border-radius:999px;padding:1rem 2rem;">Shop Saver Boxes</a>
+      <a class="btn btn-secondary" href="/collections/weekly-specials" style="border-radius:999px;padding:1rem 2rem;">View Weekly Specials</a>
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {

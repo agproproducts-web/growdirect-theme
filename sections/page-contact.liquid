@@ -1,134 +1,447 @@
 <style>
-  /* ── GrowDirect — Contact Us ── */
-    :root {
-      --green:#0A4A2F; --accent:#F28C38; --accent-hover:#E07B2D;
-      --text:#1A3C34; --text-secondary:#5C6B66; --text-muted:#8A9A94;
-      --border:#E8F0EB; --bg:#F8F9FA; --white:#fff;
-      --radius:1rem; --radius-xl:1.5rem;
-      --font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
-      --font-body:"Inter",-apple-system,sans-serif;
-    }
-    *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:var(--font-body); color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
-    .container { max-width:680px; margin:0 auto; padding:0 1.5rem; }
+  :root {
+    --color-bg-primary:#F8F9FA;
+    --color-bg-header:#0A4A2F;
+    --color-accent:#F28C38;
+    --color-accent-hover:#E07B2D;
+    --color-text-primary:#1A3C34;
+    --color-text-secondary:#5C6B66;
+    --color-text-muted:#8A9A94;
+    --color-border:#E8F0EB;
+    --font-heading:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-body:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+    --container:1200px;
+    --radius-lg:1rem;
+    --radius-xl:1.5rem;
+  }
+  *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:var(--font-body); color:var(--color-text-primary); line-height:1.6; -webkit-font-smoothing:antialiased; background:#fff; }
+  .container { max-width:var(--container); margin:0 auto; padding:0 1.5rem; }
+  .container-narrow { max-width:780px; margin:0 auto; padding:0 1.5rem; }
 
-    .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--border); }
-    .breadcrumb-bar .container { max-width:1100px; }
-    .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); }
-    .breadcrumb a { color:var(--text-muted); text-decoration:none; }
-    .breadcrumb a:hover { color:var(--text); }
-    .breadcrumb span { margin:0 .4rem; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.5rem; border:none; border-radius:999px; font-family:var(--font-heading); font-weight:700; font-size:.9rem; text-decoration:none; cursor:pointer; transition:all .2s; white-space:nowrap; }
+  .btn-primary { background:var(--color-accent); color:#fff; }
+  .btn-primary:hover { background:var(--color-accent-hover); transform:translateY(-1px); }
+  .btn-secondary { background:transparent; color:#fff; border:2px solid rgba(255,255,255,.4); }
+  .btn-secondary:hover { border-color:var(--color-accent); color:var(--color-accent); }
+  .btn-outline { background:transparent; color:var(--color-text-primary); border:2px solid var(--color-border); border-radius:999px; }
+  .btn-outline:hover { border-color:#0A4A2F; color:#0A4A2F; }
+  .btn-row { display:flex; gap:1rem; flex-wrap:wrap; }
 
-    .page-layout { padding:1.75rem 0 5rem; }
-    .section-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; margin-bottom:1.25rem; }
-    .section-body { padding:2rem 1.75rem; }
+  /* ── HERO ── */
+  .hero-page { background:var(--color-bg-header); padding:5rem 0 4rem; position:relative; overflow:hidden; }
+  .hero-page::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%, rgba(242,140,56,.07) 0%, transparent 60%); pointer-events:none; }
+  .eyebrow { display:inline-block; background:rgba(242,140,56,.15); color:var(--color-accent); border:1px solid rgba(242,140,56,.3); padding:.4rem 1rem; border-radius:999px; font-size:.75rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; margin-bottom:1.5rem; font-family:var(--font-heading); }
+  .hero-page h1 { font-family:var(--font-heading); font-size:clamp(2.2rem,5vw,3.5rem); font-weight:800; color:#fff; line-height:1.1; margin-bottom:1.25rem; max-width:600px; letter-spacing:-.02em; }
+  .hero-page p { color:rgba(255,255,255,.7); font-size:1.05rem; line-height:1.75; max-width:560px; margin-bottom:2rem; }
 
-    .page-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; font-family:var(--font-heading); display:inline-flex; align-items:center; gap:.4rem; }
-    .page-title { font-family:var(--font-heading); font-size:1.85rem; font-weight:800; color:var(--text); line-height:1.1; margin-bottom:.6rem; }
-    .page-intro { font-size:1rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.5rem; }
-    .eyebrow-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  /* ── SECTIONS ── */
+  .section { padding:5rem 0; }
+  .section-alt { background:var(--color-bg-primary); }
+  .section-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--color-accent); margin-bottom:.6rem; font-family:var(--font-heading); }
+  .section-heading { font-family:var(--font-heading); font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:800; color:var(--color-text-primary); line-height:1.15; letter-spacing:-.02em; margin-bottom:.75rem; }
+  .section-intro { color:var(--color-text-secondary); font-size:1rem; line-height:1.7; max-width:600px; margin-bottom:3rem; }
+  .section-header-center { text-align:center; margin-bottom:3rem; }
+  .section-header-center .section-intro { margin-left:auto; margin-right:auto; }
 
-    /* CONTACT FORM */
-    .contact-form { display:flex; flex-direction:column; gap:1rem; }
-    .field { display:flex; flex-direction:column; gap:.4rem; }
-    .field label { font-family:var(--font-heading); font-size:.78rem; font-weight:700; color:var(--text); }
-    .field input,
-    .field textarea { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border); border-radius:var(--radius); font-family:var(--font-body); font-size:.9rem; color:var(--text); background:#fff; outline:none; transition:border-color .15s; }
-    .field input:focus,
-    .field textarea:focus { border-color:var(--green); }
-    .field textarea { resize:vertical; min-height:120px; line-height:1.5; }
-    .submit-btn { padding:.85rem 1.5rem; background:var(--green); color:#fff; border:none; border-radius:999px; font-family:var(--font-heading); font-size:.9rem; font-weight:700; cursor:pointer; transition:background .2s; align-self:flex-start; }
-    .submit-btn:hover { background:#0d5b3a; }
+  /* ── CONTACT INTRO SPLIT ── */
+  .contact-intro-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+  .contact-intro-text h2 { font-family:var(--font-heading); font-size:clamp(1.5rem,3vw,2.25rem); font-weight:800; color:var(--color-text-primary); margin-bottom:.5rem; letter-spacing:-.02em; }
+  .contact-intro-text .subheading { font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--color-accent); margin-bottom:.6rem; font-family:var(--font-heading); }
+  .contact-intro-text p { color:var(--color-text-secondary); font-size:.95rem; line-height:1.75; margin-bottom:1.75rem; }
+  .contact-visual { background:#F0F7F2; border-radius:var(--radius-xl); padding:3rem; display:flex; flex-direction:column; gap:1.25rem; }
+  .contact-detail-item { display:flex; align-items:flex-start; gap:1rem; }
+  .contact-detail-item .icon { width:40px; height:40px; background:#fff; border-radius:.75rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 2px 8px rgba(10,74,47,.08); }
+  .contact-detail-item .label { font-family:var(--font-heading); font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--color-text-muted); margin-bottom:.2rem; }
+  .contact-detail-item .value { font-size:.9rem; font-weight:600; color:var(--color-text-primary); }
+  .contact-detail-item .value a { color:var(--color-accent); text-decoration:none; }
+  .contact-detail-item .value a:hover { text-decoration:underline; }
 
-    .form-note { font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); font-weight:600; margin-top:1rem; display:flex; align-items:center; gap:.4rem; }
-    .form-success { padding:.875rem 1.125rem; background:rgba(22,163,74,.08); border:1px solid rgba(22,163,74,.25); border-radius:var(--radius); font-size:.9rem; color:#16A34A; font-weight:600; font-family:var(--font-heading); margin-bottom:1.25rem; }
-    .form-error { padding:.75rem 1rem; background:rgba(220,38,38,.06); border:1px solid rgba(220,38,38,.2); border-radius:var(--radius); font-size:.85rem; color:#DC2626; font-family:var(--font-heading); margin-bottom:1rem; }
-    .form-error ul { list-style:none; padding:0; margin:0; }
+  /* ── CONTACT FORM ── */
+  .form-wrap { background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-xl); padding:2.5rem; max-width:680px; }
+  .form-wrap h2 { font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:var(--color-text-primary); margin-bottom:.4rem; }
+  .form-wrap .form-intro { color:var(--color-text-secondary); font-size:.9rem; margin-bottom:2rem; line-height:1.6; }
+  .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+  .form-field { display:flex; flex-direction:column; gap:.4rem; }
+  .form-field.full { grid-column:1/-1; }
+  .form-field label { font-family:var(--font-heading); font-size:.8rem; font-weight:700; color:var(--color-text-primary); }
+  .form-field input,
+  .form-field select,
+  .form-field textarea { padding:.75rem 1rem; border:2px solid var(--color-border); border-radius:.75rem; font-family:var(--font-body); font-size:.9rem; color:var(--color-text-primary); outline:none; transition:border-color .2s; background:#fff; width:100%; }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus { border-color:#0A4A2F; }
+  .form-field textarea { resize:vertical; min-height:130px; }
+  .form-submit { margin-top:1.5rem; }
+  .form-note { font-size:.78rem; color:var(--color-text-muted); margin-top:.75rem; line-height:1.5; }
+  .form-success { padding:.875rem 1.125rem; background:rgba(22,163,74,.08); border:1px solid rgba(22,163,74,.25); border-radius:.875rem; font-size:.9rem; color:#16A34A; font-weight:600; font-family:var(--font-heading); margin-bottom:1.25rem; }
+  .form-error { padding:.75rem 1rem; background:rgba(220,38,38,.06); border:1px solid rgba(220,38,38,.2); border-radius:.875rem; font-size:.85rem; color:#DC2626; font-family:var(--font-heading); margin-bottom:1rem; }
+  .form-error ul { list-style:none; padding:0; margin:0; }
 
-    .support-image { width:100%; border-radius:var(--radius); display:block; margin:1.5rem 0 0; }
+  /* ── HOW WE CAN HELP CARDS ── */
+  .help-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
+  .help-card { background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-xl); padding:2rem; transition:all .3s; }
+  .help-card:hover { border-color:#0A4A2F; box-shadow:0 8px 24px rgba(10,74,47,.1); transform:translateY(-3px); }
+  .help-card .icon { width:44px; height:44px; background:#F0F7F2; border-radius:.875rem; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
+  .help-card h3 { font-family:var(--font-heading); font-size:1rem; font-weight:700; color:var(--color-text-primary); margin-bottom:.5rem; }
+  .help-card p { font-size:.875rem; color:var(--color-text-secondary); line-height:1.65; margin:0; }
 
-    .page-layout-single { padding:1.75rem 0 5rem; }
-    .page-note { font-size:.9rem; color:var(--text-muted); line-height:1.65; font-style:italic; margin-top:.5rem; }
-    .section-body h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
-    .section-body h2:first-child { margin-top:0; }
-    .section-body p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
-    .section-body p:last-child { margin-bottom:0; }
-    .section-body ul, .section-body ol { padding-left:1.25rem; margin-bottom:1rem; color:var(--text-secondary); line-height:1.75; font-size:.95rem; }
-    .section-body li { margin-bottom:.5rem; }
-    .section-body li:last-child { margin-bottom:0; }
-    .section-body strong { color:var(--text); font-weight:700; }
-  </style>
+  /* ── CONTACT DETAILS SECTION ── */
+  .details-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-top:1.75rem; }
+  .detail-card { background:#F0F7F2; border-radius:var(--radius-lg); padding:1.5rem; }
+  .detail-card .label { font-family:var(--font-heading); font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--color-text-muted); margin-bottom:.4rem; }
+  .detail-card .value { font-size:.95rem; font-weight:600; color:var(--color-text-primary); }
+  .detail-card .value a { color:var(--color-accent); text-decoration:none; }
+  .detail-card .value a:hover { text-decoration:underline; }
 
-  <div class="breadcrumb-bar">
-    <div class="container">
-      <div class="breadcrumb">
-        <a href="/">Home</a><span>›</span>
-        <span style="color:var(--text);font-weight:600;">Contact Us</span>
-      </div>
-    </div>
-  </div>
+  /* ── FAQ ── */
+  .faq-list { display:flex; flex-direction:column; gap:.75rem; }
+  .faq-item { border:1.5px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; background:#fff; transition:border-color .2s; }
+  .faq-item.open { border-color:#c8dcc8; }
+  .faq-q { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 1.5rem; cursor:pointer; font-family:var(--font-heading); font-weight:700; font-size:.95rem; color:var(--color-text-primary); user-select:none; }
+  .faq-icon { width:32px; height:32px; border-radius:50%; background:var(--color-bg-header); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .faq-icon svg { transition:transform .2s; }
+  .faq-item.open .faq-icon svg { transform:rotate(45deg); }
+  .faq-a { display:none; padding:0 1.5rem 1.25rem; color:var(--color-text-secondary); font-size:.9rem; line-height:1.75; }
+  .faq-item.open .faq-a { display:block; }
 
-<div class="container">
-  <div class="page-layout-single">
-    <div class="section-card">
-      <div class="section-body">
-        <div class="page-eyebrow"><span class="eyebrow-dot"></span> Get In Touch</div>
-        <h1 class="page-title">Contact</h1>
-        <div class="page-intro">Get in touch with GrowDirect</div>
-        <div class="page-note">If you have a question about ordering, delivery, Saver Boxes, or anything else, we are here to help. Use the contact form below and our team will get back to you as soon as possible.</div>
-      </div>
-    </div>
+  /* ── CTA STRIP ── */
+  .cta-strip { background:var(--color-bg-header); padding:5rem 0; text-align:center; }
+  .cta-strip h2 { font-family:var(--font-heading); font-size:clamp(2rem,4vw,3rem); font-weight:800; color:#fff; margin-bottom:.5rem; letter-spacing:-.02em; }
+  .cta-strip h2 em { font-family:'Lora',serif; font-style:italic; color:var(--color-accent); display:block; }
+  .cta-strip p { color:rgba(255,255,255,.65); font-size:.95rem; margin-bottom:2rem; max-width:520px; margin-left:auto; margin-right:auto; line-height:1.7; }
+  .cta-strip .btn-row { justify-content:center; }
 
-    <div class="section-card" style="margin-top:1.5rem;">
-      <div class="section-body">
-        <h2>Contact Details</h2>
-        <p><strong>Email:</strong> hello@growdirect.com.au<br>
-        <strong>Service Area:</strong> Melbourne metro<br>
-        <strong>Response Time:</strong> As soon as possible</p>
+  /* ── BREADCRUMB ── */
+  .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--color-border); }
+  .breadcrumb-bar .container { max-width:1100px; }
+  .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--color-text-muted); font-family:var(--font-heading); }
+  .breadcrumb a { color:var(--color-text-muted); text-decoration:none; }
+  .breadcrumb a:hover { color:var(--color-text-primary); }
+  .breadcrumb span { margin:0 .4rem; }
 
-        <h2>Send a Message</h2>
-        {% form 'contact' %}
-          <div style="margin-bottom:1rem;">
-            <label for="ContactFormName" style="display:block;margin-bottom:.375rem;font-weight:600;">Full name</label>
-            <input type="text" id="ContactFormName" name="contact[name]" autocomplete="name" style="width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.5rem;font-size:1rem;">
-          </div>
-          <div style="margin-bottom:1rem;">
-            <label for="ContactFormEmail" style="display:block;margin-bottom:.375rem;font-weight:600;">Email address</label>
-            <input type="email" id="ContactFormEmail" name="contact[email]" autocomplete="email" style="width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.5rem;font-size:1rem;">
-          </div>
-          <div style="margin-bottom:1rem;">
-            <label for="ContactFormPhone" style="display:block;margin-bottom:.375rem;font-weight:600;">Phone number <span style="font-weight:400;color:var(--text-muted);">(optional)</span></label>
-            <input type="tel" id="ContactFormPhone" name="contact[phone]" autocomplete="tel" style="width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.5rem;font-size:1rem;">
-          </div>
-          <div style="margin-bottom:1rem;">
-            <label for="ContactFormTopic" style="display:block;margin-bottom:.375rem;font-weight:600;">Enquiry type</label>
-            <select id="ContactFormTopic" name="contact[topic]" style="width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.5rem;font-size:1rem;background:white;">
-              <option value="">Select a topic</option>
-              <option value="existing-order">Existing order</option>
-              <option value="delivery-question">Delivery question</option>
-              <option value="product-question">Product question</option>
-              <option value="saver-box">Saver Box enquiry</option>
-              <option value="general">General enquiry</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div style="margin-bottom:1.5rem;">
-            <label for="ContactFormMessage" style="display:block;margin-bottom:.375rem;font-weight:600;">Message</label>
-            <textarea id="ContactFormMessage" name="contact[body]" rows="6" style="width:100%;padding:.625rem .875rem;border:1px solid var(--border);border-radius:.5rem;font-size:1rem;resize:vertical;"></textarea>
-          </div>
-          <button type="submit" style="background:var(--green);color:white;padding:.75rem 2rem;border:none;border-radius:2rem;font-size:1rem;font-weight:600;cursor:pointer;">Send message</button>
-          <p style="margin-top:.75rem;font-size:.875rem;color:var(--text-muted);">We will get back to you as soon as possible.</p>
-        {% endform %}
+  /* ── RESPONSIVE ── */
+  @media (max-width:1024px) { .help-grid { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:768px) {
+    .hero-page { padding:3rem 0 2.5rem; }
+    .contact-intro-grid { grid-template-columns:1fr; gap:2rem; }
+    .form-grid { grid-template-columns:1fr; }
+    .help-grid { grid-template-columns:1fr; }
+    .details-grid { grid-template-columns:1fr; }
+    .section { padding:3rem 0; }
+  }
+  @media (max-width:480px) {
+    .btn-row { flex-direction:column; }
+    .cta-strip .btn-row { align-items:center; }
+  }
+</style>
 
-        <h2 style="margin-top:2rem;">Common Questions</h2>
-        <p><strong>What should I contact GrowDirect about?</strong><br>You can contact GrowDirect for general enquiries, ordering support, delivery questions, or help after placing an order.</p>
-        <p><strong>Where can I check delivery information first?</strong><br>Visit the Delivery Areas page to review suburb coverage before getting in touch.</p>
-        <p><strong>How long does it take to get a response?</strong><br>GrowDirect will aim to respond as soon as possible to customer enquiries and support questions.</p>
-      </div>
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <span style="color:var(--color-text-primary);font-weight:600;">Contact</span>
     </div>
   </div>
 </div>
+
+<!-- Section 1 — Hero -->
+<section class="hero-page">
+  <div class="container">
+    <div class="eyebrow">Contact</div>
+    <h1>Get in touch with GrowDirect</h1>
+    <p>If you have a question about ordering, delivery, Saver Boxes, or anything else, we are here to help. Use the contact form or the details below and our team will get back to you as soon as possible.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/pages/faqs">FAQs</a>
+      <a class="btn btn-secondary" href="/pages/delivery-areas">Delivery Areas</a>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2 — Contact intro + details -->
+<section class="section">
+  <div class="container">
+    <div class="contact-intro-grid">
+      <div class="contact-intro-text">
+        <div class="subheading">We're here to help</div>
+        <h2>Questions about your order or delivery?</h2>
+        <p>GrowDirect is built to make everyday food shopping simpler, and that includes making support easy to access. If you need help with delivery coverage, ordering, or general enquiries, contact us and we will point you in the right direction.</p>
+        <div class="btn-row">
+          <a class="btn btn-outline" href="/pages/how-it-works">How It Works</a>
+          <a class="btn btn-outline" href="/pages/faqs">FAQs</a>
+        </div>
+      </div>
+      <div class="contact-visual">
+        <div class="contact-detail-item">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="label">Email</div>
+            <div class="value"><a href="mailto:hello@growdirect.com.au">hello@growdirect.com.au</a></div>
+          </div>
+        </div>
+        <div class="contact-detail-item">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div>
+            <div class="label">Service Area</div>
+            <div class="value">Melbourne metro</div>
+          </div>
+        </div>
+        <div class="contact-detail-item">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="label">Response Time</div>
+            <div class="value">As soon as possible</div>
+          </div>
+        </div>
+        <div class="contact-detail-item">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div>
+            <div class="label">Support pages</div>
+            <div class="value">
+              <a href="/pages/how-it-works">How It Works</a> ·
+              <a href="/pages/delivery-areas">Delivery Areas</a> ·
+              <a href="/pages/faqs">FAQs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3 — Contact form -->
+<section class="section section-alt" id="contact-form">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
+      <div>
+        <div class="section-eyebrow">Send a Message</div>
+        <h2 class="section-heading">Send us a message</h2>
+        <p style="color:var(--color-text-secondary);font-size:.95rem;line-height:1.75;margin-bottom:1.5rem;">Use the form for general enquiries, delivery questions, order support, or anything else you would like help with.</p>
+        <p style="color:var(--color-text-secondary);font-size:.875rem;line-height:1.7;padding:1rem 1.25rem;background:#F0F7F2;border-radius:.875rem;border-left:3px solid #0A4A2F;">Before getting in touch, check our <a href="/pages/faqs" style="color:var(--color-accent);font-weight:600;text-decoration:none;">FAQs</a> or <a href="/pages/delivery-areas" style="color:var(--color-accent);font-weight:600;text-decoration:none;">Delivery Areas</a> page — most common questions are answered there.</p>
+      </div>
+      <div class="form-wrap">
+        <h2>Contact GrowDirect</h2>
+        <p class="form-intro">General enquiries, order support, and delivery questions.</p>
+        {%- form 'contact', id: 'contact_form' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="form-success">✓ Thanks — your message has been sent. We'll be in touch shortly.</div>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div class="form-error">
+              <ul>
+                {%- for field in form.errors -%}
+                  <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="contact_name">Full name</label>
+              <input type="text" id="contact_name" name="contact[name]" placeholder="Your name" autocomplete="name" required>
+            </div>
+            <div class="form-field">
+              <label for="contact_email">Email address</label>
+              <input type="email" id="contact_email" name="contact[email]" placeholder="your@email.com" autocomplete="email" required>
+            </div>
+            <div class="form-field">
+              <label for="contact_phone">Phone number <span style="color:var(--color-text-muted);font-weight:400;">(optional)</span></label>
+              <input type="tel" id="contact_phone" name="contact[phone]" placeholder="04xx xxx xxx" autocomplete="tel">
+            </div>
+            <div class="form-field">
+              <label for="contact_order">Order number <span style="color:var(--color-text-muted);font-weight:400;">(if applicable)</span></label>
+              <input type="text" id="contact_order" name="contact[order_number]" placeholder="e.g. #1234">
+            </div>
+            <div class="form-field full">
+              <label for="contact_subject">Enquiry type</label>
+              <select id="contact_subject" name="contact[subject]">
+                <option value="">Select a topic</option>
+                <option value="Existing order">Existing order</option>
+                <option value="Delivery question">Delivery question</option>
+                <option value="Product question">Product question</option>
+                <option value="Saver Box enquiry">Saver Box enquiry</option>
+                <option value="General enquiry">General enquiry</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label for="contact_message">Message</label>
+              <textarea id="contact_message" name="contact[body]" placeholder="How can we help?" required></textarea>
+            </div>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary" style="width:100%;padding:1rem;font-size:.95rem;">Send message</button>
+            <p class="form-note">We will get back to you as soon as possible. For delivery coverage questions, please also check the <a href="/pages/delivery-areas" style="color:var(--color-accent);">Delivery Areas</a> page.</p>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 4 — How we can help -->
+<section class="section">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-eyebrow">Support</div>
+      <h2 class="section-heading">How we can help</h2>
+      <p class="section-intro">Contact GrowDirect if you need help with any of the following.</p>
+    </div>
+    <div class="help-grid">
+
+      <div class="help-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <h3>Ordering support</h3>
+        <p>Questions about starting your order, choosing a Saver Box, or adding extra items.</p>
+      </div>
+
+      <div class="help-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </div>
+        <h3>Delivery questions</h3>
+        <p>Help with suburb coverage, delivery timing, or understanding how GrowDirect delivery works.</p>
+      </div>
+
+      <div class="help-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>General enquiries</h3>
+        <p>Anything else you would like to ask about GrowDirect, our products, or how the store works.</p>
+      </div>
+
+      <div class="help-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Customer support</h3>
+        <p>If you need help after placing an order, get in touch and we will do our best to assist.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section 5 — Contact details -->
+<section class="section section-alt">
+  <div class="container-narrow">
+    <div class="section-eyebrow">Contact Details</div>
+    <h2 class="section-heading">Contact details</h2>
+    <p style="color:var(--color-text-secondary);font-size:1rem;line-height:1.7;margin-bottom:.25rem;">For direct enquiries, you can also reach GrowDirect using the contact details below.</p>
+    <div class="details-grid">
+      <div class="detail-card">
+        <div class="label">Email</div>
+        <div class="value"><a href="mailto:hello@growdirect.com.au">hello@growdirect.com.au</a></div>
+      </div>
+      <div class="detail-card">
+        <div class="label">Service area</div>
+        <div class="value">Melbourne metro</div>
+      </div>
+      <div class="detail-card">
+        <div class="label">Support pages</div>
+        <div class="value">
+          <a href="/pages/how-it-works">How It Works</a> ·
+          <a href="/pages/delivery-areas">Delivery Areas</a> ·
+          <a href="/pages/faqs">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 6 — FAQ -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
+      <div>
+        <div class="section-eyebrow">FAQ</div>
+        <h2 class="section-heading">Common contact questions</h2>
+        <p style="color:var(--color-text-secondary);font-size:.9rem;line-height:1.7;">Quick answers before you get in touch.</p>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>What should I contact GrowDirect about?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">You can contact GrowDirect for general enquiries, ordering support, delivery questions, or help after placing an order.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Where can I check delivery information first?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">You can visit the Delivery Areas page to review suburb coverage and general delivery guidance before getting in touch.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Where can I learn how ordering works?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">You can visit the How It Works page for a step-by-step overview of how GrowDirect shopping and delivery works.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Can I find answers without contacting support?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">Yes. The FAQs page covers the most common questions about ordering, delivery, Saver Boxes, and general shopping.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>How long does it take to get a response?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">GrowDirect will aim to respond as soon as possible to customer enquiries and support questions.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 7 — Closing CTA -->
+<section class="cta-strip">
+  <div class="container">
+    <h2>Need help <em>before you shop?</em></h2>
+    <p>Explore how GrowDirect works, check your delivery area, or read our FAQs before placing your order.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/pages/how-it-works" style="padding:1rem 2rem;">How It Works</a>
+      <a class="btn btn-secondary" href="/pages/faqs" style="padding:1rem 2rem;">FAQs</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(function(q) {
+    q.addEventListener('click', function() {
+      var item = q.parentElement;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
 
 {% schema %}
 {

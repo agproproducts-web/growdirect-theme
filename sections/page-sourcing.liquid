@@ -1,117 +1,338 @@
 <style>
-  /* ── GrowDirect — How We Source ── */
-    :root {
-      --green:#0A4A2F; --accent:#F28C38; --accent-hover:#E07B2D;
-      --text:#1A3C34; --text-secondary:#5C6B66; --text-muted:#8A9A94;
-      --border:#E8F0EB; --bg:#F8F9FA; --white:#fff;
-      --radius:1rem; --radius-xl:1.5rem;
-      --font-heading:"Plus Jakarta Sans",-apple-system,sans-serif;
-      --font-body:"Inter",-apple-system,sans-serif;
-    }
-    *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:var(--font-body); color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
-    .container { max-width:780px; margin:0 auto; padding:0 1.5rem; }
+  :root {
+    --color-bg-primary:#F8F9FA;
+    --color-bg-header:#0A4A2F;
+    --color-accent:#F28C38;
+    --color-accent-hover:#E07B2D;
+    --color-text-primary:#1A3C34;
+    --color-text-secondary:#5C6B66;
+    --color-text-muted:#8A9A94;
+    --color-border:#E8F0EB;
+    --font-heading:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-body:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+    --container:1200px;
+    --radius-lg:1rem;
+    --radius-xl:1.5rem;
+  }
+  *,::before,::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:var(--font-body); color:var(--color-text-primary); line-height:1.6; -webkit-font-smoothing:antialiased; background:#fff; }
+  .container { max-width:var(--container); margin:0 auto; padding:0 1.5rem; }
+  .container-narrow { max-width:780px; margin:0 auto; padding:0 1.5rem; }
 
-    .collection-hero { width:100%; aspect-ratio:21/6; overflow:hidden; background:var(--green); }
-    .collection-hero .hero-img { width:100%; height:100%; object-fit:cover; display:block; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.5rem; border:none; border-radius:999px; font-family:var(--font-heading); font-weight:700; font-size:.9rem; text-decoration:none; cursor:pointer; transition:all .2s; white-space:nowrap; }
+  .btn-primary { background:var(--color-accent); color:#fff; }
+  .btn-primary:hover { background:var(--color-accent-hover); transform:translateY(-1px); }
+  .btn-secondary { background:transparent; color:#fff; border:2px solid rgba(255,255,255,.4); }
+  .btn-secondary:hover { border-color:var(--color-accent); color:var(--color-accent); }
+  .btn-outline { background:transparent; color:var(--color-text-primary); border:2px solid var(--color-border); border-radius:999px; }
+  .btn-outline:hover { border-color:#0A4A2F; color:#0A4A2F; }
+  .btn-row { display:flex; gap:1rem; flex-wrap:wrap; }
 
-    .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--border); }
-    .breadcrumb-bar .container { max-width:1100px; }
-    .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--text-muted); font-family:var(--font-heading); }
-    .breadcrumb a { color:var(--text-muted); text-decoration:none; }
-    .breadcrumb a:hover { color:var(--text); }
-    .breadcrumb span { margin:0 .4rem; }
+  /* ── HERO ── */
+  .hero-page { background:var(--color-bg-header); padding:5rem 0 4rem; position:relative; overflow:hidden; }
+  .hero-page::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%, rgba(242,140,56,.07) 0%, transparent 60%); pointer-events:none; }
+  .eyebrow { display:inline-block; background:rgba(242,140,56,.15); color:var(--color-accent); border:1px solid rgba(242,140,56,.3); padding:.4rem 1rem; border-radius:999px; font-size:.75rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; margin-bottom:1.5rem; font-family:var(--font-heading); }
+  .hero-page h1 { font-family:var(--font-heading); font-size:clamp(2.2rem,5vw,3.5rem); font-weight:800; color:#fff; line-height:1.1; margin-bottom:1.25rem; max-width:640px; letter-spacing:-.02em; }
+  .hero-page h1 em { font-family:'Lora',serif; font-style:italic; font-weight:700; color:var(--color-accent); }
+  .hero-page p { color:rgba(255,255,255,.7); font-size:1.05rem; line-height:1.75; max-width:560px; margin-bottom:2rem; }
 
-    .page-layout { padding:1.75rem 0 5rem; }
-    .section-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; margin-bottom:1.25rem; }
-    .section-body { padding:2rem 1.75rem; }
+  /* ── SECTIONS ── */
+  .section { padding:5rem 0; }
+  .section-alt { background:var(--color-bg-primary); }
+  .section-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--color-accent); margin-bottom:.6rem; font-family:var(--font-heading); }
+  .section-heading { font-family:var(--font-heading); font-size:clamp(1.75rem,3.5vw,2.5rem); font-weight:800; color:var(--color-text-primary); line-height:1.15; letter-spacing:-.02em; margin-bottom:.75rem; }
+  .section-intro { color:var(--color-text-secondary); font-size:1rem; line-height:1.7; max-width:600px; margin-bottom:3rem; }
+  .section-header-center { text-align:center; margin-bottom:3rem; }
+  .section-header-center .section-intro { margin-left:auto; margin-right:auto; }
 
-    .page-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:.4rem; font-family:var(--font-heading); display:inline-flex; align-items:center; gap:.4rem; }
-    .page-title { font-family:var(--font-heading); font-size:1.85rem; font-weight:800; color:var(--text); line-height:1.1; margin-bottom:.6rem; }
-    .page-intro { font-size:1rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.25rem; }
-    .eyebrow-dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  /* ── SOURCING STATEMENT ── */
+  .story-body { font-size:1rem; color:var(--color-text-secondary); line-height:1.85; }
+  .story-body p { margin-bottom:1.5rem; }
+  .story-body p:last-child { margin-bottom:0; }
+  .story-body strong { color:var(--color-text-primary); font-weight:600; }
 
-    .prose p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
-    .prose p:last-child { margin-bottom:0; }
-    .prose h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
+  /* ── BRAND STATEMENT CALLOUT ── */
+  .brand-statement { background:#F0F7F2; border-radius:var(--radius-xl); padding:2.5rem 3rem; margin:0; }
+  .brand-statement h2 { font-family:var(--font-heading); font-size:1.5rem; font-weight:800; color:var(--color-text-primary); margin-bottom:.75rem; letter-spacing:-.01em; }
+  .brand-statement p { font-size:1rem; color:var(--color-text-secondary); line-height:1.8; margin:0; }
 
-    .support-image { width:100%; border-radius:var(--radius); display:block; margin:1.5rem 0; }
+  /* ── PRINCIPLE CARDS ── */
+  .principles-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
+  .principle-card { background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-xl); padding:2rem; transition:all .3s; }
+  .principle-card:hover { border-color:#0A4A2F; box-shadow:0 8px 24px rgba(10,74,47,.1); transform:translateY(-3px); }
+  .principle-card .icon { width:44px; height:44px; background:#F0F7F2; border-radius:.875rem; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
+  .principle-card h3 { font-family:var(--font-heading); font-size:1rem; font-weight:700; color:var(--color-text-primary); margin-bottom:.5rem; line-height:1.3; }
+  .principle-card p { font-size:.875rem; color:var(--color-text-secondary); line-height:1.65; margin:0; }
 
-    .page-layout-single { padding:1.75rem 0 5rem; }
-    .page-note { font-size:.9rem; color:var(--text-muted); line-height:1.65; font-style:italic; margin-top:.5rem; }
-    .section-body h2 { font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--text); margin:1.5rem 0 .6rem; }
-    .section-body h2:first-child { margin-top:0; }
-    .section-body p { font-size:.95rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1rem; }
-    .section-body p:last-child { margin-bottom:0; }
-    .section-body ul, .section-body ol { padding-left:1.25rem; margin-bottom:1rem; color:var(--text-secondary); line-height:1.75; font-size:.95rem; }
-    .section-body li { margin-bottom:.5rem; }
-    .section-body li:last-child { margin-bottom:0; }
-    .section-body strong { color:var(--text); font-weight:700; }
-  </style>
+  /* ── CATEGORY CARDS ── */
+  .category-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
+  .category-card { background:#fff; border:1px solid var(--color-border); border-radius:var(--radius-xl); padding:2rem; transition:all .3s; position:relative; overflow:hidden; }
+  .category-card:hover { border-color:#0A4A2F; box-shadow:0 8px 24px rgba(10,74,47,.1); transform:translateY(-3px); }
+  .category-card.upcoming::after { content:'Coming soon'; position:absolute; top:1rem; right:1rem; background:rgba(242,140,56,.12); color:var(--color-accent); font-size:.65rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.2rem .6rem; border-radius:999px; font-family:var(--font-heading); }
+  .category-card .icon { width:44px; height:44px; background:#F0F7F2; border-radius:.875rem; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
+  .category-card h3 { font-family:var(--font-heading); font-size:1rem; font-weight:700; color:var(--color-text-primary); margin-bottom:.5rem; line-height:1.3; }
+  .category-card p { font-size:.875rem; color:var(--color-text-secondary); line-height:1.65; margin:0; }
 
-{%- if section.settings.hero_image -%}
-  <div class="collection-hero">
-    {{ section.settings.hero_image | image_url: width: 1440 | image_tag:
-      loading: 'eager',
-      fetchpriority: 'high',
-      class: 'hero-img',
-      alt: section.settings.hero_image.alt | default: 'How We Source' }}
-  </div>
-{%- endif -%}
+  /* ── FAQ ── */
+  .faq-list { display:flex; flex-direction:column; gap:.75rem; }
+  .faq-item { border:1.5px solid var(--color-border); border-radius:var(--radius-lg); overflow:hidden; background:#fff; transition:border-color .2s; }
+  .faq-item.open { border-color:#c8dcc8; }
+  .faq-q { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 1.5rem; cursor:pointer; font-family:var(--font-heading); font-weight:700; font-size:.95rem; color:var(--color-text-primary); user-select:none; }
+  .faq-icon { width:32px; height:32px; border-radius:50%; background:var(--color-bg-header); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .faq-icon svg { transition:transform .2s; }
+  .faq-item.open .faq-icon svg { transform:rotate(45deg); }
+  .faq-a { display:none; padding:0 1.5rem 1.25rem; color:var(--color-text-secondary); font-size:.9rem; line-height:1.75; }
+  .faq-item.open .faq-a { display:block; }
 
-  <div class="breadcrumb-bar">
-    <div class="container">
-      <div class="breadcrumb">
-        <a href="/">Home</a><span>›</span>
-        <span style="color:var(--text);font-weight:600;">How We Source</span>
-      </div>
-    </div>
-  </div>
+  /* ── CTA STRIP ── */
+  .cta-strip { background:var(--color-bg-header); padding:5rem 0; text-align:center; }
+  .cta-strip h2 { font-family:var(--font-heading); font-size:clamp(2rem,4vw,3rem); font-weight:800; color:#fff; margin-bottom:.5rem; letter-spacing:-.02em; }
+  .cta-strip h2 em { font-family:'Lora',serif; font-style:italic; color:var(--color-accent); display:block; }
+  .cta-strip p { color:rgba(255,255,255,.65); font-size:.95rem; margin-bottom:2rem; max-width:520px; margin-left:auto; margin-right:auto; line-height:1.7; }
+  .cta-strip .btn-row { justify-content:center; }
 
-<div class="container">
-  <div class="page-layout-single">
-    <div class="section-card">
-      <div class="section-body">
-        <div class="page-eyebrow"><span class="eyebrow-dot"></span> Sourcing</div>
-        <h1 class="page-title">Sourcing</h1>
-        <div class="page-intro">Freshness starts with how we source</div>
-        <div class="page-note">At GrowDirect, our sourcing approach is built around one core principle: freshness comes first. Our aim is to source as directly as possible from farmers and producers, building a food business shaped by real supply relationships, practical quality standards, and better value for modern households.</div>
-      </div>
-    </div>
+  /* ── BREADCRUMB ── */
+  .breadcrumb-bar { background:#fff; border-bottom:1px solid var(--color-border); }
+  .breadcrumb-bar .container { max-width:1100px; }
+  .breadcrumb { padding:.6rem 0; font-size:.78rem; color:var(--color-text-muted); font-family:var(--font-heading); }
+  .breadcrumb a { color:var(--color-text-muted); text-decoration:none; }
+  .breadcrumb a:hover { color:var(--color-text-primary); }
+  .breadcrumb span { margin:0 .4rem; }
 
-    <div class="section-card" style="margin-top:1.5rem;">
-      <div class="section-body">
-        <h2>Our Approach</h2>
-        <p>GrowDirect is being built with a clear sourcing focus: wherever possible, we aim to source directly from farmers and producers. That approach helps us stay closer to the product, closer to quality, and closer to the standards we want customers to associate with GrowDirect.</p>
-        <p>Freshness is the blueprint behind the way we build our range. It is not just something we apply to fresh produce — it is the standard we want reflected across everything we source. As GrowDirect grows, that same fresh-first approach will continue to shape how we source across produce, pantry staples, and future categories including meat, seafood, and dairy.</p>
+  /* ── RESPONSIVE ── */
+  @media (max-width:1024px) {
+    .principles-grid, .category-grid { grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:768px) {
+    .hero-page { padding:3rem 0 2.5rem; }
+    .principles-grid, .category-grid { grid-template-columns:1fr; }
+    .section { padding:3rem 0; }
+    .brand-statement { padding:2rem; }
+  }
+  @media (max-width:480px) {
+    .btn-row { flex-direction:column; }
+    .cta-strip .btn-row { align-items:center; }
+  }
+</style>
 
-        <h2>Our Principles</h2>
-        <ul>
-          <li><strong>Freshness first</strong> — Freshness is our staple and the standard we want reflected across every category we source.</li>
-          <li><strong>Farmer and producer focus</strong> — Our aim is to build direct sourcing relationships with farmers and producers wherever possible.</li>
-          <li><strong>Practical household value</strong> — We source with everyday households in mind, balancing freshness, usefulness, and value.</li>
-          <li><strong>A better selected range</strong> — We want GrowDirect to feel considered and dependable, not overcrowded or confusing.</li>
-        </ul>
-
-        <h2>The Range</h2>
-        <ul>
-          <li><strong>Fresh produce</strong> — Fresh produce sits at the heart of GrowDirect and reflects the direct sourcing and freshness standards we want the business to be known for.</li>
-          <li><strong>Pantry staples</strong> — We apply the same practical sourcing mindset to pantry products, focusing on useful everyday items for the weekly shop.</li>
-          <li><strong>Value-led household shopping</strong> — Our sourcing is shaped not only by product type, but by how real households buy — with a focus on freshness, simplicity, and everyday value.</li>
-          <li><strong>Expanding categories</strong> — As GrowDirect grows, we plan to extend our fresh-first sourcing approach into future categories including meat, seafood, and dairy.</li>
-        </ul>
-
-        <h2>Common Sourcing Questions</h2>
-        <p><strong>Who does GrowDirect aim to source from?</strong><br>Wherever possible, GrowDirect aims to source directly from farmers and producers.</p>
-        <p><strong>What is the main principle behind GrowDirect sourcing?</strong><br>Freshness is the core principle behind GrowDirect sourcing and the standard the business wants reflected across all sourced products.</p>
-        <p><strong>Does sourcing only apply to fresh produce?</strong><br>No. While fresh produce is central to GrowDirect, the same fresh-first thinking is intended to guide pantry staples and future product categories as well.</p>
-        <p><strong>Will GrowDirect add more categories in the future?</strong><br>Yes. As the business grows, GrowDirect plans to introduce additional categories including meat, seafood, and dairy.</p>
-        <p><strong>Why does GrowDirect focus on direct sourcing?</strong><br>Direct sourcing helps keep the business closer to quality, freshness, and the kinds of supplier relationships GrowDirect wants to build over time.</p>
-      </div>
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <span style="color:var(--color-text-primary);font-weight:600;">Sourcing</span>
     </div>
   </div>
 </div>
+
+<!-- Section 1 — Hero -->
+<section class="hero-page">
+  <div class="container">
+    <div class="eyebrow">Sourcing</div>
+    <h1>Freshness starts with <em>how we source</em></h1>
+    <p>At GrowDirect, our sourcing approach is built around one core principle: freshness comes first. Our aim is to source as directly as possible from farmers and producers, building a food business shaped by real supply relationships, practical quality standards, and better value for modern households.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/pages/our-story">Our Story</a>
+      <a class="btn btn-secondary" href="/collections/saver-boxes">Shop Saver Boxes</a>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2 — Main sourcing statement -->
+<section class="section">
+  <div class="container-narrow">
+    <div class="section-eyebrow">Our Approach</div>
+    <h2 class="section-heading">How GrowDirect approaches sourcing</h2>
+    <div class="story-body">
+      <p>GrowDirect is being built with a clear sourcing focus: wherever possible, we aim to source directly from farmers and producers. That approach helps us stay closer to the product, closer to quality, and closer to the standards we want customers to associate with GrowDirect.</p>
+      <p><strong>Freshness is the blueprint behind the way we build our range.</strong> It is not just something we apply to fresh produce — it is the standard we want reflected across everything we source. As GrowDirect grows, that same fresh-first approach will continue to shape how we source across produce, pantry staples, and future categories including meat, seafood, and dairy.</p>
+      <p>Our goal is to create a range that feels practical, trusted, and well chosen — built around real product quality, household value, and a simpler way to shop.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3 — Sourcing principles -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-eyebrow">Principles</div>
+      <h2 class="section-heading">What guides our sourcing</h2>
+      <p class="section-intro">GrowDirect's sourcing model is shaped by a small number of principles that guide the products we bring into the range.</p>
+    </div>
+    <div class="principles-grid">
+
+      <div class="principle-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-5 8-12a8 8 0 0 0-16 0c0 7 8 12 8 12z"/><path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M12 10v5"/></svg>
+        </div>
+        <h3>Freshness first</h3>
+        <p>Freshness is our staple and the standard we want reflected across every category we source.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Farmer and producer focus</h3>
+        <p>Our aim is to build direct sourcing relationships with farmers and producers wherever possible.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Practical household value</h3>
+        <p>We source with everyday households in mind, balancing freshness, usefulness, and value.</p>
+      </div>
+
+      <div class="principle-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h3>A better selected range</h3>
+        <p>We want GrowDirect to feel considered and dependable, not overcrowded or confusing.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section 4 — Current and future categories -->
+<section class="section">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-eyebrow">The Range</div>
+      <h2 class="section-heading">What this means for our range</h2>
+      <p class="section-intro">GrowDirect is beginning with a practical weekly shopping model and will continue expanding over time.</p>
+    </div>
+    <div class="category-grid">
+
+      <div class="category-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Fresh produce</h3>
+        <p>Fresh produce sits at the heart of GrowDirect and reflects the direct sourcing and freshness standards we want the business to be known for.</p>
+      </div>
+
+      <div class="category-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        </div>
+        <h3>Pantry staples</h3>
+        <p>We apply the same practical sourcing mindset to pantry products, focusing on useful everyday items for the weekly shop.</p>
+      </div>
+
+      <div class="category-card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <h3>Value-led household shopping</h3>
+        <p>Our sourcing is shaped not only by product type, but by how real households buy — with a focus on freshness, simplicity, and everyday value.</p>
+      </div>
+
+      <div class="category-card upcoming">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Expanding categories</h3>
+        <p>As GrowDirect grows, we plan to extend our fresh-first sourcing approach into future categories including meat, seafood, and dairy.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section 5 — Brand statement -->
+<section class="section section-alt">
+  <div class="container-narrow">
+    <div class="brand-statement">
+      <div class="section-eyebrow" style="margin-bottom:.75rem;">Our commitment</div>
+      <h2>Built around freshness, not just supply</h2>
+      <p>We believe sourcing should do more than fill shelves. It should shape the quality, consistency, and trust behind the full GrowDirect experience. That is why our focus remains on sourcing with freshness at the centre, and building the range from the ground up with care.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 6 — FAQ -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
+      <div>
+        <div class="section-eyebrow">FAQ</div>
+        <h2 class="section-heading">Common sourcing questions</h2>
+        <p style="color:var(--color-text-secondary);font-size:.9rem;line-height:1.7;">Questions about how GrowDirect thinks about sourcing and quality.</p>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Who does GrowDirect aim to source from?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">Wherever possible, GrowDirect aims to source directly from farmers and producers.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>What is the main principle behind GrowDirect sourcing?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">Freshness is the core principle behind GrowDirect sourcing and the standard the business wants reflected across all sourced products.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Does sourcing only apply to fresh produce?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">No. While fresh produce is central to GrowDirect, the same fresh-first thinking is intended to guide pantry staples and future product categories as well.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Will GrowDirect add more categories in the future?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">Yes. As the business grows, GrowDirect plans to introduce additional categories including meat, seafood, and dairy.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>Why does GrowDirect focus on direct sourcing?</span>
+            <div class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-a">Direct sourcing helps keep the business closer to quality, freshness, and the kinds of supplier relationships GrowDirect wants to build over time.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 7 — Closing CTA -->
+<section class="cta-strip">
+  <div class="container">
+    <h2>Fresh-first sourcing, <em>built for modern households</em></h2>
+    <p>GrowDirect is building a food business shaped by freshness, direct sourcing ambition, and practical weekly shopping for everyday households.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/pages/our-story" style="padding:1rem 2rem;">Our Story</a>
+      <a class="btn btn-secondary" href="/pages/how-it-works" style="padding:1rem 2rem;">How It Works</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(function(q) {
+    q.addEventListener('click', function() {
+      var item = q.parentElement;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
 
 {% schema %}
 {
