@@ -57,6 +57,7 @@
     .mm-product-row.in-cart { border-color:var(--green); background:rgba(10,74,47,.015); }
     .mm-thumb-placeholder { width:64px; height:64px; min-width:64px; border-radius:.5rem; background:#F0F7F2; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .mm-thumb-placeholder svg { opacity:.18; }
+    .mm-thumb { width:64px; height:64px; min-width:64px; border-radius:.5rem; background:var(--bg); border:1px solid var(--border); object-fit:cover; display:block; flex-shrink:0; }
     .mm-item-inner { flex:1; min-width:0; display:flex; flex-direction:column; gap:.5rem; }
     .mm-row-top { display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem; }
     .mm-item-info { flex:1; min-width:0; }
@@ -203,33 +204,33 @@
   const products = {
     fruit: [
       { id:'bananas',   name:'Bananas',   subtitle:'Cavendish',
-        sizes:[{label:'2kg',price:4.50},{label:'3kg',price:6.50},{label:'5kg',price:10.50}], defaultSizeIdx:0 },
+        sizes:[{label:'2kg',price:4.50},{label:'3kg',price:6.50},{label:'5kg',price:10.50}], defaultSizeIdx:0, image:'' },
       { id:'apples',    name:'Apples',    subtitle:'Pink Lady · Royal Gala',
-        sizes:[{label:'1kg',price:4.00},{label:'2kg',price:7.50},{label:'3kg',price:10.50}], defaultSizeIdx:0 },
+        sizes:[{label:'1kg',price:4.00},{label:'2kg',price:7.50},{label:'3kg',price:10.50}], defaultSizeIdx:0, image:'' },
       { id:'oranges',   name:'Oranges',   subtitle:'Navel · Seasonal',
-        sizes:[{label:'2kg',price:5.50},{label:'3kg',price:8.00},{label:'5kg',price:12.50}], defaultSizeIdx:0 },
+        sizes:[{label:'2kg',price:5.50},{label:'3kg',price:8.00},{label:'5kg',price:12.50}], defaultSizeIdx:0, image:'' },
       { id:'mandarins', name:'Mandarins', subtitle:'Easy-peel · Seedless',
-        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00}], defaultSizeIdx:0 }
+        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00}], defaultSizeIdx:0, image:'' }
     ],
     vegetables: [
       { id:'broccoli', name:'Broccoli', subtitle:'Heads · Australian grown',
-        sizes:[{label:'head',price:2.50},{label:'2 heads',price:4.50}], defaultSizeIdx:0 },
+        sizes:[{label:'head',price:2.50},{label:'2 heads',price:4.50}], defaultSizeIdx:0, image:'' },
       { id:'carrots',  name:'Carrots',  subtitle:'1kg bag · Washed',
-        sizes:[{label:'1kg',price:3.00},{label:'2kg',price:5.50},{label:'3kg',price:8.00}], defaultSizeIdx:0 },
+        sizes:[{label:'1kg',price:3.00},{label:'2kg',price:5.50},{label:'3kg',price:8.00}], defaultSizeIdx:0, image:'' },
       { id:'zucchini', name:'Zucchini', subtitle:'500g · Fresh daily',
-        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0 },
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0, image:'' },
       { id:'spinach',  name:'Spinach',  subtitle:'120g bag · Baby leaves',
-        sizes:[{label:'120g',price:3.00},{label:'250g',price:5.50}], defaultSizeIdx:0 }
+        sizes:[{label:'120g',price:3.00},{label:'250g',price:5.50}], defaultSizeIdx:0, image:'' }
     ],
     pantry: [
       { id:'basmati-rice', name:'Basmati Rice', subtitle:'2kg · SunRice',
-        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00},{label:'5kg',price:18.00}], defaultSizeIdx:0 },
+        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00},{label:'5kg',price:18.00}], defaultSizeIdx:0, image:'' },
       { id:'olive-oil',    name:'Olive Oil',    subtitle:'750ml · Extra virgin',
-        sizes:[{label:'500ml',price:8.50},{label:'750ml',price:12.00}], defaultSizeIdx:0 },
+        sizes:[{label:'500ml',price:8.50},{label:'750ml',price:12.00}], defaultSizeIdx:0, image:'' },
       { id:'pasta',        name:'Pasta',        subtitle:'500g · Penne or spaghetti',
-        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.50}], defaultSizeIdx:0 },
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.50}], defaultSizeIdx:0, image:'' },
       { id:'rolled-oats',  name:'Rolled Oats',  subtitle:'1kg · Uncle Tobys',
-        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0 }
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0, image:'' }
     ]
   };
 
@@ -285,11 +286,13 @@
       ).join('');
 
       row.innerHTML = `
-        <div class="mm-thumb-placeholder">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
-            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
-          </svg>
-        </div>
+        ${p.image
+          ? `<img src="${p.image}" class="mm-thumb" loading="lazy" alt="${p.name}">`
+          : `<div class="mm-thumb-placeholder">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+              </svg>
+            </div>`}
         <div class="mm-item-inner">
           <div class="mm-row-top">
             <div class="mm-item-info">

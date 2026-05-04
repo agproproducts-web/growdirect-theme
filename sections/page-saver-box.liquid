@@ -50,6 +50,7 @@
     /* MM ROW (shared with mix-match) */
     .mm-thumb-placeholder { width:64px; height:64px; min-width:64px; border-radius:.5rem; background:#F0F7F2; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .mm-thumb-placeholder svg { opacity:.18; }
+    .mm-thumb { width:64px; height:64px; min-width:64px; border-radius:.5rem; background:var(--bg); border:1px solid var(--border); object-fit:cover; display:block; flex-shrink:0; }
     .mm-item-inner { flex:1; min-width:0; display:flex; flex-direction:column; gap:.5rem; }
     .mm-row-top { display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem; }
     .mm-item-info { flex:1; min-width:0; }
@@ -242,60 +243,60 @@
     'weekly-staples-box': {
       intro: 'Our most popular box — a balanced mix of fresh fruit, vegetables, and pantry staples for the week.',
       items: [
-        { id:'apples',       name:'Apples',        subtitle:'Pink Lady · Royal Gala', size:'2kg',   qty:1, price:7.50 },
-        { id:'bananas',      name:'Bananas',       subtitle:'Cavendish',              size:'3kg',   qty:1, price:6.50 },
-        { id:'carrots',      name:'Carrots',       subtitle:'1kg bag · Washed',       size:'2kg',   qty:1, price:5.50 },
-        { id:'broccoli',     name:'Broccoli',      subtitle:'Australian grown',       size:'2 heads', qty:1, price:4.50 },
-        { id:'spinach',      name:'Spinach',       subtitle:'Baby leaves',            size:'120g',  qty:1, price:3.00 },
-        { id:'basmati-rice', name:'Basmati Rice',  subtitle:'SunRice',                size:'2kg',   qty:1, price:8.00 },
-        { id:'pasta',        name:'Pasta',         subtitle:'Penne or spaghetti',     size:'500g',  qty:1, price:3.50 },
-        { id:'olive-oil',    name:'Olive Oil',     subtitle:'Extra virgin',           size:'500ml', qty:1, price:8.50 }
+        { id:'apples',       name:'Apples',        subtitle:'Pink Lady · Royal Gala', size:'2kg',   qty:1, image:'', price:7.50 },
+        { id:'bananas',      name:'Bananas',       subtitle:'Cavendish',              size:'3kg',   qty:1, image:'', price:6.50 },
+        { id:'carrots',      name:'Carrots',       subtitle:'1kg bag · Washed',       size:'2kg',   qty:1, image:'', price:5.50 },
+        { id:'broccoli',     name:'Broccoli',      subtitle:'Australian grown',       size:'2 heads', qty:1, image:'', price:4.50 },
+        { id:'spinach',      name:'Spinach',       subtitle:'Baby leaves',            size:'120g',  qty:1, image:'', price:3.00 },
+        { id:'basmati-rice', name:'Basmati Rice',  subtitle:'SunRice',                size:'2kg',   qty:1, image:'', price:8.00 },
+        { id:'pasta',        name:'Pasta',         subtitle:'Penne or spaghetti',     size:'500g',  qty:1, image:'', price:3.50 },
+        { id:'olive-oil',    name:'Olive Oil',     subtitle:'Extra virgin',           size:'500ml', qty:1, image:'', price:8.50 }
       ]
     },
     'budget-fruit-box': {
       intro: 'Four fruit essentials at a bundle price. Always-fresh, family-friendly favourites.',
       items: [
-        { id:'apples',    name:'Apples',    subtitle:'Pink Lady',         size:'2kg', qty:1, price:7.50 },
-        { id:'bananas',   name:'Bananas',   subtitle:'Cavendish',         size:'2kg', qty:1, price:4.50 },
-        { id:'oranges',   name:'Oranges',   subtitle:'Navel · Seasonal',  size:'2kg', qty:1, price:5.50 },
-        { id:'mandarins', name:'Mandarins', subtitle:'Easy-peel',         size:'1kg', qty:1, price:4.50 }
+        { id:'apples',    name:'Apples',    subtitle:'Pink Lady',         size:'2kg', qty:1, image:'', price:7.50 },
+        { id:'bananas',   name:'Bananas',   subtitle:'Cavendish',         size:'2kg', qty:1, image:'', price:4.50 },
+        { id:'oranges',   name:'Oranges',   subtitle:'Navel · Seasonal',  size:'2kg', qty:1, image:'', price:5.50 },
+        { id:'mandarins', name:'Mandarins', subtitle:'Easy-peel',         size:'1kg', qty:1, image:'', price:4.50 }
       ]
     },
     'family-veg-box': {
       intro: 'A family-size selection of fresh seasonal vegetables.',
       items: [
-        { id:'broccoli', name:'Broccoli', subtitle:'Australian grown', size:'2 heads', qty:1, price:4.50 },
-        { id:'carrots',  name:'Carrots',  subtitle:'Washed',           size:'3kg',     qty:1, price:8.00 },
-        { id:'zucchini', name:'Zucchini', subtitle:'Fresh daily',      size:'1kg',     qty:1, price:6.00 },
-        { id:'spinach',  name:'Spinach',  subtitle:'Baby leaves',      size:'250g',    qty:1, price:5.50 },
-        { id:'sweet-potato', name:'Sweet Potato', subtitle:'Gold variety', size:'1kg', qty:1, price:4.50 },
-        { id:'onions',   name:'Brown Onions', subtitle:'Kitchen staple', size:'1kg',   qty:1, price:3.50 }
+        { id:'broccoli', name:'Broccoli', subtitle:'Australian grown', size:'2 heads', qty:1, image:'', price:4.50 },
+        { id:'carrots',  name:'Carrots',  subtitle:'Washed',           size:'3kg',     qty:1, image:'', price:8.00 },
+        { id:'zucchini', name:'Zucchini', subtitle:'Fresh daily',      size:'1kg',     qty:1, image:'', price:6.00 },
+        { id:'spinach',  name:'Spinach',  subtitle:'Baby leaves',      size:'250g',    qty:1, image:'', price:5.50 },
+        { id:'sweet-potato', name:'Sweet Potato', subtitle:'Gold variety', size:'1kg', qty:1, image:'', price:4.50 },
+        { id:'onions',   name:'Brown Onions', subtitle:'Kitchen staple', size:'1kg',   qty:1, image:'', price:3.50 }
       ]
     },
     'pantry-saver-bundle': {
       intro: 'Stock the pantry with everyday staples at a bundle price.',
       items: [
-        { id:'basmati-rice',     name:'Basmati Rice',     subtitle:'SunRice',          size:'5kg',   qty:1, price:18.00 },
-        { id:'olive-oil',        name:'Olive Oil',        subtitle:'Extra virgin',     size:'750ml', qty:1, price:12.00 },
-        { id:'pasta',            name:'Pasta',            subtitle:'Penne',            size:'1kg',   qty:1, price:6.50 },
-        { id:'rolled-oats',      name:'Rolled Oats',      subtitle:'Uncle Tobys',      size:'1kg',   qty:1, price:6.00 },
-        { id:'crushed-tomatoes', name:'Crushed Tomatoes', subtitle:'Mutti',            size:'400g',  qty:2, price:3.50 },
-        { id:'flour',            name:'Plain Flour',      subtitle:'All-purpose',      size:'2kg',   qty:1, price:4.50 }
+        { id:'basmati-rice',     name:'Basmati Rice',     subtitle:'SunRice',          size:'5kg',   qty:1, image:'', price:18.00 },
+        { id:'olive-oil',        name:'Olive Oil',        subtitle:'Extra virgin',     size:'750ml', qty:1, image:'', price:12.00 },
+        { id:'pasta',            name:'Pasta',            subtitle:'Penne',            size:'1kg',   qty:1, image:'', price:6.50 },
+        { id:'rolled-oats',      name:'Rolled Oats',      subtitle:'Uncle Tobys',      size:'1kg',   qty:1, image:'', price:6.00 },
+        { id:'crushed-tomatoes', name:'Crushed Tomatoes', subtitle:'Mutti',            size:'400g',  qty:2, image:'', price:3.50 },
+        { id:'flour',            name:'Plain Flour',      subtitle:'All-purpose',      size:'2kg',   qty:1, image:'', price:4.50 }
       ]
     },
     'full-household-stock-up-box': {
       intro: 'Everything you need for the week — fruit, vegetables, and pantry staples in family quantities.',
       items: [
-        { id:'apples',       name:'Apples',        subtitle:'Pink Lady',         size:'3kg',   qty:1, price:10.50 },
-        { id:'bananas',      name:'Bananas',       subtitle:'Cavendish',         size:'3kg',   qty:1, price:6.50 },
-        { id:'oranges',      name:'Oranges',       subtitle:'Navel',             size:'3kg',   qty:1, price:8.00 },
-        { id:'carrots',      name:'Carrots',       subtitle:'Washed',            size:'3kg',   qty:1, price:8.00 },
-        { id:'broccoli',     name:'Broccoli',      subtitle:'Australian grown',  size:'2 heads', qty:1, price:4.50 },
-        { id:'sweet-potato', name:'Sweet Potato',  subtitle:'Gold',              size:'2kg',   qty:1, price:8.00 },
-        { id:'basmati-rice', name:'Basmati Rice',  subtitle:'SunRice',           size:'5kg',   qty:1, price:18.00 },
-        { id:'pasta',        name:'Pasta',         subtitle:'Spaghetti',         size:'1kg',   qty:1, price:6.50 },
-        { id:'olive-oil',    name:'Olive Oil',     subtitle:'Extra virgin',      size:'750ml', qty:1, price:12.00 },
-        { id:'rolled-oats',  name:'Rolled Oats',   subtitle:'Wholegrain',        size:'1kg',   qty:1, price:6.00 }
+        { id:'apples',       name:'Apples',        subtitle:'Pink Lady',         size:'3kg',   qty:1, image:'', price:10.50 },
+        { id:'bananas',      name:'Bananas',       subtitle:'Cavendish',         size:'3kg',   qty:1, image:'', price:6.50 },
+        { id:'oranges',      name:'Oranges',       subtitle:'Navel',             size:'3kg',   qty:1, image:'', price:8.00 },
+        { id:'carrots',      name:'Carrots',       subtitle:'Washed',            size:'3kg',   qty:1, image:'', price:8.00 },
+        { id:'broccoli',     name:'Broccoli',      subtitle:'Australian grown',  size:'2 heads', qty:1, image:'', price:4.50 },
+        { id:'sweet-potato', name:'Sweet Potato',  subtitle:'Gold',              size:'2kg',   qty:1, image:'', price:8.00 },
+        { id:'basmati-rice', name:'Basmati Rice',  subtitle:'SunRice',           size:'5kg',   qty:1, image:'', price:18.00 },
+        { id:'pasta',        name:'Pasta',         subtitle:'Spaghetti',         size:'1kg',   qty:1, image:'', price:6.50 },
+        { id:'olive-oil',    name:'Olive Oil',     subtitle:'Extra virgin',      size:'750ml', qty:1, image:'', price:12.00 },
+        { id:'rolled-oats',  name:'Rolled Oats',   subtitle:'Wholegrain',        size:'1kg',   qty:1, image:'', price:6.00 }
       ]
     }
   };
@@ -306,33 +307,33 @@
   const mmProducts = {
     fruit: [
       { id:'mm-bananas',   name:'Bananas',   subtitle:'Cavendish',
-        sizes:[{label:'2kg',price:4.50},{label:'3kg',price:6.50},{label:'5kg',price:10.50}], defaultSizeIdx:0 },
+        sizes:[{label:'2kg',price:4.50},{label:'3kg',price:6.50},{label:'5kg',price:10.50}], defaultSizeIdx:0, image:'' },
       { id:'mm-apples',    name:'Apples',    subtitle:'Pink Lady · Royal Gala',
-        sizes:[{label:'1kg',price:4.00},{label:'2kg',price:7.50},{label:'3kg',price:10.50}], defaultSizeIdx:0 },
+        sizes:[{label:'1kg',price:4.00},{label:'2kg',price:7.50},{label:'3kg',price:10.50}], defaultSizeIdx:0, image:'' },
       { id:'mm-oranges',   name:'Oranges',   subtitle:'Navel · Seasonal',
-        sizes:[{label:'2kg',price:5.50},{label:'3kg',price:8.00},{label:'5kg',price:12.50}], defaultSizeIdx:0 },
+        sizes:[{label:'2kg',price:5.50},{label:'3kg',price:8.00},{label:'5kg',price:12.50}], defaultSizeIdx:0, image:'' },
       { id:'mm-mandarins', name:'Mandarins', subtitle:'Easy-peel · Seedless',
-        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00}], defaultSizeIdx:0 }
+        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00}], defaultSizeIdx:0, image:'' }
     ],
     vegetables: [
       { id:'mm-broccoli', name:'Broccoli', subtitle:'Australian grown',
-        sizes:[{label:'head',price:2.50},{label:'2 heads',price:4.50}], defaultSizeIdx:0 },
+        sizes:[{label:'head',price:2.50},{label:'2 heads',price:4.50}], defaultSizeIdx:0, image:'' },
       { id:'mm-carrots',  name:'Carrots',  subtitle:'Washed',
-        sizes:[{label:'1kg',price:3.00},{label:'2kg',price:5.50},{label:'3kg',price:8.00}], defaultSizeIdx:0 },
+        sizes:[{label:'1kg',price:3.00},{label:'2kg',price:5.50},{label:'3kg',price:8.00}], defaultSizeIdx:0, image:'' },
       { id:'mm-zucchini', name:'Zucchini', subtitle:'Fresh daily',
-        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0 },
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0, image:'' },
       { id:'mm-spinach',  name:'Spinach',  subtitle:'Baby leaves',
-        sizes:[{label:'120g',price:3.00},{label:'250g',price:5.50}], defaultSizeIdx:0 }
+        sizes:[{label:'120g',price:3.00},{label:'250g',price:5.50}], defaultSizeIdx:0, image:'' }
     ],
     pantry: [
       { id:'mm-basmati-rice', name:'Basmati Rice', subtitle:'SunRice',
-        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00},{label:'5kg',price:18.00}], defaultSizeIdx:0 },
+        sizes:[{label:'1kg',price:4.50},{label:'2kg',price:8.00},{label:'5kg',price:18.00}], defaultSizeIdx:0, image:'' },
       { id:'mm-olive-oil',    name:'Olive Oil',    subtitle:'Extra virgin',
-        sizes:[{label:'500ml',price:8.50},{label:'750ml',price:12.00}], defaultSizeIdx:0 },
+        sizes:[{label:'500ml',price:8.50},{label:'750ml',price:12.00}], defaultSizeIdx:0, image:'' },
       { id:'mm-pasta',        name:'Pasta',        subtitle:'Penne or spaghetti',
-        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.50}], defaultSizeIdx:0 },
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.50}], defaultSizeIdx:0, image:'' },
       { id:'mm-rolled-oats',  name:'Rolled Oats',  subtitle:'Uncle Tobys',
-        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0 }
+        sizes:[{label:'500g',price:3.50},{label:'1kg',price:6.00}], defaultSizeIdx:0, image:'' }
     ]
   };
 
@@ -414,11 +415,13 @@
       row.className = 'box-item-row' + (isRemoved ? ' removed' : '');
 
       row.innerHTML = `
-        <div class="mm-thumb-placeholder">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
-            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
-          </svg>
-        </div>
+        ${it.image
+          ? `<img src="${it.image}" class="mm-thumb" loading="lazy" alt="${it.name}">`
+          : `<div class="mm-thumb-placeholder">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+              </svg>
+            </div>`}
         <div class="mm-item-inner">
           <div class="mm-row-top">
             <div class="mm-item-info">
@@ -480,11 +483,13 @@
       ).join('');
 
       row.innerHTML = `
-        <div class="mm-thumb-placeholder">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
-            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
-          </svg>
-        </div>
+        ${p.image
+          ? `<img src="${p.image}" class="mm-thumb" loading="lazy" alt="${p.name}">`
+          : `<div class="mm-thumb-placeholder">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+              </svg>
+            </div>`}
         <div class="mm-item-inner">
           <div class="mm-row-top">
             <div class="mm-item-info">

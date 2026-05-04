@@ -62,6 +62,7 @@
     .product-card.in-cart { border-color:var(--green); background:rgba(10,74,47,.015); }
     .card-img { background:var(--bg); aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--border); position:relative; }
     .card-img svg { opacity:.12; }
+    .card-img-photo { width:100%; height:100%; object-fit:cover; display:block; }
     .special-badge { position:absolute; top:.6rem; left:.6rem; padding:.2rem .55rem; border-radius:999px; font-family:var(--font-heading); font-size:.62rem; font-weight:700; }
     .special-badge.sale    { background:#DC2626; color:#fff; }
     .special-badge.new     { background:var(--green); color:#fff; }
@@ -297,40 +298,40 @@ const DELIVERY_THRESHOLD = 99.00;
   // ============================================================
 
   const fruitProducts = [
-    { id:'apples', name:'Apples', subtitle:'Pink Lady · Royal Gala', badge:null, sortOrder:1, defaultSizeIdx:1,
+    { id:'apples', name:'Apples', subtitle:'Pink Lady · Royal Gala', badge:null, sortOrder:1, defaultSizeIdx:1, image:'',
       sizes:[{label:'1kg',price:3.50,was:null},{label:'2kg',price:6.00,was:null},{label:'3kg',price:8.50,was:null},{label:'5kg',price:13.00,was:null}] },
-    { id:'bananas', name:'Bananas', subtitle:'Cavendish', badge:null, sortOrder:2, defaultSizeIdx:1,
+    { id:'bananas', name:'Bananas', subtitle:'Cavendish', badge:null, sortOrder:2, defaultSizeIdx:1, image:'',
       sizes:[{label:'1kg',price:3.00,was:null},{label:'2kg',price:5.50,was:null},{label:'3kg',price:8.00,was:null},{label:'5kg',price:12.50,was:null}] },
-    { id:'oranges', name:'Oranges', subtitle:'Navel · Seasonal', badge:null, sortOrder:3, defaultSizeIdx:0,
+    { id:'oranges', name:'Oranges', subtitle:'Navel · Seasonal', badge:null, sortOrder:3, defaultSizeIdx:0, image:'',
       sizes:[{label:'1kg',price:3.50,was:null},{label:'2kg',price:6.00,was:null},{label:'3kg',price:8.50,was:null},{label:'5kg',price:13.00,was:null}] },
-    { id:'mandarins', name:'Mandarins', subtitle:'Easy-peel · Seedless', badge:null, sortOrder:4, defaultSizeIdx:0,
+    { id:'mandarins', name:'Mandarins', subtitle:'Easy-peel · Seedless', badge:null, sortOrder:4, defaultSizeIdx:0, image:'',
       sizes:[{label:'1kg',price:3.50,was:null},{label:'2kg',price:6.00,was:null},{label:'3kg',price:8.50,was:null}] }
   ];
 
   const mmProducts = [
-    { id:'mm-apples',    name:'Apples',          subtitle:'Pink Lady · Royal Gala',     category:'fruit',      mm_sort_order:1, default_size_index:1,
+    { id:'mm-apples',    name:'Apples',          subtitle:'Pink Lady · Royal Gala',     category:'fruit',      mm_sort_order:1, default_size_index:1, image:'',
       sizes:[{label:'1kg',price:3.50},{label:'2kg',price:6.00},{label:'3kg',price:8.50},{label:'5kg',price:13.00}] },
-    { id:'mm-bananas',   name:'Bananas',          subtitle:'Cavendish',                  category:'fruit',      mm_sort_order:2, default_size_index:1,
+    { id:'mm-bananas',   name:'Bananas',          subtitle:'Cavendish',                  category:'fruit',      mm_sort_order:2, default_size_index:1, image:'',
       sizes:[{label:'1kg',price:3.00},{label:'2kg',price:5.50},{label:'3kg',price:8.00},{label:'5kg',price:12.50}] },
-    { id:'mm-oranges',   name:'Oranges',          subtitle:'Navel · Seasonal',           category:'fruit',      mm_sort_order:3, default_size_index:0,
+    { id:'mm-oranges',   name:'Oranges',          subtitle:'Navel · Seasonal',           category:'fruit',      mm_sort_order:3, default_size_index:0, image:'',
       sizes:[{label:'1kg',price:3.50},{label:'2kg',price:6.00},{label:'3kg',price:8.50},{label:'5kg',price:13.00}] },
-    { id:'mm-mandarins', name:'Mandarins',         subtitle:'Easy-peel · Seedless',       category:'fruit',      mm_sort_order:4, default_size_index:0,
+    { id:'mm-mandarins', name:'Mandarins',         subtitle:'Easy-peel · Seedless',       category:'fruit',      mm_sort_order:4, default_size_index:0, image:'',
       sizes:[{label:'1kg',price:3.50},{label:'2kg',price:6.00},{label:'3kg',price:8.50}] },
-    { id:'mm-potatoes',  name:'Brushed Potatoes', subtitle:'Everyday staple',            category:'vegetables', mm_sort_order:1, default_size_index:1,
+    { id:'mm-potatoes',  name:'Brushed Potatoes', subtitle:'Everyday staple',            category:'vegetables', mm_sort_order:1, default_size_index:1, image:'',
       sizes:[{label:'1kg',price:2.80},{label:'2kg',price:5.00},{label:'3kg',price:7.00},{label:'5kg',price:11.00}] },
-    { id:'mm-onions',    name:'Brown Onions',      subtitle:'Kitchen essential',          category:'vegetables', mm_sort_order:2, default_size_index:1,
+    { id:'mm-onions',    name:'Brown Onions',      subtitle:'Kitchen essential',          category:'vegetables', mm_sort_order:2, default_size_index:1, image:'',
       sizes:[{label:'1kg',price:2.00},{label:'2kg',price:3.50},{label:'3kg',price:5.00},{label:'5kg',price:8.00}] },
-    { id:'mm-carrots',   name:'Carrots',           subtitle:'Fresh everyday',             category:'vegetables', mm_sort_order:3, default_size_index:1,
+    { id:'mm-carrots',   name:'Carrots',           subtitle:'Fresh everyday',             category:'vegetables', mm_sort_order:3, default_size_index:1, image:'',
       sizes:[{label:'1kg',price:2.50},{label:'2kg',price:4.50},{label:'3kg',price:6.00},{label:'5kg',price:9.00}] },
-    { id:'mm-sweetpot',  name:'Sweet Potato',      subtitle:'Versatile staple',           category:'vegetables', mm_sort_order:4, default_size_index:0,
+    { id:'mm-sweetpot',  name:'Sweet Potato',      subtitle:'Versatile staple',           category:'vegetables', mm_sort_order:4, default_size_index:0, image:'',
       sizes:[{label:'1kg',price:3.00},{label:'2kg',price:5.50},{label:'3kg',price:8.00}] },
-    { id:'mm-rice',      name:'Basmati Rice',      subtitle:'Long grain · Pantry staple', category:'pantry',     mm_sort_order:1, default_size_index:1,
+    { id:'mm-rice',      name:'Basmati Rice',      subtitle:'Long grain · Pantry staple', category:'pantry',     mm_sort_order:1, default_size_index:1, image:'',
       sizes:[{label:'1kg',price:2.00},{label:'2kg',price:3.80},{label:'5kg',price:9.00}] },
-    { id:'mm-flour',     name:'Plain Flour',       subtitle:'All-purpose baking',         category:'pantry',     mm_sort_order:2, default_size_index:1,
+    { id:'mm-flour',     name:'Plain Flour',       subtitle:'All-purpose baking',         category:'pantry',     mm_sort_order:2, default_size_index:1, image:'',
       sizes:[{label:'1kg',price:1.60},{label:'2kg',price:3.00},{label:'5kg',price:7.00}] },
-    { id:'mm-sugar',     name:'White Sugar',       subtitle:'Everyday pantry',            category:'pantry',     mm_sort_order:3, default_size_index:1,
+    { id:'mm-sugar',     name:'White Sugar',       subtitle:'Everyday pantry',            category:'pantry',     mm_sort_order:3, default_size_index:1, image:'',
       sizes:[{label:'1kg',price:1.80},{label:'2kg',price:3.20},{label:'5kg',price:7.50}] },
-    { id:'mm-pasta',     name:'Pasta',             subtitle:'Spaghetti or penne',         category:'pantry',     mm_sort_order:4, default_size_index:1,
+    { id:'mm-pasta',     name:'Pasta',             subtitle:'Spaghetti or penne',         category:'pantry',     mm_sort_order:4, default_size_index:1, image:'',
       sizes:[{label:'500g',price:1.80},{label:'1kg',price:3.20},{label:'2kg',price:5.50}] },
   ];
 
@@ -476,9 +477,11 @@ const DELIVERY_THRESHOLD = 99.00;
 
       card.innerHTML = `
         <div class="card-img">${badgeHtml}
-          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width=".75" stroke-linecap="round">
-            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
-          </svg>
+          ${product.image
+            ? `<img src="${product.image}" class="card-img-photo" loading="lazy" alt="${product.name}">`
+            : `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width=".75" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+              </svg>`}
         </div>
         <div class="card-body">
           <div><div class="card-name">${product.name}</div><div class="card-subtitle">${product.subtitle}</div></div>
@@ -530,11 +533,13 @@ const DELIVERY_THRESHOLD = 99.00;
       ).join('');
 
       row.innerHTML = `
-        <div class="mm-thumb-placeholder">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
-            <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
-          </svg>
-        </div>
+        ${product.image
+          ? `<img src="${product.image}" class="mm-thumb" loading="lazy" alt="${product.name}">`
+          : `<div class="mm-thumb-placeholder">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A4A2F" stroke-width="1" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9"/><path d="M12 3c0 0 3 4 3 9s-3 9-3 9"/><path d="M3 12h18"/>
+              </svg>
+            </div>`}
         <div class="mm-item-inner">
           <div class="mm-row-top">
             <div class="mm-item-info">
