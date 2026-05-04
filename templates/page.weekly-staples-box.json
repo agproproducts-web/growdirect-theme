@@ -1,4 +1,4 @@
-﻿{
+{
   "sections": {
     "main": {
       "type": "page-saver-box",
@@ -7,3 +7,4 @@
   },
   "order": ["main"]
 }
+
